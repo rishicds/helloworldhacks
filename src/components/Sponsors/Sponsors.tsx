@@ -5,7 +5,36 @@ import { useInView } from "framer-motion"
 import { motion } from "framer-motion"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-
+import { Canvas } from "@react-three/fiber"
+import { useGLTF, OrbitControls } from "@react-three/drei"
+const DragonModel = () => {
+    const group = useRef(null)
+    const { scene, } = useGLTF("/models/coins.glb")
+    
+    // Simple rotation animation
+    useRef(() => {
+      const animate = () => {
+        if (group.current) {
+          group.current.rotation.y += 0.2
+        }
+        requestAnimationFrame(animate)
+      }
+      const id = requestAnimationFrame(animate)
+      return () => cancelAnimationFrame(id)
+    })
+    
+  
+    return (
+      <group ref={group}>
+        <primitive 
+          object={scene} 
+          scale={0.16}
+          position={[0, -0.5, 0]}
+          rotation={[0, Math.PI * 0.25, 0]}
+        />
+      </group>
+    )
+  }
 
 
 export default function Sponsors() {
@@ -44,12 +73,30 @@ export default function Sponsors() {
         </div>
 
         <div className="max-w-7xl mx-auto ">
-          <motion.div
+        <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
+            <div className="flex items-center justify-center gap-4">
+              <div className="w-42 h-42">
+                <Canvas
+                  camera={{ position: [0, 0, 3], fov: 45 }}
+                  style={{ background: 'transparent' }}
+                >
+                  <ambientLight intensity={3} />
+                  <directionalLight position={[0, 10, 10]} intensity={4} />
+                  <DragonModel />
+                  <OrbitControls 
+                    enableZoom={false}
+                    enablePan={false}
+                    autoRotate
+                    autoRotateSpeed={2}
+                  />
+                </Canvas>
+              </div>
+            </div>
             <h2 className="text-4xl sm:text-5xl font-bold mb-4 text-white">OUR SPONSORS</h2>
             <div className="w-20 h-1 bg-[#3DEFE9] mx-auto mb-6"></div>
             <p className="text-xl text-white/70 max-w-3xl mx-auto">

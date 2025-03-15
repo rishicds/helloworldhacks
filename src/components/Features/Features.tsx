@@ -5,7 +5,38 @@ import { useInView } from "framer-motion"
 import { motion } from "framer-motion"
 
 import { Code, Gamepad2, Trophy, Users, LightbulbIcon, CuboidIcon as Cube } from "lucide-react"
+import { Canvas } from "@react-three/fiber"
+import { useGLTF, OrbitControls } from "@react-three/drei"
 
+
+// Add this component inside the Features function
+const DragonModel = () => {
+  const group = useRef(null)
+  const { scene, animations } = useGLTF("/models/ghostu2.glb")
+  
+  // Simple rotation animation
+  useRef(() => {
+    const animate = () => {
+      if (group.current) {
+        group.current.rotation.y += 0.01
+      }
+      requestAnimationFrame(animate)
+    }
+    const id = requestAnimationFrame(animate)
+    return () => cancelAnimationFrame(id)
+  })
+
+  return (
+    <group ref={group}>
+      <primitive 
+        object={scene} 
+        scale={1.4}
+        position={[0, -0.5, 0]}
+        rotation={[0, Math.PI * 0.25, 0]}
+      />
+    </group>
+  )
+}
 
 
 export default function Features() {
@@ -93,19 +124,37 @@ export default function Features() {
       
 
         <div className="max-w-7xl mx-auto ">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl sm:text-5xl font-bold mb-4 text-white glow-text">WHY PARTICIPATE?</h2>
-            <div className="w-20 h-1 bg-[#FF5470] mx-auto mb-6 glow-line"></div>
-            <p className="text-xl text-white/70 max-w-3xl mx-auto">
-              HelloWorld Hacks is more than just a coding competition. It&apos;s a platform to learn, network, and showcase
-              your skills to the tech community.
-            </p>
-          </motion.div>
+        <motion.div
+  initial={{ opacity: 0, y: 20 }}
+  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+  transition={{ duration: 0.8 }}
+  className="text-center mb-16"
+>
+  <div className="flex items-center justify-center">
+    <div className="w-32 h-32 mr-4">
+      <Canvas
+        camera={{ position: [0, 0, 3], fov: 45 }}
+        style={{ background: 'transparent' }}
+      >
+        <ambientLight intensity={3} />
+        <directionalLight position={[0, 10, 10]} intensity={0.8} />
+        <DragonModel />
+        <OrbitControls 
+          enableZoom={false}
+          enablePan={false}
+          autoRotate
+          autoRotateSpeed={1}
+        />
+      </Canvas>
+    </div>
+    <h2 className="text-4xl sm:text-5xl font-bold mb-4 text-white glow-text">WHY PARTICIPATE?</h2>
+  </div>
+  <div className="w-20 h-1 bg-[#FF5470] mx-auto mb-6 glow-line"></div>
+  <p className="text-xl text-white/70 max-w-3xl mx-auto">
+    HelloWorld Hacks is more than just a coding competition. It&apos;s a platform to learn, network, and showcase
+    your skills to the tech community.
+  </p>
+</motion.div>
 
           <motion.div
             variants={container}

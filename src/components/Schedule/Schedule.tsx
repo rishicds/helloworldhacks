@@ -5,7 +5,59 @@ import { useInView } from "framer-motion"
 import { motion } from "framer-motion"
 import { Card, CardContent } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Canvas } from "@react-three/fiber"
+import { useGLTF, OrbitControls, useAnimations } from "@react-three/drei"
+import * as THREE from "three"
 
+// Dragon model component
+const DragonModel = () => {
+  const group = useRef<THREE.Group>(null)
+  const { scene, animations } = useGLTF("/models/dragon.glb")
+  const { actions } = useAnimations(animations, group)
+
+  // Play the first animation if available
+  useRef(() => {
+    if (animations && animations.length > 0) {
+      const actionNames = Object.keys(actions)
+      if (actionNames.length > 0) {
+        actions[actionNames[1]]?.play()
+      }
+    }
+  })
+
+  // Frame update - rotate if no animations
+  useFrame((state, delta) => {
+    if (animations.length === 0 && group.current) {
+      group.current.rotation.y += 0.01
+    }
+  })
+
+  return (
+    <group ref={group}>
+      <primitive 
+        object={scene} 
+        scale={0.5} 
+        position={[0, -0.5, 0]}
+        rotation={[0, Math.PI * 0.25, 0]}
+      />
+    </group>
+  )
+}
+
+// Missing useFrame declaration
+const useFrame = (callback: (state: any, delta: number) => void) => {
+  useRef(() => {
+    let lastTime = 0
+    const animate = (time: number) => {
+      const delta = time - lastTime
+      lastTime = time
+      callback({ clock: { elapsedTime: time / 1000 } }, delta / 1000)
+      requestAnimationFrame(animate)
+    }
+    const id = requestAnimationFrame(animate)
+    return () => cancelAnimationFrame(id)
+  })
+}
 
 
 export default function Schedule() {
@@ -47,22 +99,39 @@ export default function Schedule() {
 
   return (
     <section className="py-32 px-4 sm:px-6 bg-[#000000] relative" ref={ref}>
-      <div className="relative">
-       
-
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl sm:text-5xl font-bold mb-4 text-white">EVENT TIMELINE</h2>
-            <div className="w-20 h-1 bg-[#3DEFE9] mx-auto mb-6"></div>
-            <p className="text-xl text-white/70 max-w-3xl mx-auto">
-              Three days of coding, learning, and fun. Plan your HelloWorld Hacks experience.
-            </p>
-          </motion.div>
+    <div className="relative">
+      <div className="max-w-7xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16 relative"
+        >
+          <div className="flex items-center justify-center">
+            <div className="w-32 h-32 mr-4 relative">
+              <Canvas
+                camera={{ position: [0, 0, 3], fov: 45 }}
+                style={{ background: 'transparent' }}
+              >
+                <ambientLight intensity={3} />
+                <directionalLight position={[0, 10, 10]} intensity={0.8} />
+                <DragonModel />
+                <OrbitControls 
+                  enableZoom={false}
+                  enablePan={false}
+                  
+                />
+              </Canvas>
+            </div>
+            <div>
+              <h2 className="text-4xl sm:text-5xl font-bold mb-4 text-white">EVENT TIMELINE</h2>
+              <div className="w-20 h-1 bg-[#3DEFE9] mx-auto mb-6"></div>
+            </div>
+          </div>
+          <p className="text-xl text-white/70 max-w-3xl mx-auto">
+            Three days of coding, learning, and fun. Plan your HelloWorld Hacks experience.
+          </p>
+        </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 40 }}
