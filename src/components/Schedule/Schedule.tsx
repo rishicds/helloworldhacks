@@ -1,0 +1,128 @@
+"use client"
+
+import { useRef } from "react"
+import { useInView } from "framer-motion"
+import { motion } from "framer-motion"
+import { Card, CardContent } from "@/components/ui/card"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+
+
+
+export default function Schedule() {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: false, amount: 0.3 })
+
+  const scheduleData = {
+    day1: [
+      { time: "9:00 AM", event: "Registration & Check-in", description: "Grab your badges and welcome kit" },
+      { time: "10:00 AM", event: "Opening Ceremony", description: "Welcome address by GDG RCCIIT & RCCTechz" },
+      { time: "11:00 AM", event: "Team Formation", description: "Find teammates and brainstorm ideas" },
+      { time: "12:00 PM", event: "Lunch Break", description: "Fuel up for the challenges ahead" },
+      { time: "1:00 PM", event: "Workshop: API Integration", description: "Learn how to leverage popular APIs" },
+      { time: "3:00 PM", event: "Hacking Begins", description: "Start building your projects" },
+      { time: "8:00 PM", event: "Dinner", description: "Networking dinner with sponsors" },
+      { time: "9:00 PM", event: "Night Hacking", description: "Continue working on projects" },
+    ],
+    day2: [
+      { time: "8:00 AM", event: "Breakfast", description: "Start your day with energy" },
+      { time: "9:00 AM", event: "Workshop: UI/UX Design", description: "Create better user experiences" },
+      { time: "11:00 AM", event: "Checkpoint #1", description: "Share progress and get feedback" },
+      { time: "12:00 PM", event: "Lunch Break", description: "Recharge with fellow hackers" },
+      { time: "1:00 PM", event: "Workshop: Cloud Deployment", description: "Deploy your apps to the cloud" },
+      { time: "3:00 PM", event: "Mentor Sessions", description: "Get help from industry experts" },
+      { time: "7:00 PM", event: "Dinner", description: "Continue networking and sharing ideas" },
+      { time: "8:00 PM", event: "Gaming Tournament", description: "Take a break with some gaming fun" },
+    ],
+    day3: [
+      { time: "8:00 AM", event: "Breakfast", description: "Final day energy boost" },
+      { time: "9:00 AM", event: "Last Push", description: "Finalize your projects" },
+      { time: "12:00 PM", event: "Lunch Break", description: "Quick lunch before submissions" },
+      { time: "1:00 PM", event: "Project Submission Deadline", description: "All code must be submitted" },
+      { time: "2:00 PM", event: "Project Presentations", description: "Demo your creations to judges" },
+      { time: "5:00 PM", event: "Judging Period", description: "Judges deliberate on projects" },
+      { time: "6:00 PM", event: "Awards Ceremony", description: "Winners announced and prizes awarded" },
+      { time: "7:00 PM", event: "Closing Party", description: "Celebrate the amazing weekend" },
+    ],
+  }
+
+  return (
+    <section className="py-32 px-4 sm:px-6 bg-[#000000] relative" ref={ref}>
+      <div className="relative">
+       
+
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl sm:text-5xl font-bold mb-4 text-white">EVENT TIMELINE</h2>
+            <div className="w-20 h-1 bg-[#3DEFE9] mx-auto mb-6"></div>
+            <p className="text-xl text-white/70 max-w-3xl mx-auto">
+              Three days of coding, learning, and fun. Plan your HelloWorld Hacks experience.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <Tabs defaultValue="day1" className="w-full max-w-4xl mx-auto">
+              <TabsList className="grid w-full grid-cols-3 mb-8 bg-white/10 p-1">
+                <TabsTrigger
+                  value="day1"
+                  className="text-sm sm:text-base py-4 data-[state=active]:bg-[#3DEFE9] data-[state=active]:text-black "
+                >
+                  DAY 1: KICKOFF
+                </TabsTrigger>
+                <TabsTrigger
+                  value="day2"
+                  className="text-sm sm:text-base py-3 data-[state=active]:bg-[#3DEFE9] data-[state=active]:text-black"
+                >
+                  DAY 2: BUILD
+                </TabsTrigger>
+                <TabsTrigger
+                  value="day3"
+                  className="text-sm sm:text-base py-3 data-[state=active]:bg-[#3DEFE9] data-[state=active]:text-black"
+                >
+                  DAY 3: FINALE
+                </TabsTrigger>
+              </TabsList>
+
+              {Object.entries(scheduleData).map(([day, events],) => (
+                <TabsContent key={day} value={day} className="mt-0">
+                  <Card className="border-2 border-white/10 bg-white/5 backdrop-blur-md">
+                    <CardContent className="p-0">
+                      <div className="divide-y divide-white/10">
+                        {events.map((item, index) => (
+                          <motion.div
+                            key={index}
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.5, delay: index * 0.1 }}
+                            className="flex flex-col sm:flex-row py-4 sm:py-6 px-4 sm:px-8 hover:bg-white/10 transition duration-300"
+                          >
+                            <div className="sm:w-1/4 mb-2 sm:mb-0">
+                              <span className="font-mono text-[#3DEFE9] font-bold">{item.time}</span>
+                            </div>
+                            <div className="sm:w-3/4">
+                              <h3 className="text-lg font-bold mb-1 text-white">{item.event}</h3>
+                              <p className="text-white/70">{item.description}</p>
+                            </div>
+                          </motion.div>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </TabsContent>
+              ))}
+            </Tabs>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
