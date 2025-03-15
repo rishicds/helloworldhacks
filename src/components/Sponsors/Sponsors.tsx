@@ -1,14 +1,16 @@
 "use client"
 
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import { useInView } from "framer-motion"
 import { motion } from "framer-motion"
 import Image from "next/image"
+import { Group } from "three"
 import { Button } from "@/components/ui/button"
 import { Canvas } from "@react-three/fiber"
-import { useGLTF, OrbitControls } from "@react-three/drei"
+import { OrbitControls, useGLTF } from "@react-three/drei"
+import { Card } from "../ui/card"
 const DragonModel = () => {
-    const group = useRef(null)
+    const group = useRef<Group>(null)
     const { scene, } = useGLTF("/models/coins.glb")
     
     // Simple rotation animation
@@ -40,7 +42,25 @@ const DragonModel = () => {
 export default function Sponsors() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: false, amount: 0.3 })
+  const isComingSoon = true // You can change this to true when needed
+  const [isHovered, setIsHovered] = useState(false);
+  
+  const quirkySlogans = [
+    "Sponsors get the coolest swag!",
+    "Join the cool kids' table!",
+    "Your logo could be here →",
+    "Support awesome, be awesome!",
+    "High-five your marketing budget!"
+  ];
 
+  const downloadBrochure = () => {
+    const link = document.createElement('a');
+    link.href = '/sponsorshipbrochure.pdf';
+    link.download = 'sponsorshipbrochure.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
   const sponsors = [
     { name: "Google", tier: "PLATINUM SPONSORS", imageWidth: 180 },
     { name: "Microsoft", tier: "PLATINUM SPONSORS", imageWidth: 180 },
@@ -53,7 +73,7 @@ export default function Sponsors() {
   ]
 
   // Group sponsors by tier
-  const sponsorsByTier = sponsors.reduce((acc, sponsor) => {
+  const sponsorsByTier = sponsors.reduce<Record<string, typeof sponsors>>((acc, sponsor) => {
     if (!acc[sponsor.tier]) {
       acc[sponsor.tier] = []
     }
@@ -64,10 +84,130 @@ export default function Sponsors() {
   return (
     <section className="py-32 px-4 sm:px-6 bg-[#0D0221] relative" ref={ref}>
       <div className="relative">
+      <div className="max-w-7xl mx-auto">
+          {/* Keep 3D Coin Model and Title */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <div className="flex items-center justify-center gap-4">
+              <div className="w-42 h-42">
+                <Canvas
+                  camera={{ position: [0, 0, 3], fov: 45 }}
+                  style={{ background: 'transparent' }}
+                >
+                  <ambientLight intensity={3} />
+                  <directionalLight position={[0, 10, 10]} intensity={4} />
+                  <DragonModel />
+                  <OrbitControls 
+                    enableZoom={false}
+                    enablePan={false}
+                    autoRotate
+                    autoRotateSpeed={2}
+                  />
+                </Canvas>
+              </div>
+            </div>
+            <h2 className="text-4xl sm:text-5xl font-bold mb-4 text-white">OUR SPONSORS</h2>
+    <div className="w-20 h-1 bg-[#3DEFE9] mx-auto mb-6"></div>
     
+    {isHovered && (
+        <>
+          <motion.div
+            initial={{ opacity: 0, y: 20, rotate: -5 }}
+            animate={{ opacity: 1, y: -60, rotate: -5 }}
+            className="absolute z-10"
+          >
+            <Card className="bg-pink-100 p-3 shadow-md max-w-xs">
+              <p className="text-sm font-medium">🚀 Unlock VIP perks & premium visibility!</p>
+            </Card>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20, rotate: 5 }}
+            animate={{ opacity: 1, y: -100, x: 50, rotate: 5 }}
+            className="absolute z-10"
+          >
+            <Card className="bg-purple-100 p-3 shadow-md">
+              <p className="text-sm font-medium">💎 Limited spots available!</p>
+            </Card>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20, rotate: -3 }}
+            animate={{ opacity: 1, y: -130, x: -70, rotate: -3 }}
+            className="absolute z-10"
+          >
+            <Card className="bg-yellow-100 p-3 shadow-md">
+              <p className="text-sm font-medium">🎯 200% ROI for early birds!</p>
+            </Card>
+          </motion.div>
+        </>
+      )}
+      
+      {/* Main button */}
+      <motion.div
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        onHoverStart={() => setIsHovered(true)}
+        onHoverEnd={() => setIsHovered(false)}
+        className="inline-block"
+      >
+        <Button 
+          className="bg-[#3DEFE9] text-black hover:bg-[#3DEFE9]/90 font-bold text-2xl px-[8.5rem] py-[3rem] rounded-lg
+            shadow-[0_0_15px_rgba(61,239,233,0.3)] hover:shadow-[0_0_25px_rgba(61,239,233,0.5)]
+            transition-all duration-300"
+          onClick={downloadBrochure}
+        >
+          <div className="flex flex-col items-center">
+            <motion.span
+              animate={{ 
+                opacity: [1, 0.7, 1],
+                scale: [1, 1.02, 1]
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+              className="mb-1"
+            >
+              Download Sponsorship Deck
+            </motion.span>
+            
+            <motion.p 
+              className="text-sm font-medium mt-2"
+              animate={{ opacity: [0, 1, 0] }}
+              transition={{ 
+                duration: 4, 
+                repeat: Infinity,
+                repeatType: "reverse" 
+              }}
+            >
+              {quirkySlogans[Math.floor(Math.random() * quirkySlogans.length)]}
+            </motion.p>
+          </div>
+        </Button>
+      </motion.div>
+      
+      {/* Bottom tag line */}
+      <motion.p 
+        className="text-sm text-gray-600 mt-4 italic"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.5 }}
+      >
+        *Sponsors reported 87% more high-fives after partnering with us
+      </motion.p>
+      </motion.div>
+
+         
+        </div> 
 
         {/* Brutalist background elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-40 right-10 w-40 h-40 border-4 border-[#3DEFE9] rotate-12 opacity-20"></div>
           <div className="absolute bottom-20 left-20 w-60 h-60 border-4 border-[#3DEFE9] -rotate-12 opacity-20"></div>
         </div>
@@ -151,7 +291,7 @@ export default function Sponsors() {
             </p>
             <Button className="bg-[#3DEFE9] text-black hover:bg-[#3DEFE9]/90 font-bold">SPONSORSHIP DECK</Button>
           </motion.div>
-        </div>
+        </div> */}
       </div>
     </section>
   )

@@ -19,7 +19,7 @@ export default function Model() {
     scene.traverse((child) => {
       if ((child as THREE.Mesh).isMesh) {
         const mesh = child as THREE.Mesh;
-        if (mesh.material) {
+        if (mesh.material && mesh.material instanceof THREE.MeshStandardMaterial) {
           mesh.material.metalness = 1; // 1 = Fully metallic, 0 = Not metallic
           mesh.material.roughness = 0.2; // 0 = Shiny, 1 = Rough
           mesh.material.envMapIntensity = 1; // Enhances reflections

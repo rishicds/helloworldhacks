@@ -3,6 +3,7 @@
 import { useRef } from "react"
 import { useInView } from "framer-motion"
 import { motion } from "framer-motion"
+import * as THREE from "three"
 
 import { Code, Gamepad2, Trophy, Users, LightbulbIcon, CuboidIcon as Cube } from "lucide-react"
 import { Canvas } from "@react-three/fiber"
@@ -11,7 +12,7 @@ import { useGLTF, OrbitControls } from "@react-three/drei"
 
 // Add this component inside the Features function
 const DragonModel = () => {
-  const group = useRef(null)
+  const group = useRef<THREE.Group>(null)
   const { scene, animations } = useGLTF("/models/ghostu2.glb")
   
   // Simple rotation animation
