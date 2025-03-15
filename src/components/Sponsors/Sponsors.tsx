@@ -3,7 +3,7 @@
 import { useRef, useState } from "react"
 import { useInView } from "framer-motion"
 import { motion } from "framer-motion"
-import Image from "next/image"
+// import Image from "next/image"
 import { Group } from "three"
 import { Button } from "@/components/ui/button"
 import { Canvas } from "@react-three/fiber"
@@ -156,34 +156,35 @@ export default function Sponsors() {
         className="inline-block"
       >
         <Button 
-          className="bg-[#3DEFE9] text-black hover:bg-[#3DEFE9]/90 font-bold text-2xl px-[8.5rem] py-[3rem] rounded-lg
+          className="bg-[#3DEFE9] text-black hover:bg-[#3DEFE9]/90 font-bold text-lg sm:text-2xl 
+            px-6 sm:px-[8.5rem] py-4 sm:py-[3rem] rounded-lg
             shadow-[0_0_15px_rgba(61,239,233,0.3)] hover:shadow-[0_0_25px_rgba(61,239,233,0.5)]
-            transition-all duration-300"
+            transition-all duration-300 w-full sm:w-auto"
           onClick={downloadBrochure}
         >
           <div className="flex flex-col items-center">
             <motion.span
               animate={{ 
-                opacity: [1, 0.7, 1],
-                scale: [1, 1.02, 1]
+          opacity: [1, 0.7, 1],
+          scale: [1, 1.02, 1]
               }}
               transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut"
+          duration: 2,
+          repeat: Infinity,
+          ease: "easeInOut"
               }}
-              className="mb-1"
+              className="mb-1 text-center"
             >
               Download Sponsorship Deck
             </motion.span>
             
             <motion.p 
-              className="text-sm font-medium mt-2"
+              className="text-xs sm:text-sm font-medium mt-2 text-center"
               animate={{ opacity: [0, 1, 0] }}
               transition={{ 
-                duration: 4, 
-                repeat: Infinity,
-                repeatType: "reverse" 
+          duration: 4, 
+          repeat: Infinity,
+          repeatType: "reverse" 
               }}
             >
               {quirkySlogans[Math.floor(Math.random() * quirkySlogans.length)]}
