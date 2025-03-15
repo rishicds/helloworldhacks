@@ -4,6 +4,7 @@ import "./globals.css";
 
 import Footer from "@/components/shared/Footer";
 import LoadingWrapper from "@/components/shared/LoaderClient";
+import CoolHeader from "@/components/shared/Header";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,6 +32,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <LoadingWrapper>
+          <CoolHeader/>
           {children}
           <Footer />
         </LoadingWrapper>
