@@ -13,7 +13,7 @@ import { useGLTF, OrbitControls } from "@react-three/drei"
 // Add this component inside the Features function
 const DragonModel = () => {
   const group = useRef<THREE.Group>(null)
-  const { scene, animations } = useGLTF("/models/ghostu2.glb")
+  const { scene } = useGLTF("/models/ghostu2.glb")
   
   // Simple rotation animation
   useRef(() => {
