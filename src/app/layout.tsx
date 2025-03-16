@@ -5,6 +5,7 @@ import "./globals.css";
 import Footer from "@/components/shared/Footer";
 import LoadingWrapper from "@/components/shared/LoaderClient";
 import CoolHeader from "@/components/shared/Header";
+import MusicButton from "@/components/shared/MusicButton";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,6 +35,7 @@ export default function RootLayout({
         <LoadingWrapper>
           <CoolHeader/>
           {children}
+          <MusicButton />
           <Footer />
         </LoadingWrapper>
       </body>

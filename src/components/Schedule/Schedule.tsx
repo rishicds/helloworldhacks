@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef } from "react"
+import { useRef ,useEffect} from "react"
 import { useInView } from "framer-motion"
 import { motion } from "framer-motion"
 import { Card, CardContent } from "@/components/ui/card"
@@ -12,20 +12,23 @@ import * as THREE from "three"
 // Dragon model component
 const DragonModel = () => {
   const group = useRef<THREE.Group>(null)
-  const { scene, animations } = useGLTF("/models/dragon.glb")
+  const { scene, animations } = useGLTF("/models/celebi.glb")
   const { actions } = useAnimations(animations, group)
 
   // Play the first animation if available
-  useRef(() => {
-    if (animations && animations.length > 0) {
-      const actionNames = Object.keys(actions)
-      if (actionNames.length > 0) {
-        actions[actionNames[1]]?.play()
+  useEffect(() => {
+    if (actions && animations.length > 0 && animations[0]) {
+      const action = actions[animations[1].name];
+      if (action) {
+        action.reset().fadeIn(0.5).play();
+        action.clampWhenFinished = true;
+        action.loop = THREE.LoopRepeat;
       }
     }
-  })
+  }, [actions, animations, animations[0]]);
 
   // Frame update - rotate if no animations
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   useFrame((state, delta) => {
     if (animations.length === 0 && group.current) {
       group.current.rotation.y += 0.01
@@ -36,7 +39,7 @@ const DragonModel = () => {
     <group ref={group}>
       <primitive 
         object={scene} 
-        scale={0.5} 
+        scale={2} 
         position={[0, -0.5, 0]}
         rotation={[0, Math.PI * 0.25, 0]}
       />
@@ -45,6 +48,7 @@ const DragonModel = () => {
 }
 
 // Missing useFrame declaration
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const useFrame = (callback: (state: any, delta: number) => void) => {
   useRef(() => {
     let lastTime = 0

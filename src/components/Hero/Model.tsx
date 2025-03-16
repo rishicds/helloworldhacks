@@ -5,12 +5,24 @@ import { useEffect } from 'react';
 import * as THREE from 'three';
 
 export default function Model() {
-  const { scene, animations } = useGLTF('/models/Mech.glb');
+  const { scene, animations } = useGLTF('/models/sniffer.glb');
   const { actions } = useAnimations(animations, scene);
 
   useEffect(() => {
     if (actions && animations.length > 0) {
-      actions[animations[0].name]?.play();
+      actions[animations[1].name]?.play();
+
+      const interval = setInterval(() => {
+        actions[animations[1].name]?.fadeOut(0.5);
+        actions[animations[0].name]?.reset().fadeIn(0.5).play();
+
+        setTimeout(() => {
+          actions[animations[0].name]?.fadeOut(0.5);
+          actions[animations[1].name]?.reset().fadeIn(0.5).play();
+        }, animations[0].duration * 1000); // Play the first animation once
+      }, 7000);
+
+      return () => clearInterval(interval);
     }
   }, [actions, animations]);
 
@@ -34,5 +46,5 @@ export default function Model() {
     });
   }, [scene]);
 
-  return <primitive object={scene} scale={1} />;
+  return <primitive object={scene} scale={0.8} rotation={[0, 185.5, 0]} />;
 }
