@@ -66,7 +66,7 @@ const CoolHeader = () => {
             {['About', 'Tracks', 'Schedule', 'Sponsors', 'FAQs'].map((item, index) => (
               <motion.a
                 key={item}
-                href={`#${item.toLowerCase()}`}
+                href={`${item.toLowerCase()}`}
                 className="text-gray-300 hover:text-[#3DEFE9] transition-colors duration-300 text-sm font-medium"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
