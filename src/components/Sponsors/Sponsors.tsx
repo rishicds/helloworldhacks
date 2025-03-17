@@ -1,15 +1,15 @@
 "use client"
 
-import { useRef, useState } from "react"
+import { useRef, useState,useEffect } from "react"
 import { useInView } from "framer-motion"
 import { motion } from "framer-motion"
-// import Image from "next/image"
-import { Group } from "three"
 import { Button } from "@/components/ui/button"
 import { Canvas } from "@react-three/fiber"
 import { OrbitControls, useGLTF } from "@react-three/drei"
 import { Card } from "../ui/card"
 import Image from "next/image"
+import { Group, MeshStandardMaterial } from "three";
+import THREE from "three";
 const DragonModel = () => {
     const group = useRef<Group>(null)
     const { scene, } = useGLTF("/models/coins.glb")
@@ -25,6 +25,7 @@ const DragonModel = () => {
       const id = requestAnimationFrame(animate)
       return () => cancelAnimationFrame(id)
     })
+    
     
   
     return (
@@ -94,8 +95,8 @@ export default function Sponsors() {
                   camera={{ position: [0, 0, 3], fov: 45 }}
                   style={{ background: 'transparent' }}
                 >
-                  <ambientLight intensity={3} />
-                  <directionalLight position={[0, 10, 10]} intensity={4} />
+                  <ambientLight intensity={4} />
+                  <directionalLight position={[10, 10, 10]} intensity={40} />
                   <DragonModel />
                   <OrbitControls 
                     enableZoom={false}
@@ -132,22 +133,7 @@ export default function Sponsors() {
             className="text-center mb-16"
           >
             <div className="flex items-center justify-center gap-4">
-              <div className="w-42 h-42">
-                <Canvas
-                  camera={{ position: [0, 0, 3], fov: 45 }}
-                  style={{ background: 'transparent' }}
-                >
-                  <ambientLight intensity={3} />
-                  <directionalLight position={[0, 10, 10]} intensity={4} />
-                  <DragonModel />
-                  <OrbitControls 
-                    enableZoom={false}
-                    enablePan={false}
-                    autoRotate
-                    autoRotateSpeed={2}
-                  />
-                </Canvas>
-              </div>
+              
             </div>
             <h2 className="text-4xl sm:text-5xl font-bold mb-4 text-white">OUR SPONSORS</h2>
             <div className="w-20 h-1 bg-[#3DEFE9] mx-auto mb-6"></div>
