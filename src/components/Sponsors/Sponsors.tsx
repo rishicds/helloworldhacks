@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef, useState,useEffect } from "react"
+import { useRef, useState } from "react"
 import { useInView } from "framer-motion"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
@@ -8,8 +8,8 @@ import { Canvas } from "@react-three/fiber"
 import { OrbitControls, useGLTF } from "@react-three/drei"
 import { Card } from "../ui/card"
 import Image from "next/image"
-import { Group, MeshStandardMaterial } from "three";
-import THREE from "three";
+import { Group } from "three";
+
 const DragonModel = () => {
     const group = useRef<Group>(null)
     const { scene, } = useGLTF("/models/coins.glb")
