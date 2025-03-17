@@ -1,25 +1,31 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import CyberpunkLoader from "@/components/shared/Loader";
 
 export default function LoadingWrapper({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true);
+  const pathname = usePathname(); // Get the current route
 
   const handleComplete = () => {
     setLoading(false);
   };
 
-  // Optional: Auto-hide loader after some time even if button isn't clicked
   useEffect(() => {
+    if (pathname !== "/") {
+      setLoading(false); // Skip loading for non-homepage routes
+      return;
+    }
+
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 8000); // Fallback timer - automatically proceed after 8 seconds
-    
-    return () => clearTimeout(timer);
-  }, []);
+    }, 10000); // Auto-hide loader after 10 seconds
 
-  if (loading) {
+    return () => clearTimeout(timer);
+  }, [pathname]);
+
+  if (loading && pathname === "/") {
     return (
       <div className="fixed inset-0 z-50">
         <CyberpunkLoader onComplete={handleComplete} />

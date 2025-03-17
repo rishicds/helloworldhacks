@@ -1,6 +1,7 @@
 "use client"
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 
 const TransparentNavbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -22,26 +23,6 @@ const TransparentNavbar = () => {
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
     )},
-    // { name: 'Tracks', icon: (
-    //   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    //     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2" />
-    //   </svg>
-    // )},
-    // { name: 'Schedule', icon: (
-    //   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    //     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-    //   </svg>
-    // )},
-    // { name: 'Sponsors', icon: (
-    //   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    //     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-    //   </svg>
-    // )},
-    // { name: 'FAQs', icon: (
-    //   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    //     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-    //   </svg>
-    // )}
   ];
 
   return (
@@ -68,33 +49,17 @@ const TransparentNavbar = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <svg width="36" height="36" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="mr-2">
-                <motion.path 
-                  d="M10 20L20 10L30 20L20 30L10 20Z" 
-                  fill="#3DEFE9"
-                  initial={{ pathLength: 0, fill: "rgba(61, 239, 233, 0)" }}
-                  animate={{ pathLength: 1, fill: "rgba(61, 239, 233, 1)" }}
-                  transition={{ duration: 1.5, ease: "easeInOut" }}
-                />
-                <motion.path 
-                  d="M5 20L20 5L35 20L20 35L5 20Z" 
-                  stroke="#3DEFE9" 
-                  strokeWidth="2"
-                  initial={{ pathLength: 0 }}
-                  animate={{ pathLength: 1 }}
-                  transition={{ duration: 1.5, ease: "easeInOut" }}
-                />
-              </svg>
+              <Image src="https://i.postimg.cc/PqjgWGFz/hwh-300-x-124-px-192-x-192-px-removebg-preview.png" width={50} height={40} alt="Logo" />
               <motion.div
                 className="hidden sm:block"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3, duration: 0.5 }}
               >
-                <h1 className="text-white font-bold text-lg tracking-wider">
-                  HELLO<span className="text-[#3DEFE9]">WORLD</span>
+                <h1 className="text-white font-extrabold text-lg tracking-wider">
+                  HELLO<span className="text-[#3DEFE9]">WORLD</span> HACKS
                 </h1>
-                <p className="text-gray-400 text-xs -mt-1">HACKS</p>
+               
               </motion.div>
             </motion.div>
 
