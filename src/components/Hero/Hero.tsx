@@ -19,13 +19,23 @@ export default function Hero() {
   const [isModelHovered, setIsModelHovered] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
 
-  // Load Devfolio SDK dynamically
+  // Load Devfolio SDK dynamically with improved loading
   useEffect(() => {
     const script = document.createElement("script")
     script.src = "https://apply.devfolio.co/v2/sdk.js"
     script.async = true
     script.defer = true
     document.body.appendChild(script)
+    
+    // Add event listener to know when the script has loaded
+    script.onload = () => {
+      // Force re-render of Devfolio button if their SDK supports it
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      if ((window as any).devfolio) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (window as any).devfolio.init()
+      }
+    }
 
     return () => {
       document.body.removeChild(script)
@@ -44,6 +54,20 @@ export default function Hero() {
       window.removeEventListener("resize", checkMobile)
     }
   }, [])
+
+  // Reinitialize Devfolio button when screen size changes
+  useEffect(() => {
+    // Add a slight delay to ensure DOM is updated
+    const timer = setTimeout(() => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      if ((window as any).devfolio) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (window as any).devfolio.init()
+      }
+    }, 300)
+    
+    return () => clearTimeout(timer)
+  }, [isMobile])
 
   return (
     <section ref={containerRef} className="relative h-screen w-full overflow-hidden bg-black text-white">
@@ -77,20 +101,18 @@ export default function Hero() {
             </p>
           </motion.div>
 
-          
-
           {/* Devfolio Apply Button */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.8, duration: 0.8 }}
-            className="mt-6 md:mt-8"
+            className="mt-6 md:mt-8 z-20 relative"
           >
             <div
               className="apply-button"
               data-hackathon-slug="hello-world-hacks"
               data-button-theme="light"
-              style={{ height: "44px", width: "312px" }}
+              style={{ height: "44px", width: "312px", maxWidth: "100%" }}
             ></div>
           </motion.div>
         </div>
