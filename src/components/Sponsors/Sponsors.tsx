@@ -3,12 +3,13 @@
 import { useRef, useState } from "react"
 import { useInView } from "framer-motion"
 import { motion } from "framer-motion"
-// import Image from "next/image"
-import { Group } from "three"
 import { Button } from "@/components/ui/button"
 import { Canvas } from "@react-three/fiber"
 import { OrbitControls, useGLTF } from "@react-three/drei"
 import { Card } from "../ui/card"
+import Image from "next/image"
+import { Group } from "three";
+
 const DragonModel = () => {
     const group = useRef<Group>(null)
     const { scene, } = useGLTF("/models/coins.glb")
@@ -24,6 +25,7 @@ const DragonModel = () => {
       const id = requestAnimationFrame(animate)
       return () => cancelAnimationFrame(id)
     })
+    
     
   
     return (
@@ -42,7 +44,7 @@ const DragonModel = () => {
 export default function Sponsors() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: false, amount: 0.3 })
-  const isComingSoon = true // You can change this to true when needed
+  // You can change this to true when needed
   const [isHovered, setIsHovered] = useState(false);
   
   const quirkySlogans = [
@@ -62,14 +64,9 @@ export default function Sponsors() {
     document.body.removeChild(link);
   };
   const sponsors = [
-    { name: "Google", tier: "PLATINUM SPONSORS", imageWidth: 180 },
-    { name: "Microsoft", tier: "PLATINUM SPONSORS", imageWidth: 180 },
-    { name: "AWS", tier: "GOLD SPONSORS", imageWidth: 150 },
-    { name: "GitHub", tier: "GOLD SPONSORS", imageWidth: 150 },
-    { name: "Vercel", tier: "GOLD SPONSORS", imageWidth: 150 },
-    { name: "MongoDB", tier: "SILVER SPONSORS", imageWidth: 120 },
-    { name: "Figma", tier: "SILVER SPONSORS", imageWidth: 120 },
-    { name: "Digital Ocean", tier: "SILVER SPONSORS", imageWidth: 120 },
+    { name: "DEVFOLIO", tier: "GOLD SPONSORS", imageWidth: 180 },
+    { name: "ETHINDIA", tier: "SILVER SPONSORS", imageWidth: 150 },
+   
   ]
 
   // Group sponsors by tier
@@ -98,8 +95,8 @@ export default function Sponsors() {
                   camera={{ position: [0, 0, 3], fov: 45 }}
                   style={{ background: 'transparent' }}
                 >
-                  <ambientLight intensity={3} />
-                  <directionalLight position={[0, 10, 10]} intensity={4} />
+                  <ambientLight intensity={4} />
+                  <directionalLight position={[10, 10, 10]} intensity={40} />
                   <DragonModel />
                   <OrbitControls 
                     enableZoom={false}
@@ -110,10 +107,94 @@ export default function Sponsors() {
                 </Canvas>
               </div>
             </div>
-            <h2 className="text-4xl sm:text-5xl font-bold mb-4 text-white">OUR SPONSORS</h2>
-    <div className="w-20 h-1 bg-[#3DEFE9] mx-auto mb-6"></div>
+            
+   
     
-    {isHovered && (
+    
+      
+      
+      
+      </motion.div>
+
+         
+        </div> 
+
+        {/* Brutalist background elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-40 right-10 w-40 h-40 border-4 border-[#3DEFE9] rotate-12 opacity-20"></div>
+          <div className="absolute bottom-20 left-20 w-60 h-60 border-4 border-[#3DEFE9] -rotate-12 opacity-20"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto ">
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <div className="flex items-center justify-center gap-4">
+              
+            </div>
+            <h2 className="text-4xl sm:text-5xl font-bold mb-4 text-white">OUR SPONSORS</h2>
+            <div className="w-20 h-1 bg-[#3DEFE9] mx-auto mb-6"></div>
+            <p className="text-xl text-white/70 max-w-3xl mx-auto">
+              HelloWorld Hacks is made possible by the generous support of our sponsors. We&apos;re grateful for their
+              commitment to fostering innovation and supporting the next generation of developers.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            {Object.entries(sponsorsByTier).map(([tier, tierSponsors], tierIndex) => (
+              <div key={tier} className="mb-16 last:mb-0">
+                <h3 className="text-center text-xl font-mono tracking-widest mb-8 text-[#3DEFE9]">{tier}</h3>
+                <div
+                  className={`grid grid-cols-1 md:grid-cols-${Math.min(tierSponsors.length, 4)} gap-8 justify-items-center items-center`}
+                >
+                  {tierSponsors.map((sponsor, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.5, delay: index * 0.1 + tierIndex * 0.2 }}
+                      className="bg-white/5 hover:bg-white/10 border-2 border-[#3DEFE9]/30 hover:border-[#3DEFE9] rounded-lg p-8 flex items-center justify-center w-full h-32 transition-all duration-300 backdrop-blur-md"
+                    >
+                      <Image
+  src={`/sponsors/${sponsor.name.toLowerCase()}.svg`} 
+  alt={`${sponsor.name.toUpperCase()} LOGO`}
+  width={sponsor.imageWidth}
+  height={sponsor.imageWidth / 2}
+  className="opacity-80 hover:opacity-100 transition-opacity duration-300"
+/>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="mt-16 text-center"
+          >
+            <h3 className="text-2xl font-bold mb-4 text-white">BECOME A SPONSOR</h3>
+            <p className="text-white/70 max-w-2xl mx-auto mb-6">
+              Interested in sponsoring HelloWorld Hacks? Reach out to us to learn about our sponsorship packages and how
+              you can support the next generation of developers.
+            </p>
+            <motion.div
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        onHoverStart={() => setIsHovered(true)}
+        onHoverEnd={() => setIsHovered(false)}
+        className="inline-block"
+      >
+        {isHovered && (
         <>
           <motion.div
             initial={{ opacity: 0, y: 20, rotate: -5 }}
@@ -146,15 +227,6 @@ export default function Sponsors() {
           </motion.div>
         </>
       )}
-      
-      {/* Main button */}
-      <motion.div
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        onHoverStart={() => setIsHovered(true)}
-        onHoverEnd={() => setIsHovered(false)}
-        className="inline-block"
-      >
         <Button 
           className="bg-[#3DEFE9] text-black hover:bg-[#3DEFE9]/90 font-bold text-lg sm:text-2xl 
             px-6 sm:px-[8.5rem] py-4 sm:py-[3rem] rounded-lg
@@ -192,107 +264,8 @@ export default function Sponsors() {
           </div>
         </Button>
       </motion.div>
-      
-      {/* Bottom tag line */}
-      <motion.p 
-        className="text-sm text-gray-600 mt-4 italic"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5 }}
-      >
-        *Sponsors reported 87% more high-fives after partnering with us
-      </motion.p>
-      </motion.div>
-
-         
-        </div> 
-
-        {/* Brutalist background elements */}
-        {/* <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-40 right-10 w-40 h-40 border-4 border-[#3DEFE9] rotate-12 opacity-20"></div>
-          <div className="absolute bottom-20 left-20 w-60 h-60 border-4 border-[#3DEFE9] -rotate-12 opacity-20"></div>
+          </motion.div>
         </div>
-
-        <div className="max-w-7xl mx-auto ">
-        <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <div className="flex items-center justify-center gap-4">
-              <div className="w-42 h-42">
-                <Canvas
-                  camera={{ position: [0, 0, 3], fov: 45 }}
-                  style={{ background: 'transparent' }}
-                >
-                  <ambientLight intensity={3} />
-                  <directionalLight position={[0, 10, 10]} intensity={4} />
-                  <DragonModel />
-                  <OrbitControls 
-                    enableZoom={false}
-                    enablePan={false}
-                    autoRotate
-                    autoRotateSpeed={2}
-                  />
-                </Canvas>
-              </div>
-            </div>
-            <h2 className="text-4xl sm:text-5xl font-bold mb-4 text-white">OUR SPONSORS</h2>
-            <div className="w-20 h-1 bg-[#3DEFE9] mx-auto mb-6"></div>
-            <p className="text-xl text-white/70 max-w-3xl mx-auto">
-              HelloWorld Hacks is made possible by the generous support of our sponsors. We're grateful for their
-              commitment to fostering innovation and supporting the next generation of developers.
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            {Object.entries(sponsorsByTier).map(([tier, tierSponsors], tierIndex) => (
-              <div key={tier} className="mb-16 last:mb-0">
-                <h3 className="text-center text-sm font-mono tracking-widest mb-8 text-[#3DEFE9]">{tier}</h3>
-                <div
-                  className={`grid grid-cols-2 md:grid-cols-${Math.min(tierSponsors.length, 4)} gap-8 justify-items-center items-center`}
-                >
-                  {tierSponsors.map((sponsor, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.5, delay: index * 0.1 + tierIndex * 0.2 }}
-                      className="bg-white/5 hover:bg-white/10 border-2 border-[#3DEFE9]/30 hover:border-[#3DEFE9] rounded-lg p-8 flex items-center justify-center w-full h-32 transition-all duration-300 backdrop-blur-md"
-                    >
-                      <Image
-                        src={`/placeholder.svg?width=${sponsor.imageWidth}&height=${sponsor.imageWidth / 2}`}
-                        alt={sponsor.name}
-                        width={sponsor.imageWidth}
-                        height={sponsor.imageWidth / 2}
-                        className="opacity-80 hover:opacity-100 transition-opacity duration-300"
-                      />
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="mt-16 text-center"
-          >
-            <h3 className="text-2xl font-bold mb-4 text-white">BECOME A SPONSOR</h3>
-            <p className="text-white/70 max-w-2xl mx-auto mb-6">
-              Interested in sponsoring HelloWorld Hacks? Reach out to us to learn about our sponsorship packages and how
-              you can support the next generation of developers.
-            </p>
-            <Button className="bg-[#3DEFE9] text-black hover:bg-[#3DEFE9]/90 font-bold">SPONSORSHIP DECK</Button>
-          </motion.div>
-        </div> */}
       </div>
     </section>
   )

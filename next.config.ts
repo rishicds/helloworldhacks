@@ -7,6 +7,10 @@ eslint: {
     // your project has ESLint errors.
     ignoreDuringBuilds: true,
   },
+  images: {
+    domains: ["i.postimg.cc"],
+  },
+  
 };
 
 export default nextConfig;
