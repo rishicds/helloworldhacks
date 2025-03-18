@@ -105,18 +105,18 @@ const TeamPage = () => {
   if (isLoading) {
     return (
       <div className="min-h-screen bg-gray-900 flex flex-col items-center justify-center text-white">
-        <div className="relative w-32 h-32">
+        <div className="relative w-24 h-24 sm:w-32 sm:h-32">
           <div className="absolute inset-0 rounded-full border-4 border-blue-500 opacity-75 animate-ping"></div>
           <div
             className="absolute inset-0 rounded-full border-4 border-red-500 opacity-75 animate-ping"
             style={{ animationDelay: "0.5s" }}
           ></div>
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-3xl font-bold">SPD</div>
+            <div className="text-2xl sm:text-3xl font-bold">SPD</div>
           </div>
         </div>
-        <div className="mt-8 text-xl font-mono">INITIALIZING SPD DATABASE...</div>
-        <div className="mt-4 w-64 h-2 bg-gray-800 rounded-full overflow-hidden">
+        <div className="mt-8 text-lg sm:text-xl font-mono">INITIALIZING SPD DATABASE...</div>
+        <div className="mt-4 w-52 sm:w-64 h-2 bg-gray-800 rounded-full overflow-hidden">
           <div className="h-full bg-blue-500 animate-[loading_2s_ease-in-out]"></div>
         </div>
       </div>
@@ -124,7 +124,7 @@ const TeamPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white py-16 px-4 relative overflow-hidden">
+    <div className="min-h-screen bg-gray-900 text-white py-8 sm:py-16 px-2 sm:px-4 relative overflow-hidden">
       {/* Audio element for SPD alert sound */}
       <audio ref={audioRef} preload="auto">
         <source src="https://www.soundjay.com/buttons/sounds/button-35.mp3" type="audio/mpeg" />
@@ -136,8 +136,8 @@ const TeamPage = () => {
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAwIDEwIEwgNDAgMTAgTSAxMCAwIEwgMTAgNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzMzMzMzMyIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIiAvPjwvc3ZnPg==')]"></div>
 
         {/* Circular tech elements */}
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full border-4 border-blue-500 opacity-10 animate-pulse"></div>
-        <div className="absolute bottom-1/3 right-1/4 w-96 h-96 rounded-full border-4 border-red-500 opacity-10 animate-pulse delay-300"></div>
+        <div className="absolute top-1/4 left-1/4 w-32 sm:w-64 h-32 sm:h-64 rounded-full border-4 border-blue-500 opacity-10 animate-pulse"></div>
+        <div className="absolute bottom-1/3 right-1/4 w-48 sm:w-96 h-48 sm:h-96 rounded-full border-4 border-red-500 opacity-10 animate-pulse delay-300"></div>
 
         {/* Animated scanner lines */}
         <div className="absolute inset-0">
@@ -146,12 +146,12 @@ const TeamPage = () => {
         </div>
 
         {/* SPD Badge */}
-        <div className="absolute top-10 right-10 w-32 h-32 opacity-20 animate-pulse">
+        <div className="absolute top-6 right-6 w-16 sm:w-32 h-16 sm:h-32 opacity-20 animate-pulse">
           <div className="relative w-full h-full">
             <div className="absolute inset-0 border-4 border-white rounded-full"></div>
             <div className="absolute inset-2 border-2 border-blue-500 rounded-full"></div>
             <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-xs font-bold">S.P.D.</span>
+              <span className="text-[10px] sm:text-xs font-bold">S.P.D.</span>
             </div>
           </div>
         </div>
@@ -176,46 +176,46 @@ const TeamPage = () => {
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto relative z-10">
-        {/* Replace the current heading section (lines 175-207) with this more serious SPD-themed heading */}
-        <div className="text-center mb-16">
-          <div className="inline-block relative bg-gray-800/80 border-2 border-blue-600 rounded-lg px-8 py-6 shadow-lg shadow-blue-500/20 max-w-3xl mx-auto">
-            <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-red-600 text-white px-4 py-1 text-xs font-mono rounded">
+        {/* Enhanced SPD-themed heading */}
+        <div className="text-center mb-8 sm:mb-16">
+          <div className="inline-block relative bg-gray-800/80 border-2 border-blue-600 rounded-lg px-4 sm:px-8 py-4 sm:py-6 shadow-lg shadow-blue-500/20 max-w-full sm:max-w-3xl mx-auto">
+            <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-red-600 text-white px-2 sm:px-4 py-1 text-[10px] sm:text-xs font-mono rounded">
               SECURITY CLEARANCE LEVEL 5
             </div>
 
-            <div className="flex items-center justify-center gap-6">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
               {/* Enhanced SPD Logo */}
-              <div className="relative w-24 h-24">
+              <div className="relative w-16 h-16 sm:w-24 sm:h-24">
                 <div className="absolute inset-0 bg-blue-900 rounded-full"></div>
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-700 to-blue-950 rounded-full border-2 border-blue-500"></div>
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-20 h-20 rounded-full bg-gray-900 flex flex-col items-center justify-center border border-blue-400">
-                    <span className="text-2xl font-bold text-white">SPD</span>
+                  <div className="w-12 h-12 sm:w-20 sm:h-20 rounded-full bg-gray-900 flex flex-col items-center justify-center border border-blue-400">
+                    <span className="text-xl sm:text-2xl font-bold text-white">SPD</span>
                     <div className="w-full h-px bg-blue-400 my-1"></div>
-                    <span className="text-[8px] text-blue-300">EARTH DIVISION</span>
+                    <span className="text-[6px] sm:text-[8px] text-blue-300">EARTH DIVISION</span>
                   </div>
                 </div>
                 <div className="absolute inset-0 border-4 border-red-600 rounded-full clip-path-badge"></div>
-                <div className="absolute -top-1 -right-1 w-6 h-6 bg-red-500 rounded-full flex items-center justify-center text-[8px] font-bold animate-pulse">
+                <div className="absolute -top-1 -right-1 w-4 h-4 sm:w-6 sm:h-6 bg-red-500 rounded-full flex items-center justify-center text-[6px] sm:text-[8px] font-bold animate-pulse">
                   E-1
                 </div>
                 <div className="absolute inset-0 rounded-full border border-blue-400 animate-[radar-ping_3s_ease-out_infinite]"></div>
               </div>
 
-              <div className="text-left">
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                  <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-white uppercase font-mono border-b-2 border-red-500 pb-1">
-                    SPD PERSONNEL DATABASE
+              <div className="text-center sm:text-left">
+                <div className="flex items-center gap-2 justify-center sm:justify-start">
+                  <div className="w-2 h-2 sm:w-3 sm:h-3 bg-green-500 rounded-full animate-pulse"></div>
+                  <h1 className="text-xl sm:text-3xl md:text-4xl font-bold tracking-tight text-white uppercase font-mono border-b-2 border-red-500 pb-1">
+                    SPD PERSONNEL
                   </h1>
                 </div>
-                <div className="mt-2 flex items-center gap-2">
-                  <span className="text-xs font-mono text-gray-400">FILE:</span>
-                  <span className="text-sm font-bold text-blue-300">HELLOWORLD-HACKS-TEAM</span>
-                  <span className="ml-auto text-xs font-mono text-gray-400 animate-blink">ACTIVE</span>
+                <div className="mt-2 flex items-center gap-2 justify-center sm:justify-start">
+                  <span className="text-[10px] sm:text-xs font-mono text-gray-400">FILE:</span>
+                  <span className="text-xs sm:text-sm font-bold text-blue-300">HELLOWORLD-TEAM</span>
+                  <span className="hidden sm:inline-block ml-auto text-[10px] sm:text-xs font-mono text-gray-400 animate-blink">ACTIVE</span>
                 </div>
-                <p className="text-sm text-gray-300 mt-2 font-mono border-l-2 border-blue-500 pl-2">
-                  AUTHORIZED PERSONNEL ONLY: Elite squad members protecting and serving our hackathon.
+                <p className="text-xs sm:text-sm text-gray-300 mt-2 font-mono border-l-2 border-blue-500 pl-2">
+                  AUTHORIZED PERSONNEL ONLY
                 </p>
               </div>
             </div>
@@ -235,30 +235,32 @@ const TeamPage = () => {
           </div>
         </div>
 
-        {/* Remove the old SPD Badge/Logo section (lines 209-223) since we've integrated it into the heading */}
-
-        {/* Team Tabs - Enhanced with icons and animations */}
-        <div className="flex flex-wrap justify-center mb-12 gap-2">
-          {teams.map((team, index) => (
-            <button
-              key={`tab-${index}`}
-              onClick={() => handleTeamChange(index)}
-              className={`px-6 py-3 rounded-lg font-bold transition-all duration-300 transform hover:scale-105 border-b-4 flex items-center gap-2 ${
-                activeTeam === index
-                  ? `${team.borderColor} ${team.textColor} bg-gray-800 shadow-lg shadow-${team.textColor}/20`
-                  : "border-gray-600 text-gray-400 bg-gray-800/50"
-              }`}
-            >
-              <span className={`${activeTeam === index ? team.textColor : "text-gray-400"}`}>{team.icon}</span>
-              {team.name}
-              {activeTeam === index && (
-                <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-current to-transparent"></span>
-              )}
-            </button>
-          ))}
+        {/* Team Tabs - Responsive scrollable container for mobile */}
+        <div className="overflow-x-auto pb-4 mb-8 sm:mb-12">
+          <div className="flex flex-nowrap justify-start sm:justify-center gap-2 min-w-max px-2">
+            {teams.map((team, index) => (
+              <button
+                key={`tab-${index}`}
+                onClick={() => handleTeamChange(index)}
+                className={`px-3 sm:px-6 py-2 sm:py-3 rounded-lg text-xs sm:text-base font-bold transition-all duration-300 transform hover:scale-105 border-b-4 flex items-center gap-2 ${
+                  activeTeam === index
+                    ? `${team.borderColor} ${team.textColor} bg-gray-800 shadow-lg shadow-${team.textColor}/20`
+                    : "border-gray-600 text-gray-400 bg-gray-800/50"
+                }`}
+              >
+                <span className={`${activeTeam === index ? team.textColor : "text-gray-400"}`}>
+                  {team.icon}
+                </span>
+                <span className="whitespace-nowrap">{team.name}</span>
+                {activeTeam === index && (
+                  <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-current to-transparent"></span>
+                )}
+              </button>
+            ))}
+          </div>
         </div>
 
-        {/* Teams Content - Enhanced with better animations and card layout */}
+        {/* Teams Content - Enhanced with better responsive layout */}
         {teams.map((team, index) => (
           <div
             key={`team-${index}`}
@@ -266,17 +268,17 @@ const TeamPage = () => {
               activeTeam === index ? "opacity-100 translate-x-0" : "opacity-0 translate-x-full absolute -z-10"
             } mb-24`}
           >
-            <div className="flex items-center mb-8">
-              <div className={`w-2 h-16 ${team.color} mr-4 animate-pulse`}></div>
-              <div>
-                <h2 className={`text-3xl font-bold mb-1 ${team.textColor} flex items-center gap-2`}>
+            <div className="flex flex-col sm:flex-row items-start sm:items-center mb-8 gap-4 sm:gap-0">
+              <div className={`w-2 h-8 sm:h-16 ${team.color} sm:mr-4`}></div>
+              <div className="flex-1">
+                <h2 className={`text-xl sm:text-3xl font-bold mb-1 ${team.textColor} flex items-center gap-2`}>
                   {team.icon}
-                  {team.name}
+                  <span className="line-clamp-1">{team.name}</span>
                 </h2>
-                <p className="text-gray-400">{team.description}</p>
+                <p className="text-gray-400 text-sm sm:text-base">{team.description}</p>
               </div>
               {/* SPD-style emblem - Enhanced */}
-              <div className={`ml-auto border-2 ${team.borderColor} rounded-full p-2 animate-spin-slow relative group`}>
+              <div className={`hidden sm:block ml-auto border-2 ${team.borderColor} rounded-full p-2 animate-spin-slow relative group`}>
                 <div className="w-12 h-12 flex items-center justify-center">
                   <span className="text-xs font-bold">SPD</span>
                   <span className="absolute inset-0 border border-dashed rounded-full opacity-50"></span>
@@ -289,7 +291,7 @@ const TeamPage = () => {
             </div>
 
             {/* Enhanced card grid with SPD-style layout */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
               {team.members.map((member, memberIndex) => (
                 <div
                   key={memberIndex}
@@ -303,12 +305,12 @@ const TeamPage = () => {
                     <img
                       src={member.image || "/placeholder.svg"}
                       alt={member.name}
-                      className="w-full h-64 object-cover object-center"
+                      className="w-full h-48 sm:h-64 object-cover object-center"
                     />
 
                     {/* SPD ID card effect - Enhanced */}
-                    <div className="absolute top-0 left-0 bg-gray-900/80 px-3 py-1 text-xs font-mono flex items-center gap-1">
-                      <span className="inline-block w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                    <div className="absolute top-0 left-0 bg-gray-900/80 px-2 py-1 text-[10px] sm:text-xs font-mono flex items-center gap-1">
+                      <span className="inline-block w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-green-500 animate-pulse"></span>
                       SPD ID: {Math.floor(Math.random() * 9000) + 1000}
                     </div>
 
@@ -326,34 +328,34 @@ const TeamPage = () => {
                     {/* Morpher effect on hover */}
                     <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-0 group-hover:opacity-70 flex items-center justify-center transition-opacity duration-300">
                       <div
-                        className={`w-12 h-12 ${team.color} rounded-full opacity-0 group-hover:opacity-100 animate-ping`}
+                        className={`w-8 h-8 sm:w-12 sm:h-12 ${team.color} rounded-full opacity-0 group-hover:opacity-100 animate-ping`}
                       ></div>
                     </div>
 
                     {/* SPD badge overlay */}
-                    <div className="absolute top-2 right-2 w-8 h-8 rounded-full border border-white/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                      <span className="text-[8px] font-bold">SPD</span>
+                    <div className="absolute top-2 right-2 w-6 h-6 sm:w-8 sm:h-8 rounded-full border border-white/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                      <span className="text-[6px] sm:text-[8px] font-bold">SPD</span>
                     </div>
                   </div>
 
-                  <div className={`p-6 border-l-4 relative group ${team.borderColor}`}>
+                  <div className={`p-4 sm:p-6 border-l-4 relative group ${team.borderColor}`}>
                     {/* Tech scanner effect */}
                     <div className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-transparent via-blue-500 to-transparent opacity-75 animate-scanner"></div>
 
-                    <h3 className="text-xl font-bold mb-1">{member.name}</h3>
-                    <p className="text-gray-300">{member.role}</p>
+                    <h3 className="text-base sm:text-xl font-bold mb-1">{member.name}</h3>
+                    <p className="text-gray-300 text-sm">{member.role}</p>
 
                     {/* SPD-style tech details - Enhanced */}
-                    <div className="mt-3 pt-3 border-t border-gray-700 text-xs text-gray-500 font-mono">
+                    <div className="mt-2 sm:mt-3 pt-2 sm:pt-3 border-t border-gray-700 text-[10px] sm:text-xs text-gray-500 font-mono">
                       <div className="flex items-center gap-1">
-                        <span className="inline-block w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+                        <span className="inline-block w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-green-500 animate-pulse"></span>
                         STATUS: ACTIVE
                       </div>
                       <div className="flex justify-between mt-1">
                         <span>CLEARANCE: LEVEL {Math.floor(Math.random() * 5) + 1}</span>
                         <span className="text-blue-400 animate-pulse">[AUTHORIZED]</span>
                       </div>
-                      <div className="mt-1 text-[10px] opacity-50">
+                      <div className="mt-1 text-[8px] sm:text-[10px] opacity-50">
                         LOCATION: SECTOR {Math.floor(Math.random() * 20) + 1}-
                         {String.fromCharCode(65 + Math.floor(Math.random() * 26))}
                       </div>
@@ -361,9 +363,9 @@ const TeamPage = () => {
 
                     {/* Animated tech button */}
                     <button
-                      className={`mt-3 px-3 py-1 text-xs ${team.textColor} border border-current rounded-sm flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-gray-800`}
+                      className={`mt-2 sm:mt-3 px-2 sm:px-3 py-1 text-[10px] sm:text-xs ${team.textColor} border border-current rounded-sm flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-gray-800`}
                     >
-                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-current animate-pulse"></span>
+                      <span className="inline-block w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-current animate-pulse"></span>
                       VIEW PROFILE
                     </button>
                   </div>
@@ -374,34 +376,36 @@ const TeamPage = () => {
         ))}
       </div>
 
-      {/* Control panel footer - Enhanced */}
-      <div className="fixed bottom-0 left-0 right-0 bg-gray-800/90 border-t border-gray-700 py-3 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
-          <div className="text-sm text-gray-400 flex items-center gap-2">
-            <span className="text-green-500 animate-pulse">●</span>
-            <span>SYSTEM ONLINE</span>
-            <span className="text-xs opacity-50 ml-2">[{new Date().toLocaleTimeString()}]</span>
-          </div>
+      {/* Control panel footer - Enhanced with responsive layout */}
+      <div className="fixed bottom-0 left-0 right-0 bg-gray-800/90 border-t border-gray-700 py-2 sm:py-3 backdrop-blur-sm">
+        <div className="max-w-7xl mx-auto px-2 sm:px-4">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-0">
+            <div className="text-[10px] sm:text-sm text-gray-400 flex items-center gap-2">
+              <span className="text-green-500 animate-pulse">●</span>
+              <span>SYSTEM ONLINE</span>
+              <span className="text-[8px] sm:text-xs opacity-50 ml-1 sm:ml-2">[{new Date().toLocaleTimeString()}]</span>
+            </div>
 
-          <div className="flex space-x-3">
-            {teams.map((team, index) => (
-              <button key={`indicator-${index}`} onClick={() => handleTeamChange(index)} className={`relative group`}>
-                <div
-                  className={`w-3 h-3 rounded-full ${activeTeam === index ? team.color : "bg-gray-600"} transition-colors duration-300`}
-                ></div>
-                {activeTeam === index && (
-                  <div className={`absolute -inset-1 rounded-full ${team.color} opacity-30 animate-ping`}></div>
-                )}
-                <span className="absolute -top-8 left-1/2 -translate-x-1/2 text-xs bg-gray-800 px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                  {team.name}
-                </span>
-              </button>
-            ))}
-          </div>
+            <div className="flex space-x-3 order-first sm:order-none">
+              {teams.map((team, index) => (
+                <button key={`indicator-${index}`} onClick={() => handleTeamChange(index)} className={`relative group`}>
+                  <div
+                    className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full ${activeTeam === index ? team.color : "bg-gray-600"} transition-colors duration-300`}
+                  ></div>
+                  {activeTeam === index && (
+                    <div className={`absolute -inset-1 rounded-full ${team.color} opacity-30 animate-ping`}></div>
+                  )}
+                  <span className="absolute -top-8 left-1/2 -translate-x-1/2 text-[10px] bg-gray-800 px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                    {team.name}
+                  </span>
+                </button>
+              ))}
+            </div>
 
-          <div className="text-sm text-gray-400 font-mono flex items-center gap-2">
-            <span className="inline-block w-1.5 h-1.5 rounded-full bg-blue-500 animate-[blink_1.5s_ease-in-out_infinite]"></span>
-            SPD COMMAND • EARTH DIVISION
+            <div className="text-[10px] sm:text-sm text-gray-400 font-mono flex items-center gap-2 hidden sm:flex">
+              <span className="inline-block w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-blue-500 animate-[blink_1.5s_ease-in-out_infinite]"></span>
+              SPD COMMAND • EARTH DIVISION
+            </div>
           </div>
         </div>
       </div>
@@ -467,4 +471,3 @@ const TeamPage = () => {
 }
 
 export default TeamPage
-
