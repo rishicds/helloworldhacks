@@ -94,7 +94,7 @@ const TeamPage = () => {
         { 
           name: "Swastika Bose", 
           role: "Co-Organizer", 
-          image: "/team/swastikadi_coorganiser.jpg",
+          image: "/team/swastikadi_coorganiser.JPG",
           social: {
             github: "swastika07bose",
             linkedin: "swastika-bose-25x25",
