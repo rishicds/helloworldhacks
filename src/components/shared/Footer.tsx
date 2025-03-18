@@ -178,7 +178,7 @@ const Footer = () => {
                 </li>
                 <li className='text-xl font-medium'>
                   <a
-                    href='https://www.linkedin.com/company/next-codez/'
+                    href=' https://www.linkedin.com/company/hello-world-hacks/'
                     target='_blank'
                     className='underline'
                   >
@@ -187,7 +187,7 @@ const Footer = () => {
                 </li>
                 <li className='text-xl font-medium'>
                   <a
-                    href='https://twitter.com/NextCodez'
+                    href=' https://x.com/HelloWorldHacks'
                     target='_blank'
                     className='underline'
                   >
@@ -196,7 +196,7 @@ const Footer = () => {
                 </li>
                 <li className='text-xl font-medium'>
                   <a
-                    href='https://www.instagram.com/nextcodez/'
+                    href=' https://www.instagram.com/hello.world.hacks?igsh=MTJqcXU5MDJ4dDZmcQ=='
                     target='_blank'
                     className='underline'
                   >
@@ -205,7 +205,7 @@ const Footer = () => {
                 </li>
                 <li className='text-xl font-medium'>
                   <a
-                    href='https://www.facebook.com/nextcodezz'
+                    href='https://www.facebook.com/profile.php?id=61573844267737'
                     target='_blank'
                     className='underline'
                   >
