@@ -8,6 +8,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Canvas } from "@react-three/fiber"
 import { useGLTF, OrbitControls, useAnimations } from "@react-three/drei"
 import * as THREE from "three"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@radix-ui/react-tabs"
 
 // Dragon model component
 const DragonModel = () => {
@@ -70,35 +71,40 @@ export default function Schedule() {
 
   const scheduleData = {
     day1: [
-      { time: "9:00 AM", event: "Registration & Check-in", description: "Grab your badges and welcome kit" },
-      { time: "10:00 AM", event: "Opening Ceremony", description: "Welcome address by GDG RCCIIT & RCCTechz" },
-      { time: "11:00 AM", event: "Team Formation", description: "Find teammates and brainstorm ideas" },
-      { time: "12:00 PM", event: "Lunch Break", description: "Fuel up for the challenges ahead" },
-      { time: "1:00 PM", event: "Workshop: API Integration", description: "Learn how to leverage popular APIs" },
-      { time: "3:00 PM", event: "Hacking Begins", description: "Start building your projects" },
-      { time: "8:00 PM", event: "Dinner", description: "Networking dinner with sponsors" },
-      { time: "9:00 PM", event: "Night Hacking", description: "Continue working on projects" },
+      { time: "March 20- April 18", event: "Registration Period", description: "Devfolio" },
+      
+      { time: "April 4 10:00AM-5:00PM", event: "Tech Verse ( Multiple Speakers Offline Session making the Participants ready for Industry Exposure )", description: "Offline Session by1. Harshavardhan Bajoria ( APM @ Unstop , GitHub Campus Expert , Gold MLSA )2. Hrittik Roy ( DevRel @LoftLabs, Ex- GitHub Campus Expert , DevOps Expert )3. Subhankar Mitra ( FullStack Developer @ Hoichoi Tech )4. Aritra Basu ( Senior Software Engineer @ Clirnet , Finalist @ SIH2023, Winner at HackOn 2.0 by Infosys )                                                                                                                                                                                                                                            " },
+      { time: "April 10 1:00AM-5:00PM", event: "What is Hackathon(Session)", description: "Offline Session" },
+      { time: "April 12", event: "Opening Ceremony", description: "Online Session" },
+      { time: "April 14 12:01AM", event: "Proposal Writing Starts", description: "Learn how to leverage popular APIs" },
+      { time: "April 18 11:59PM", event: "Proposal Submission Deadline", description: "" },
+      { time: "April 16-20", event: "Proposal Filtering", description: "Networking dinner with sponsors" },
+      { time: "April 19", event: "Github Session", description: "Online Session by Subinoy Biswas ( Intern @ ISRO , Winner @ SIH 2025 )" },
+      { time: "April 21 12:00AM-May 5 12:59PM", event: " Hacking Period", description: "Start your day with energy" },
+      { time: "April 21", event: "Web3 Session", description: "Online Session by Manish Saha ( Core Member at SuperTeam DAO Kolkata , One of the Top Web3 Developers in West Bengal )" },
+      { time: "April 22", event: "App Dev Session", description: "Online Session by Supratim Dhara ( Founding Engineer @ Pegman India )" },
+      { time: "April 23", event: "GenAI Session", description: "Online Session Mayukh Haldar ( 2x Intern @ Webel )" },
+      { time: "April 22-25", event: "Mentor Mentee MatchMaking", description: "Mentors Connection will be matched with the Participants based on Projects Proposal" },
     ],
     day2: [
-      { time: "8:00 AM", event: "Breakfast", description: "Start your day with energy" },
-      { time: "9:00 AM", event: "Workshop: UI/UX Design", description: "Create better user experiences" },
-      { time: "11:00 AM", event: "Checkpoint #1", description: "Share progress and get feedback" },
-      { time: "12:00 PM", event: "Lunch Break", description: "Recharge with fellow hackers" },
-      { time: "1:00 PM", event: "Workshop: Cloud Deployment", description: "Deploy your apps to the cloud" },
-      { time: "3:00 PM", event: "Mentor Sessions", description: "Get help from industry experts" },
-      { time: "7:00 PM", event: "Dinner", description: "Continue networking and sharing ideas" },
-      { time: "8:00 PM", event: "Gaming Tournament", description: "Take a break with some gaming fun" },
+     
+      { time: "April 25", event: "Light Gaming Session ( Mood Uplifter )", description: "Online" },
+      { time: "April 27", event: "Cyber Security Session", description: "Online Session by Anurag Roy ( CyberSecurity Expert @ Kolkata Police STF )" },
+      { time: "April 28-29", event: "Mid Evaluation", description: "Mentors will go through the progress and the development of the Projects and accordingly Evaluate the Current implementation station of the Projects." },
+      { time: "April 28", event: "OpenSource Session", description: "Online Session by Soham Banerjee ( GSOC Mentor, Ex- LFX Mentee , Ex- GSOC Contributor 2x)" },
+      { time: "April 30", event: "Entrepreneurship Session", description: "Online Session by Sankha Ray ( Program Manager @ IIM Calcutta Innovation Park )" },
+      { time: "May 1", event: "Devops Session", description: "Online Session by Sourav Tiwari ( Senior Associate @ PWC , Lead Organiser @ Flutter Kolkata )" },
+      { time: "", event: "Sponser Session", description: "" },
+      { time: "May 1-5", event: "Documentation Writing Period (Participants will document the Entire Project Development Process and will write articles in Technical Blogs to enhance their Technical Outlook and have a Documentation of their Project.)", description: "Dev.to / Hashnode / Medium" },
+      { time: "May 2", event: "Technical Writing Session", description: "Online Session" },
+      { time: "May 3", event: "Networking and PR Session for Participant’s connection development", description: "Online Session" },
+      { time: "May 5 11:59PM", event: "Final Submission Deadline", description: "Final day" },
+      { time: "May 6-8", event: "Judging", description: "Finalize your projects" },
+      { time: "May 12", event: "Pitching Ideas and Prototype in Front of Judges", description: "Offline ( Online for Distant Participants )" },
+      { time: "May 12", event: "Closing Ceremony", description: "Online" },
+
     ],
-    day3: [
-      { time: "8:00 AM", event: "Breakfast", description: "Final day energy boost" },
-      { time: "9:00 AM", event: "Last Push", description: "Finalize your projects" },
-      { time: "12:00 PM", event: "Lunch Break", description: "Quick lunch before submissions" },
-      { time: "1:00 PM", event: "Project Submission Deadline", description: "All code must be submitted" },
-      { time: "2:00 PM", event: "Project Presentations", description: "Demo your creations to judges" },
-      { time: "5:00 PM", event: "Judging Period", description: "Judges deliberate on projects" },
-      { time: "6:00 PM", event: "Awards Ceremony", description: "Winners announced and prizes awarded" },
-      { time: "7:00 PM", event: "Closing Party", description: "Celebrate the amazing weekend" },
-    ],
+   
   }
 
   return (
@@ -137,31 +143,26 @@ export default function Schedule() {
           </p>
         </motion.div>
 
-          {/* <motion.div
+          { <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <Tabs defaultValue="day1" className="w-full max-w-4xl mx-auto">
-              <TabsList className="grid w-full grid-cols-3 mb-8 bg-white/10 p-1">
+              <TabsList className="grid w-full grid-cols-2 mb-8 bg-white/10 p-1">
                 <TabsTrigger
                   value="day1"
                   className="text-sm sm:text-base py-4 data-[state=active]:bg-[#3DEFE9] data-[state=active]:text-black "
                 >
-                  DAY 1: KICKOFF
+                  DAY 1: Plan and Build
                 </TabsTrigger>
                 <TabsTrigger
                   value="day2"
                   className="text-sm sm:text-base py-3 data-[state=active]:bg-[#3DEFE9] data-[state=active]:text-black"
                 >
-                  DAY 2: BUILD
+                  DAY 2: Evolve and Launch
                 </TabsTrigger>
-                <TabsTrigger
-                  value="day3"
-                  className="text-sm sm:text-base py-3 data-[state=active]:bg-[#3DEFE9] data-[state=active]:text-black"
-                >
-                  DAY 3: FINALE
-                </TabsTrigger>
+                
               </TabsList>
 
               {Object.entries(scheduleData).map(([day, events],) => (
@@ -192,7 +193,7 @@ export default function Schedule() {
                 </TabsContent>
               ))}
             </Tabs>
-          </motion.div> */}
+          </motion.div>}
           <motion.div 
   initial={{ opacity: 0, scale: 0.8 }}
   animate={{ opacity: 1, scale: 1 }}
@@ -259,9 +260,7 @@ export default function Schedule() {
           </svg>
         </motion.div>
         
-        <p className="text-md text-white/50 italic">
-          Check back soon for the full, action-packed schedule!
-        </p>
+        
       </motion.div>
     </CardContent>
   </Card>
