@@ -123,7 +123,7 @@ const TeamPage = () => {
       members: [
         { 
           name: "Debayudh Basu", 
-          role: "Tech Team", 
+          role: "Tech Vice Lead", 
           image: "/team/debayudh_tech.jpeg",
           social: {
             github: "debayudh07",
@@ -133,14 +133,25 @@ const TeamPage = () => {
         },
         { 
           name: "Rishi Paul", 
-          role: "Tech Team", 
+          role: "Tech Lead", 
           image: "/team/rishi_tech.png",
           social: {
             github: "rishicds",
             linkedin: "rishi-paul04",
-            instagram: "realmadrid?igsh=MTJvNzR5bnlqMjR4cA=="
+            instagram: "goodbai_17"
           }
         },
+        { 
+          name: "Pragya Singh", 
+          role: "Tech Team Member", 
+          image: "/team/pragya_tech.jpg",
+          social: {
+            github: "Pragya79645",
+            linkedin: "pragya-singh-71884b30b",
+            instagram: "pragyasingh1340"
+          }
+        },
+
       ],
     },
     {

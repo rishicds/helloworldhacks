@@ -152,15 +152,15 @@ export default function Schedule() {
               <TabsList className="grid w-full grid-cols-2 mb-8 bg-white/10 p-1">
                 <TabsTrigger
                   value="day1"
-                  className="text-sm sm:text-base py-4 data-[state=active]:bg-[#3DEFE9] data-[state=active]:text-black "
+                  className="text-sm sm:text-white py-4 data-[state=active]:bg-[#3DEFE9] data-[state=active]:text-black "
                 >
-                  DAY 1: Plan and Build
+                  The First Step
                 </TabsTrigger>
                 <TabsTrigger
                   value="day2"
-                  className="text-sm sm:text-base py-3 data-[state=active]:bg-[#3DEFE9] data-[state=active]:text-black"
+                  className="text-sm sm:text-white py-3 data-[state=active]:bg-[#3DEFE9] data-[state=active]:text-black"
                 >
-                  DAY 2: Evolve and Launch
+                  The Second Step
                 </TabsTrigger>
                 
               </TabsList>
@@ -204,66 +204,7 @@ export default function Schedule() {
   }}
   className="max-w-4xl mx-auto"
 >
-  <Card className="border-2 border-[#3DEFE9]/30 bg-white/5 backdrop-blur-md overflow-hidden">
-    <CardContent className="p-8 text-center">
-      <motion.div
-        initial={{ y: 20 }}
-        animate={{ y: [-5, 5, -5] }}
-        transition={{ 
-          repeat: Infinity, 
-          duration: 4,
-          ease: "easeInOut" 
-        }}
-      >
-        <h2 className="text-4xl sm:text-5xl font-bold mb-6 text-white">
-          Schedule Loading<span className="inline-block">
-            <motion.span
-              animate={{ opacity: [0, 1, 0] }}
-              transition={{ repeat: Infinity, duration: 1.5, times: [0, 0.5, 1] }}
-            >.</motion.span>
-            <motion.span
-              animate={{ opacity: [0, 1, 0] }}
-              transition={{ repeat: Infinity, duration: 1.5, delay: 0.2, times: [0, 0.5, 1] }}
-            >.</motion.span>
-            <motion.span
-              animate={{ opacity: [0, 1, 0] }}
-              transition={{ repeat: Infinity, duration: 1.5, delay: 0.4, times: [0, 0.5, 1] }}
-            >.</motion.span>
-          </span>
-        </h2>
-        
-        <div className="w-20 h-1 bg-[#3DEFE9] mx-auto mb-8"></div>
-        
-        <p className="text-xl text-white/70 max-w-3xl mx-auto mb-6">
-          Our team of time-traveling wizards is still carefully crafting the perfect schedule.
-        </p>
-        
-        <p className="text-lg text-white/70 max-w-2xl mx-auto mb-10">
-          Legend has it they're debating whether to include a midnight pizza party or early morning coding with pancakes. Tough choices!
-        </p>
-        
-        <motion.div
-          animate={{ 
-            rotate: [0, 5, -5, 0],
-            scale: [1, 1.05, 0.95, 1]
-          }}
-          transition={{ 
-            repeat: Infinity, 
-            duration: 8,
-            ease: "easeInOut" 
-          }}
-          className="w-24 h-24 mx-auto mb-8 text-[#3DEFE9]"
-        >
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M12 6V12L16 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        </motion.div>
-        
-        
-      </motion.div>
-    </CardContent>
-  </Card>
+  
 </motion.div>
         </div>
       </div>
