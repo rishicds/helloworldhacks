@@ -110,8 +110,8 @@ export default function Faq() {
           >
             <p className="text-white/70">
               Still have questions? Contact us at{" "}
-              <a href="mailto:info@helloworldhacks.com" className="text-[#FF5470] hover:underline">
-                info@helloworldhacks.com
+              <a href="mailto:helloworldhack6@gmail.com" className="text-[#FF5470] hover:underline">
+              helloworldhack6@gmail.com
               </a>
             </p>
           </motion.div>

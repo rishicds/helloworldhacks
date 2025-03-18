@@ -5,6 +5,7 @@ import Prizes from '@/components/Prizes/Prizes'
 
 import Schedule from '@/components/Schedule/Schedule'
 import Sponsors from '@/components/Sponsors/Sponsors'
+import Tracks from '@/components/Tracks/Tracks'
 
 import React from 'react'
 
@@ -13,6 +14,7 @@ const page = () => {
     <>
     <Hero />
     <Schedule />
+    <Tracks />
     <Features />
     <Prizes />
     {/* <PrizesFinal /> */}
