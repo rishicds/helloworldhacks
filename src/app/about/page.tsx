@@ -1,6 +1,6 @@
 "use client"
 import { useState, useEffect, useRef } from "react"
-import { Shield, Radio, Zap, AlertTriangle, Activity } from "lucide-react"
+import { Shield, Radio, Zap, AlertTriangle, Activity, Github, Instagram, Linkedin } from "lucide-react"
 
 const TeamPage = () => {
   const [activeTeam, setActiveTeam] = useState<number>(0)
@@ -42,8 +42,25 @@ const TeamPage = () => {
       textColor: "text-red-500",
       icon: <Shield className="w-6 h-6" />,
       members: [
-        { name: "Alex Wright", role: "Lead Organizer", image: "/placeholder.svg?height=400&width=300" },
-        { name: "Sarah Chen", role: "Lead Organizer", image: "/placeholder.svg?height=400&width=300" },
+        { 
+          name: "Sagnik Dutta", 
+          role: "Lead Organizer", 
+          image: "/team/sagnikda_organiser.jpg",
+          social: {
+            github: "sagnik-datta-02",
+            linkedin: "sagnik-datta-96bb8a265",
+          }
+        },
+        { 
+          name: "Adrita Chakraborty", 
+          role: "Lead Organizer", 
+          image: "/team/adritadi_organiser.jpg",
+          social: {
+            github: "ADRITA-art",
+            linkedin: "adrita-chakraborty-ba9b2a24b",
+            instagram: ""
+          }
+        },
       ],
     },
     {
@@ -54,10 +71,46 @@ const TeamPage = () => {
       textColor: "text-blue-500",
       icon: <Radio className="w-6 h-6" />,
       members: [
-        { name: "Priya Patel", role: "Co-Organizer", image: "/placeholder.svg?height=400&width=300" },
-        { name: "Jake Robinson", role: "Co-Organizer", image: "/placeholder.svg?height=400&width=300" },
-        { name: "Mei Lin", role: "Co-Organizer", image: "/placeholder.svg?height=400&width=300" },
-        { name: "Carlos Mendez", role: "Co-Organizer", image: "/placeholder.svg?height=400&width=300" },
+        { 
+          name: "Swapnendu Banerjee", 
+          role: "Co-Organizer", 
+          image: "/team/swapnenduda_coorganiser.jpg",
+          social: {
+            github: "Swapnendu003",
+            linkedin: "swapnendu-banerjee-36ba06219",
+            instagram: "swapno_banerjee/profilecard/?igsh=MWQxemFodG1kdjMwNA=="
+          }
+        },
+        { 
+          name: "Moyukh Chowdhury", 
+          role: "Co-Organizer", 
+          image: "/team/moyukhda_coorganiser.jpg",
+          social: {
+            github: "Moyukh999",
+            linkedin: "moyukh-chowdhury-07b03224b",
+            instagram: "moyukh_chowdhury?igsh=bjMyZGNuanlyd3Bh"
+          }
+        },
+        { 
+          name: "Swastika Bose", 
+          role: "Co-Organizer", 
+          image: "/team/swastikadi_coorganiser.jpg",
+          social: {
+            github: "swastika07bose",
+            linkedin: "swastika-bose-25x25",
+            instagram: "_swaastikab_?igsh=MXMzNjlhczJrYmo="
+          }
+        },
+        { 
+          name: "Hirak Sabui", 
+          role: "Co-Organizer", 
+          image: "/team/hirakda_coorganiser.jpg",
+          social: {
+            github: "HirakSabui",
+            linkedin: "hirak-sabui-5540b8257",
+            instagram: "hirak_5603"
+          }
+        },
       ],
     },
     {
@@ -68,8 +121,26 @@ const TeamPage = () => {
       textColor: "text-green-500",
       icon: <Zap className="w-6 h-6" />,
       members: [
-        { name: "Raj Sharma", role: "Tech Lead", image: "/placeholder.svg?height=400&width=300" },
-        { name: "Emma Wilson", role: "Full-Stack Developer", image: "/placeholder.svg?height=400&width=300" },
+        { 
+          name: "Debayudh Basu", 
+          role: "Tech Team", 
+          image: "/team/debayudh_tech.jpeg",
+          social: {
+            github: "debayudh07",
+            linkedin: "debayudh-basu-5280562b2",
+            instagram: "debayudh___?igsh=MWEwYXlucDNwMXh6aA=="
+          }
+        },
+        { 
+          name: "Rishi Paul", 
+          role: "Tech Team", 
+          image: "/team/rishi_tech.png",
+          social: {
+            github: "rishicds",
+            linkedin: "rishi-paul04",
+            instagram: "realmadrid?igsh=MTJvNzR5bnlqMjR4cA=="
+          }
+        },
       ],
     },
     {
@@ -80,10 +151,46 @@ const TeamPage = () => {
       textColor: "text-yellow-500",
       icon: <Activity className="w-6 h-6" />,
       members: [
-        { name: "Olivia Lee", role: "Graphics Lead", image: "/placeholder.svg?height=400&width=300" },
-        { name: "Daniel Wong", role: "UI/UX Designer", image: "/placeholder.svg?height=400&width=300" },
-        { name: "Zoe Thompson", role: "Illustrator", image: "/placeholder.svg?height=400&width=300" },
-        { name: "Ethan Clark", role: "Motion Designer", image: "/placeholder.svg?height=400&width=300" },
+        { 
+          name: "Soumi Khanra", 
+          role: "Graphics Team", 
+          image: "/team/soumi_graphics.jpg",
+          social: {
+            github: "Soumi-10",
+            linkedin: "soumi-khanra-b1b723325",
+            instagram: "soumi08_?igsh=MXN2d2hxN3I4M21vdA=="
+          }
+        },
+        { 
+          name: "Ankur Bag", 
+          role: "Graphics Team", 
+          image: "/team/ankur_graphics.jpg",
+          social: {
+            github: "ankur-bag",
+            linkedin: "ankur-bag-017664314",
+            instagram: "coxmos.co"
+          }
+        },
+        { 
+          name: "Tirtha Bhattacharya", 
+          role: "Graphics Team", 
+          image: "/team/tirtha_graphics.jpg",
+          social: {
+            github: "Tirtha28",
+            linkedin: "tirtha-bhattacharyya-372b26297?trk=contact-info",
+            instagram: "tameyourbrain28?igsh=cHFlZHg3amtjcnFu"
+          }
+        },
+        { 
+          name: "Sreyashi Dubey", 
+          role: "Graphics Team", 
+          image: "/team/Sreyashi_graphics.jpeg",
+          social: {
+            github: "shrey0781",
+            linkedin: " sreyashi-dubey-b4abaa315",
+            instagram: "shrey_0781?igsh=MWx0ZHFydmszZmdobw=="
+          }
+        },
       ],
     },
     {
@@ -94,10 +201,36 @@ const TeamPage = () => {
       textColor: "text-purple-500",
       icon: <AlertTriangle className="w-6 h-6" />,
       members: [
-        { name: "Ava Martinez", role: "PR Lead", image: "/placeholder.svg?height=400&width=300" },
-        { name: "Benjamin Foster", role: "Social Media Manager", image: "/placeholder.svg?height=400&width=300" },
-        { name: "Isabella Brown", role: "Content Creator", image: "/placeholder.svg?height=400&width=300" },
-        { name: "Lucas White", role: "Community Manager", image: "/placeholder.svg?height=400&width=300" },
+        { 
+          name: "Debjoy Sarkar", 
+          role: "PR and Social Media team",  
+          image: "/team/debjoy_pr.jpg",
+          social: {
+            github: "Debjoy26",
+            linkedin: "debjoysarkar",
+            instagram: "pause_lemniscate"
+          }
+        },
+        { 
+          name: "Tanisa Dey", 
+          role: "PR and Social Media team", 
+          image: "/team/tanisha_pr.jpg",
+          social: {
+            github: "TanisaDey05 ",
+            linkedin: "tanisa-dey-286769287",
+            instagram: "xxtanisaxx?igsh=Z2J0NzQ3MWVnYmlo"
+          }
+        },
+        { 
+          name: "Smaranika Porel", 
+          role: "PR and Social Media team", 
+          image: "/team/Smaranika_pr.jpg",
+          social: {
+            github: "Smaranika2005",
+            linkedin: "smaranika-porel-43a11b291",
+            instagram: "smaranika.porel/profilecard/?igsh=MXNjdWhoanNjNHR4eQ=="
+          }
+        },
       ],
     },
   ]
@@ -344,6 +477,45 @@ const TeamPage = () => {
 
                     <h3 className="text-base sm:text-xl font-bold mb-1">{member.name}</h3>
                     <p className="text-gray-300 text-sm">{member.role}</p>
+
+                    {/* Social Links */}
+                    <div className="mt-2 flex items-center gap-2">
+                      {member.social?.github && (
+                        <a 
+                          href={`https://github.com/${member.social.github}`} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className={`text-gray-400 hover:${team.textColor} transition-colors duration-300`}
+                        >
+                          <Github className="w-4 h-4 sm:w-5 sm:h-5" />
+                        </a>
+                      )}
+                      {member.social?.linkedin && (
+                        <a 
+                          href={`https://linkedin.com/in/${member.social.linkedin}`} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-gray-400 hover:text-blue-400 transition-colors duration-300"
+                        >
+                          <Linkedin className="w-4 h-4 sm:w-5 sm:h-5" />
+                        </a>
+                      )}
+                      {member.social?.instagram && (
+                        <a 
+                          href={`https://instagram.com/${member.social.instagram}`} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-gray-400 hover:text-pink-400 transition-colors duration-300"
+                        >
+                          <Instagram className="w-4 h-4 sm:w-5 sm:h-5" />
+                        </a>
+                      )}
+                    </div>
+
+                    {/* Social links hover tooltip */}
+                    <div className="mt-1 text-[8px] sm:text-[10px] text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      Click icons to view profiles
+                    </div>
 
                     {/* SPD-style tech details - Enhanced */}
                     <div className="mt-2 sm:mt-3 pt-2 sm:pt-3 border-t border-gray-700 text-[10px] sm:text-xs text-gray-500 font-mono">
