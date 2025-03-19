@@ -160,7 +160,7 @@ export default function Schedule() {
 
   return (
     <section
-      className="py-32 px-4 sm:px-6 bg-gradient-to-b from-[#000000] to-[#0a1a2a] relative overflow-hidden"
+      className="py-32 px-4 sm:px-6 bg-gradient-to-b from-[#000000] to-[#0a1a2a] relative"
       ref={ref}
     >
       {/* Animated background particles */}
@@ -273,11 +273,11 @@ export default function Schedule() {
             <div className="absolute -bottom-4 -left-4 w-16 h-16 border-l-2 border-b-2 border-[#3DEFE9] opacity-70" />
             <div className="absolute -bottom-4 -right-4 w-16 h-16 border-r-2 border-b-2 border-[#3DEFE9] opacity-70" />
 
-            <Tabs defaultValue="day1" className="w-full  max-w-4xl mx-auto" onValueChange={setActiveTab}>
-              <TabsList className="grid w-full grid-cols-2 mb-8 bg-black/50 border-2 border-[#3DEFE9]/30 rounded-xl p-1 ">
+            <Tabs defaultValue="day1" className="w-full  max-w-6xl mx-auto" onValueChange={setActiveTab}>
+              <TabsList className="flex w-full grid-cols-2 mb-5 bg-black/50 border-1 border-[#3DEFE9]/30 rounded-xl p-1 whitespace-nowrap ">
                 <TabsTrigger
                   value="day1"
-                  className="relative text-sm sm:text-base py-4 data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#3DEFE9] data-[state=active]:to-[#00a8e8] data-[state=active]:text-black font-bold rounded-lg transition-all duration-300"
+                  className="relative text-sm sm:text-lg py-6 data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#3DEFE9] data-[state=active]:to-[#00a8e8] data-[state=active]:text-black font-bold rounded-lg transition-all duration-300 min-w-[180px]"
                 >
                   <motion.div
                     className="absolute inset-0 bg-white/5 rounded-lg"
@@ -292,7 +292,7 @@ export default function Schedule() {
                 </TabsTrigger>
                 <TabsTrigger
                   value="day2"
-                  className="relative text-sm sm:text-base py-4 data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#3DEFE9] data-[state=active]:to-[#00a8e8] data-[state=active]:text-black font-bold rounded-lg transition-all duration-300"
+                  className="relative text-lg sm:text-lg py-6 data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#3DEFE9] data-[state=active]:to-[#00a8e8] data-[state=active]:text-black font-bold rounded-lg transition-all duration-300"
                 >
                   <motion.div
                     className="absolute inset-0 bg-white/5 rounded-lg"
@@ -309,8 +309,8 @@ export default function Schedule() {
 
               {Object.entries(scheduleData).map(([day, events]) => (
                 <TabsContent key={day} value={day} className="mt-0">
-                  <Card className="border-2 border-[#3DEFE9]/30 bg-black/30 backdrop-blur-md overflow-hidden">
-                    <CardContent className="p-0">
+                  <Card className="border-4 border-[#3DEFE9]/30 bg-black/30 backdrop-blur-md overflow-hidden rounded-xl p-8">
+                    <CardContent className="p-6">
                       <div className="divide-y divide-[#3DEFE9]/20">
                         <AnimatePresence>
                           {events.map((item, index) => (
