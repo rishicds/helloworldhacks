@@ -1,7 +1,7 @@
 "use client"
 
+import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
-import { useEffect, useState } from "react"
 
 interface AnimatedTextProps {
   text: string
@@ -52,9 +52,15 @@ export default function AnimatedText({ text, className = "" }: AnimatedTextProps
   }
 
   return (
-    <motion.div className={`flex flex-wrap ${className}`} variants={container} initial="hidden" animate="visible">
+    <motion.div
+      className={`flex overflow-visible flex-wrap ${className}`}
+      variants={container}
+      initial="hidden"
+      animate="visible"
+      style={{ width: "100%", maxWidth: "100%" }}
+    >
       {words.map((word, index) => (
-        <motion.span key={index} className="mr-2 mb-2 inline-block" variants={child}>
+        <motion.span key={index} className="mr-2 mb-2 inline-block overflow-visible" variants={child}>
           <span
             className="inline-block"
             style={{

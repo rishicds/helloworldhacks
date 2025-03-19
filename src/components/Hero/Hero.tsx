@@ -19,29 +19,6 @@ export default function Hero() {
   const [isModelHovered, setIsModelHovered] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
 
-  // Load Devfolio SDK dynamically with improved loading
-  useEffect(() => {
-    const script = document.createElement("script")
-    script.src = "https://apply.devfolio.co/v2/sdk.js"
-    script.async = true
-    script.defer = true
-    document.body.appendChild(script)
-    
-    // Add event listener to know when the script has loaded
-    script.onload = () => {
-      // Force re-render of Devfolio button if their SDK supports it
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      if ((window as any).devfolio) {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        (window as any).devfolio.init()
-      }
-    }
-
-    return () => {
-      document.body.removeChild(script)
-    }
-  }, [])
-
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768)
@@ -55,19 +32,26 @@ export default function Hero() {
     }
   }, [])
 
-  // Reinitialize Devfolio button when screen size changes
+  // Ensure Devfolio SDK is loaded properly
   useEffect(() => {
-    // Add a slight delay to ensure DOM is updated
-    const timer = setTimeout(() => {
+    const script = document.createElement("script")
+    script.src = "https://apply.devfolio.co/v2/sdk.js"
+    script.async = true
+    script.defer = true
+    document.body.appendChild(script)
+
+    script.onload = () => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       if ((window as any).devfolio) {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (window as any).devfolio.init()
       }
-    }, 300)
-    
-    return () => clearTimeout(timer)
-  }, [isMobile])
+    }
+
+    return () => {
+      document.body.removeChild(script)
+    }
+  }, [])
 
   return (
     <section ref={containerRef} className="relative h-screen w-full overflow-hidden bg-black text-white">
@@ -75,31 +59,31 @@ export default function Hero() {
 
       {/* Content Section */}
       <div className={`absolute inset-0 z-10 flex flex-col items-start ${isMobile ? "justify-start pt-16" : "justify-center"} px-6 sm:px-10 md:px-20 max-w-7xl mx-auto`}>
-        <div className={`${isMobile ? "w-full" : "w-full md:w-3/5"}`}>
+        <div className={`${isMobile ? "w-full pt-8" : "w-full md:w-3/5"}`}>
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }} className="mb-4">
             <span className="text-sm md:text-base uppercase tracking-[0.3em] text-gray-400 font-medium">
               Welcome to
             </span>
           </motion.div>
 
-          <div className="overflow-hidden">
-            <AnimatedText
-              text="HELLO WORLD HACKS"
-              className={`${isMobile ? "text-5xl" : "text-6xl sm:text-7xl md:text-8xl"} font-black leading-none tracking-tighter`}
-            />
-          </div>
+          <AnimatedText
+            text="HELLO WORLD"
+            className={`${isMobile ? "text-4xl sm:text-5xl" : "text-5xl sm:text-6xl md:text-7xl"}  overflow-visible font-bold  `}
+          />
+          <AnimatedText
+            text="HACKS"
+            className={`${isMobile ? "text-4xl sm:text-5xl" : "text-5xl sm:text-6xl md:text-7xl"}  text-red-300 overflow-visible leading-none tracking-tighter `}
+          />
 
-          <motion.div
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.2, duration: 0.8 }}
-            className="mt-6 md:mt-8 max-w-xl"
+            className="mt-6 md:mt-8 max-w-xl text-gray-300 text-lg md:text-2xl font-light"
           >
-            <p className={`${isMobile ? "text-base" : "text-lg md:text-2xl"} text-gray-300 font-light`}>
-              Hosted by <span className="font-medium text-white">GDG RCCIIT</span> &{" "}
-              <span className="font-medium text-white">RCCTECHZ</span>
-            </p>
-          </motion.div>
+            Hosted by <span className="font-medium text-white">GDG RCCIIT</span> &{" "}
+            <span className="font-medium text-white">RCCTECHZ</span>
+          </motion.p>
 
           {/* Devfolio Apply Button */}
           <motion.div
@@ -120,19 +104,14 @@ export default function Hero() {
 
       {/* 3D Model Section */}
       <motion.div
-        className={`absolute ${isMobile ? "bottom-0 left-0 w-full h-1/2" : "right-0 w-full md:w-1/2 h-full"} z-0`}
+        className={`absolute ${isMobile ? "bottom-0 left-0 w-full h-1/2" : "right-18 w-full md:w-1/2 h-full"} z-0`}
         style={{ opacity }}
         onMouseEnter={() => setIsModelHovered(true)}
         onMouseLeave={() => setIsModelHovered(false)}
       >
         <Canvas
           camera={{ position: [15, 5, 10], fov: 25 }}
-          style={{
-            position: "fixed",
-            ...(isMobile
-              ? { bottom: 0, left: 0, width: "100%", height: "50%" }
-              : { right: 0, width: "70%", height: "100%" }),
-          }}
+          className="w-full h-full"
         >
           <Suspense fallback={null}>
             <Stage environment="lobby" intensity={1}>

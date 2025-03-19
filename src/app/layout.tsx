@@ -7,6 +7,7 @@ import Footer from "@/components/shared/Footer";
 import LoadingWrapper from "@/components/shared/LoaderClient";
 import CoolHeader from "@/components/shared/Header";
 import MusicButton from "@/components/shared/MusicButton";
+import LenisProvider from "@/components/shared/LenisProvider";
 
 export const metadata: Metadata = {
   title: "HELLOWORLDHACKS",
@@ -32,11 +33,13 @@ export default function Layout({ children }: { children: ReactNode }) {
       <html>
       <body>
       <LoadingWrapper>
-      <CoolHeader />
-      <main>{children}</main>
-      <Footer />
-      <MusicButton />
-      <Analytics />
+        <LenisProvider>
+          <CoolHeader />
+          <main>{children}</main>
+          <Footer />
+          <MusicButton />
+          <Analytics />
+        </LenisProvider>
       </LoadingWrapper>
       </body>
       </html>

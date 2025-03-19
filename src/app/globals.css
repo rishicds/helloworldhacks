@@ -125,3 +125,100 @@ html,body{
     @apply bg-background text-foreground;
   }
 }
+/* styles/fonts.css */
+@font-face {
+  font-family: 'MajorMonoDisplay';
+  src: url('/fonts/MajorMonoDisplay-Regular.ttf') format('ttf'),
+        url('/fonts/MajorMonoDisplay-Regular.ttf') format('ttf'),
+        url('/fonts/MajorMonoDisplay-Regular.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+
+
+.major-mono-display-regular {
+  font-family: "Major Mono Display", monospace;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Add this to your globals.css file */
+
+/* For Webkit browsers (Chrome, Safari) */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #6a1b9a, #283593);
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #8e24aa, #3949ab);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #6a1b9a #0a0a0a;
+}
+
+/* Add this to your globals.css file */
+
+/* Lenis smooth scrolling styles */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Custom scrollbar that matches your site theme */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #6a1b9a, #283593);
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #8e24aa, #3949ab);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #6a1b9a #0a0a0a;
+}

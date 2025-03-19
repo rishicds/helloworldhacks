@@ -2,15 +2,13 @@
 
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
-import CyberpunkLoader from "@/components/shared/Loader";
+import GifLoader from "./Loader";
 
 export default function LoadingWrapper({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true);
   const pathname = usePathname(); // Get the current route
 
-  const handleComplete = () => {
-    setLoading(false);
-  };
+  
 
   useEffect(() => {
     if (pathname !== "/") {
@@ -20,7 +18,7 @@ export default function LoadingWrapper({ children }: { children: React.ReactNode
 
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 10000); // Auto-hide loader after 10 seconds
+    }, 2000); // Auto-hide loader after 10 seconds
 
     return () => clearTimeout(timer);
   }, [pathname]);
@@ -28,7 +26,7 @@ export default function LoadingWrapper({ children }: { children: React.ReactNode
   if (loading && pathname === "/") {
     return (
       <div className="fixed inset-0 z-50">
-        <CyberpunkLoader onComplete={handleComplete} />
+        <GifLoader/>
       </div>
     );
   }
