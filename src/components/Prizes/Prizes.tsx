@@ -17,7 +17,7 @@ function DragonModel() {
   useEffect(() => {
     const animate = () => {
       if (group.current) {
-        group.current.rotation.y += 0.2
+        group.current.rotation.y += 0.01
       }
       requestAnimationFrame(animate)
     }
@@ -126,7 +126,7 @@ export default function Prizes() {
                   <ambientLight intensity={3} />
                   <directionalLight position={[0, 10, 10]} intensity={0.8} />
                   <DragonModel />
-                  <OrbitControls enableZoom={false} enablePan={false} autoRotate autoRotateSpeed={2} />
+                  <OrbitControls enableZoom={false} enablePan={false} autoRotate autoRotateSpeed={0.01} />
                 </Canvas>
               </div>
               <h2 className="text-4xl sm:text-5xl font-bold text-white">WIN BIG</h2>
