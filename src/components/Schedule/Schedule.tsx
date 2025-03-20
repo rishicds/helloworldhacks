@@ -262,21 +262,21 @@ export default function Schedule() {
                                 </div>
                                 <span className="font-mono text-[#3DEFE9] font-bold">{item.time}</span>
                               </div>
-                              <div className="sm:w-3/4">
+                                <div className="sm:w-3/4">
                                 <div className="flex items-center gap-2 mb-1">
                                   <div 
-                                    className="w-3 h-3 rounded-full" 
-                                    style={{ backgroundColor: getEventColor(item.event) }}
+                                  className="w-3 h-3 rounded-full flex-shrink-0" 
+                                  style={{ backgroundColor: getEventColor(item.event) }}
                                   />
                                   <h3 className="text-lg font-bold text-white flex items-center gap-2">
-                                    {item.event}
-                                    {hoveredEvent === index && (
-                                      <ChevronRight className="w-4 h-4 text-[#3DEFE9]" />
-                                    )}
+                                  {item.event}
+                                  {hoveredEvent === index && (
+                                    <ChevronRight className="w-4 h-4 text-[#3DEFE9]" />
+                                  )}
                                   </h3>
                                 </div>
                                 <p className="text-white/70">{item.description}</p>
-                              </div>
+                                </div>
                             </div>
                           </div>
                         ))}
