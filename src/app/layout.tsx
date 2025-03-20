@@ -121,6 +121,7 @@ export default function Layout({ children }: { children: ReactNode }) {
               <Analytics />
             </LenisProvider>
           </LoadingWrapper>
+          {/* <script src="https://cdn.splitbee.io/sb.js" async /> */}  
         </body>
       </html>
     </>
