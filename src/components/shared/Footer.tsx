@@ -4,7 +4,7 @@ import { useRef } from "react"
 import { motion, useInView } from "framer-motion"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Mail, Github, Linkedin, Twitter, Instagram, Facebook, Hexagon, Code, Cpu } from "lucide-react"
+import { ArrowRight, Mail, Linkedin, Twitter, Instagram, Facebook, Hexagon, Code, Cpu } from "lucide-react"
 
 const Footer = () => {
   const container = useRef<HTMLDivElement>(null)

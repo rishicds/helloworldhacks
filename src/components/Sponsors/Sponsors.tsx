@@ -64,8 +64,10 @@ export default function Sponsors() {
     document.body.removeChild(link);
   };
   const sponsors = [
+    { name: "LLMWARE", tier: "TITLE SPONSORS", imageWidth: 120 },
     { name: "DEVFOLIO", tier: "GOLD SPONSORS", imageWidth: 180 },
     { name: "ETHINDIA", tier: "SILVER SPONSORS", imageWidth: 150 },
+    
    
   ]
 
