@@ -10,8 +10,53 @@ import MusicButton from "@/components/shared/MusicButton";
 import LenisProvider from "@/components/shared/LenisProvider";
 
 export const metadata: Metadata = {
-  title: "HELLOWORLDHACKS",
-  description: "A hackathon for everyone",
+  title: "HELLOWORLDHACKS | A Hackathon for Everyone",
+  description: "Join HELLOWORLDHACKS, an inclusive hackathon for beginners and experts alike. Collaborate, innovate, and build amazing projects in a supportive environment.",
+  keywords: ["hackathon", "coding", "programming", "tech event", "developers", "students", "beginners", "HELLOWORLDHACKS"],
+  authors: [{name: "Swapnendu Banerjee"}, {name: "Sagnik Datta"}, {name: "Adrita Chakraborty"}, {name: "Moyukh Chowdhury"},{name: "Rishi Paul"}, {name: "Debayudh Basu"}],
+  openGraph: {
+    title: "HELLOWORLDHACKS | A 30 Days. Infinite Possibilities",
+    description: "Join HELLOWORLDHACKS, an inclusive hackathon for beginners and experts alike. Collaborate, innovate, and build amazing projects in a supportive environment.",
+    url: "https://helloworldhacks.tech",
+    siteName: "HELLOWORLDHACKS",
+    images: [
+      {
+        url: "/og-image.png", 
+        width: 1200,
+        height: 630,
+        alt: "HELLOWORLDHACKS - 30 Days. Infinite Possibilities",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "HELLOWORLDHACKS | 30 Days. Infinite Possibilities",
+    description: "Join HELLOWORLDHACKS, an inclusive hackathon for beginners and experts alike. Collaborate, innovate, and build amazing projects in a supportive environment.",
+    images: ["/twitter-image.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    google: "pcgpcYTSr9fUfN4RT66va7QCxgX5ovbrTtw0NZX-wSU", 
+  },
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
+  alternates: {
+    canonical: "https://helloworldhacks.tech",
+  },
 };
 
 export default function Layout({ children }: { children: ReactNode }) {
@@ -30,18 +75,53 @@ export default function Layout({ children }: { children: ReactNode }) {
           `,
         }}
       />
-      <html>
-      <body>
-      <LoadingWrapper>
-        <LenisProvider>
-          <CoolHeader />
-          <main>{children}</main>
-          <Footer />
-          <MusicButton />
-          <Analytics />
-        </LenisProvider>
-      </LoadingWrapper>
-      </body>
+      <html lang="en">
+        <head>
+          <link rel="canonical" href="https://helloworldhacks.com" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <Script
+            id="schema-script"
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: `
+                {
+                  "@context": "https://schema.org",
+                  "@type": "Event",
+                  "name": "HELLOWORLDHACKS",
+                  "description": "Join HELLOWORLDHACKS, an inclusive hackathon for beginners and experts alike. Collaborate, innovate, and build amazing projects in a supportive environment.",
+                  "image": "https://helloworldhacks.com/og-image.jpg",
+                  "url": "https://helloworldhacks.com",
+                  "eventStatus": "https://schema.org/EventScheduled",
+                  "organizer": {
+                    "@type": "Organization",
+                    "name": "HELLOWORLDHACKS Team",
+                    "url": "https://helloworldhacks.com"
+                  },
+                  "offers": {
+                    "@type": "Offer",
+                    "url": "https://helloworldhacks.com/register",
+                    "availability": "https://schema.org/InStock"
+                  }
+                }
+              `,
+            }}
+          />
+        </head>
+        <body>
+          <LoadingWrapper>
+            <LenisProvider>
+              <header>
+                <CoolHeader />
+              </header>
+              <main id="main-content">{children}</main>
+              <footer>
+                <Footer />
+              </footer>
+              <MusicButton />
+              <Analytics />
+            </LenisProvider>
+          </LoadingWrapper>
+        </body>
       </html>
     </>
   );

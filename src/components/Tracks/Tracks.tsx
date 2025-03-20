@@ -5,87 +5,122 @@ import { motion, useInView } from "framer-motion"
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Code, Cpu, Database, Globe, Lightbulb, Shield, Sparkles, Zap } from "lucide-react"
+import { 
+  Brain, 
+  Link, 
+  Heart, 
+  Leaf, 
+  CreditCard, 
+  Gamepad, 
+  Shield, 
+  Plane, 
+  Code, 
+  Sparkles 
+} from "lucide-react"
 
 export default function Tracks() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: false, amount: 0.2 })
 
-  // Track data
+  // Updated Track data based on Tracks.docx
   const tracks = [
     {
-      id: "web3",
-      name: "Web3 & Blockchain",
-      icon: <Database className="w-6 h-6" />, 
-      color: "#9945FF",
-      description:
-        "Build decentralized applications, smart contracts, or blockchain solutions that push the boundaries of what's possible in the Web3 space.",
-      fulldescription:
-        "Web3 & Blockchain is for developers interested in decentralization. This track focuses on building dApps, smart contracts, and leveraging blockchain technology to create secure, trustless, and innovative solutions.",
-      difficulty: "Advanced",
-      tools: ["Ethereum", "Solidity", "IPFS", "Hardhat"],
-    },
-    {
-      id: "ai",
-      name: "AI & Machine Learning",
-      icon: <Cpu className="w-6 h-6" />, 
+      id: "ai-for-good",
+      name: "AI for Good",
+      icon: <Brain className="w-6 h-6" />, 
       color: "#FF5757",
       description:
-        "Create intelligent applications using machine learning, natural language processing, computer vision, or other AI technologies.",
+        "Building AI-powered solutions that address societal challenges, such as accessibility, sustainability, and education.",
       fulldescription:
-        "AI & Machine Learning is for those who want to build intelligent systems. Whether it's natural language processing, computer vision, deep learning, or AI-powered applications, this track is perfect for bringing smart solutions to life.",
+        "AI for Good focuses on leveraging artificial intelligence to create positive societal impact. This track is perfect for those looking to apply AI in solving real-world problems in accessibility, education, and sustainability.",
       difficulty: "Intermediate",
-      tools: ["TensorFlow", "PyTorch", "Hugging Face", "OpenAI API"],
+      tools: ["Python", "TensorFlow", "PyTorch", "OpenAI APIs"],
     },
     {
-      id: "gamedev",
-      name: "Game Development",
-      icon: <Zap className="w-6 h-6" />, 
+      id: "blockchain-web3",
+      name: "Decentralized Future: Blockchain & Web3",
+      icon: <Link className="w-6 h-6" />, 
+      color: "#9945FF",
+      description:
+        "Exploring blockchain technology for secure, transparent, and decentralized applications.",
+      fulldescription:
+        "The Decentralized Future track focuses on blockchain and Web3 technologies to create transparent and secure applications. Ideal for participants interested in fintech, cybersecurity, and decentralized systems.",
+      difficulty: "Advanced",
+      tools: ["Solidity", "Ethereum", "Polygon", "IPFS"],
+    },
+    {
+      id: "healthtech",
+      name: "HealthTech & Wellness",
+      icon: <Heart className="w-6 h-6" />, 
+      color: "#FF00E5",
+      description:
+        "Developing applications that improve healthcare accessibility, mental well-being, and fitness.",
+      fulldescription:
+        "The HealthTech & Wellness track is for creating solutions that enhance healthcare accessibility and mental well-being. Perfect for students interested in health-tech innovation and AI in healthcare.",
+      difficulty: "Intermediate",
+      tools: ["React Native", "Firebase", "OpenAI APIs", "Twilio"],
+    },
+    {
+      id: "greentech",
+      name: "Green Tech & Sustainability",
+      icon: <Leaf className="w-6 h-6" />, 
+      color: "#14F195",
+      description:
+        "Using technology to address climate change, sustainability, and environmental protection.",
+      fulldescription:
+        "Green Tech & Sustainability track focuses on leveraging technology to combat climate change and promote environmental protection. Great for innovators passionate about creating a sustainable future.",
+      difficulty: "Intermediate",
+      tools: ["IoT APIs", "Python", "ML models", "Blockchain"],
+    },
+    {
+      id: "fintech",
+      name: "FinTech & Smart Transactions",
+      icon: <CreditCard className="w-6 h-6" />, 
+      color: "#FFC107",
+      description:
+        "Creating innovative financial solutions that improve accessibility, security, and automation in banking and payments.",
+      fulldescription:
+        "The FinTech track focuses on developing innovative financial solutions that enhance accessibility, security, and automation in banking and payments.",
+      difficulty: "Intermediate",
+      tools: ["Stripe API", "Plaid API", "Solidity", "Firebase"],
+    },
+    {
+      id: "edtech",
+      name: "Gamified Learning & EdTech",
+      icon: <Gamepad className="w-6 h-6" />, 
       color: "#00E4FF",
       description:
-        "Design and develop games that are innovative, engaging, and showcase technical excellence across any platform.",
+        "Enhancing education through interactive, AI-driven, or gamified learning experiences.",
       fulldescription:
-        "Game Development is the track for those passionate about creating interactive and immersive gaming experiences. Build games for mobile, PC, VR, or AR using top game engines and innovative mechanics.",
-      difficulty: "Intermediate",
-      tools: ["Unity", "Unreal Engine", "Godot", "PlayCanvas"],
+        "The Gamified Learning & EdTech track focuses on enhancing education through interactive and AI-driven experiences. Ideal for those passionate about education, game development, and AI.",
+      difficulty: "Beginner",
+      tools: ["Unity", "Godot", "Phaser.js", "AI learning engines"],
     },
     {
-      id: "cybersecurity",
-      name: "Cybersecurity",
+      id: "safetech",
+      name: "SafeTech+: Predictive Safety & Autonomous Response",
       icon: <Shield className="w-6 h-6" />, 
       color: "#14F195",
       description:
-        "Build tools, systems, or solutions that address security challenges, vulnerabilities, or enhance digital safety.",
+        "Leveraging AI, predictive analytics, and decentralized networks to create proactive safety solutions.",
       fulldescription:
-        "Cybersecurity is for developers and ethical hackers who want to tackle security threats. Create tools and solutions to protect systems, identify vulnerabilities, and enhance digital security using industry-standard tools.",
+        "SafeTech+ focuses on creating proactive safety solutions using AI and predictive analytics. Perfect for those interested in AI-driven security and emergency response systems.",
       difficulty: "Advanced",
-      tools: ["Kali Linux", "Wireshark", "Metasploit", "Burp Suite"],
+      tools: ["GPS APIs", "AI detection", "Twilio", "Blockchain"],
     },
     {
-      id: "webdev",
-      name: "Web Development",
-      icon: <Globe className="w-6 h-6" />, 
-      color: "#FFC107",
+      id: "smarttourism",
+      name: "Smart Tourism & Cultural Tech",
+      icon: <Plane className="w-6 h-6" />, 
+      color: "#00a8e8",
       description:
-        "Create innovative web applications that solve real-world problems using modern frameworks and technologies.",
+        "Innovating tourism through AI, AR/VR experiences, and smart travel planning to enhance exploration and accessibility.",
       fulldescription:
-        "Web Development is the track for building dynamic and responsive web applications. Use modern frameworks and tools to develop full-stack solutions that solve real-world problems in an efficient and scalable way.",
-      difficulty: "Beginner",
-      tools: ["React", "Next.js", "Node.js", "Vercel"],
+        "Smart Tourism & Cultural Tech leverages AI and AR/VR to enhance travel experiences. Ideal for those passionate about travel tech, UI/UX, and AI-driven personalization.",
+      difficulty: "Intermediate",
+      tools: ["Google Maps API", "OpenAI APIs", "AR frameworks", "Blockchain"],
     },
-    {
-      id: "openinnovation",
-      name: "Open Innovation",
-      icon: <Lightbulb className="w-6 h-6" />, 
-      color: "#FF00E5",
-      description:
-        "Have a unique idea that doesn't fit other categories? This track welcomes all innovative solutions to real-world problems.",
-      fulldescription:
-        "Open Innovation is a track that welcomes all innovative solutions to real-world problems. If you have a unique idea that doesn't fit other categories, this is the track for you. You can work on any type of project, use any technology stack, and explore new ideas without any restrictions. Let your creativity shine and build something amazing!",
-      difficulty: "Any",
-      tools: ["Any Technology", "No Restrictions"],
-    },
-];
+  ];
 
   // Get difficulty badge color
   const getDifficultyColor = (difficulty: string) => {
@@ -290,4 +325,3 @@ export default function Tracks() {
     </section>
   )
 }
-

@@ -43,7 +43,7 @@ const TransparentNavbar = () => {
 
   return (
     <>
-      {/* Transparent Navbar */}
+
       <motion.div
         className={`fixed top-6 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-300 ${
           scrolled ? "w-5/6 md:w-3/4 lg:w-2/3" : "w-11/12 md:w-4/5 lg:w-3/4"
@@ -57,7 +57,7 @@ const TransparentNavbar = () => {
           whileHover={{ scale: 1.02 }}
         >
           <div className="flex items-center justify-between">
-            {/* Logo with Link to home */}
+      
             <Link href="/">
               <motion.div
                 className="flex items-center cursor-pointer"

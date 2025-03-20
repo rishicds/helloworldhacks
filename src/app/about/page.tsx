@@ -111,6 +111,37 @@ const TeamPage = () => {
             instagram: "hirak_5603"
           }
         },
+
+        { 
+          name: "Debayudh Basu", 
+          role: "Co-Organizer", 
+          image: "/team/debayudh_tech.jpeg",
+          social: {
+            github: "debayudh07",
+            linkedin: "debayudh-basu-5280562b2",
+            instagram: "debayudh___?igsh=MWEwYXlucDNwMXh6aA=="
+          }
+        },
+        { 
+          name: "Rishi Paul", 
+          role: "Co-Organizer", 
+          image: "/team/rishi_tech.png",
+          social: {
+            github: "rishicds",
+            linkedin: "rishi-paul04",
+            instagram: "goodbai_17"
+          }
+        },
+        { 
+          name: "Smaranika Porel", 
+          role: "Co-Organizer", 
+          image: "/team/Smaranika_pr.jpg",
+          social: {
+            github: "Smaranika2005",
+            linkedin: "smaranika-porel-43a11b291",
+            instagram: "smaranika.porel/profilecard/?igsh=MXNjdWhoanNjNHR4eQ=="
+          }
+        },
       ],
     },
     {
@@ -122,16 +153,6 @@ const TeamPage = () => {
       icon: <Zap className="w-6 h-6" />,
       members: [
         { 
-          name: "Debayudh Basu", 
-          role: "Tech Vice Lead", 
-          image: "/team/debayudh_tech.jpeg",
-          social: {
-            github: "debayudh07",
-            linkedin: "debayudh-basu-5280562b2",
-            instagram: "debayudh___?igsh=MWEwYXlucDNwMXh6aA=="
-          }
-        },
-        { 
           name: "Rishi Paul", 
           role: "Tech Lead", 
           image: "/team/rishi_tech.png",
@@ -141,6 +162,17 @@ const TeamPage = () => {
             instagram: "goodbai_17"
           }
         },
+        { 
+          name: "Debayudh Basu", 
+          role: "Tech Vice Lead", 
+          image: "/team/debayudh_tech.jpeg",
+          social: {
+            github: "debayudh07",
+            linkedin: "debayudh-basu-5280562b2",
+            instagram: "debayudh___?igsh=MWEwYXlucDNwMXh6aA=="
+          }
+        },
+        
         { 
           name: "Pragya Singh", 
           role: "Tech Team Member", 
@@ -213,6 +245,16 @@ const TeamPage = () => {
       icon: <AlertTriangle className="w-6 h-6" />,
       members: [
         { 
+          name: "Smaranika Porel", 
+          role: "PR and Social Media team", 
+          image: "/team/Smaranika_pr.jpg",
+          social: {
+            github: "Smaranika2005",
+            linkedin: "smaranika-porel-43a11b291",
+            instagram: "smaranika.porel/profilecard/?igsh=MXNjdWhoanNjNHR4eQ=="
+          }
+        },
+        { 
           name: "Debjoy Sarkar", 
           role: "PR and Social Media team",  
           image: "/team/debjoy_pr.jpg",
@@ -232,16 +274,7 @@ const TeamPage = () => {
             instagram: "xxtanisaxx?igsh=Z2J0NzQ3MWVnYmlo"
           }
         },
-        { 
-          name: "Smaranika Porel", 
-          role: "PR and Social Media team", 
-          image: "/team/Smaranika_pr.jpg",
-          social: {
-            github: "Smaranika2005",
-            linkedin: "smaranika-porel-43a11b291",
-            instagram: "smaranika.porel/profilecard/?igsh=MXNjdWhoanNjNHR4eQ=="
-          }
-        },
+        
       ],
     },
   ]
@@ -482,7 +515,7 @@ const TeamPage = () => {
                     </div>
                   </div>
 
-                  <div className={`p-4 sm:p-6 border-l-4 relative group ${team.borderColor}`}>
+                  <div className={`p-2 sm:p-3 border-l-4 relative group ${team.borderColor}`}>
                     {/* Tech scanner effect */}
                     <div className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-transparent via-blue-500 to-transparent opacity-75 animate-scanner"></div>
 
@@ -543,14 +576,6 @@ const TeamPage = () => {
                         {String.fromCharCode(65 + Math.floor(Math.random() * 26))}
                       </div>
                     </div>
-
-                    {/* Animated tech button */}
-                    <button
-                      className={`mt-2 sm:mt-3 px-2 sm:px-3 py-1 text-[10px] sm:text-xs ${team.textColor} border border-current rounded-sm flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-gray-800`}
-                    >
-                      <span className="inline-block w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-current animate-pulse"></span>
-                      VIEW PROFILE
-                    </button>
                   </div>
                 </div>
               ))}
