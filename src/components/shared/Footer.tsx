@@ -1,254 +1,266 @@
-'use client';
-import React, { FormEvent,  useRef, useState } from 'react';
+"use client"
 
-import { motion, useInView } from 'framer-motion';
-import Link from 'next/link';
-
-// Updated SVG paths for "HELLOWORLDHACKS"
-const pathArr = [
-  // H
-  'M30 0H15L0 45H18L4 81H16L6 126L34 83L46 126H65V0H50V110H40L30 0Z',
-  // E
-  'M85 0H125V20H105V55H120V75H105V106H125V126H85V0Z',
-  // L
-  'M140 0H160V106H195V126H140V0Z',
-  // L
-  'M210 0H230V106H265V126H210V0Z',
-  // O
-  'M300 40C323 40 342 58 342 82C342 106 324 126 300 126C276 126 257 106 257 83C257 59 276 40 300 40ZM300 106C315 106 323 96 323 82C323 68 314 58 300 58C286 58 277 69 277 83C277 97 285 106 300 106Z',
-  // W
-  'M360 40H380L390 90L405 40H420L435 90L445 40H465L445 126H425L410 75L395 126H375L360 40Z',
-  // O
-  'M495 40C518 40 537 58 537 82C537 106 519 126 495 126C471 126 452 106 452 83C452 59 471 40 495 40ZM495 106C510 106 518 96 518 82C518 68 509 58 495 58C481 58 472 69 472 83C472 97 480 106 495 106Z',
-  // R
-  'M550 0H595C615 0 630 15 630 35C630 50 620 62 605 65L635 126H610L585 70H570V126H550V0ZM570 20V50H595C605 50 610 45 610 35C610 25 605 20 595 20H570Z',
-  // L
-  'M640 0H660V106H695V126H640V0Z',
-  // D
-  'M710 0H750C775 0 795 20 795 63C795 106 775 126 750 126H710V0ZM730 20V106H750C765 106 775 90 775 63C775 36 765 20 750 20H730Z',
-  // H
-  'M815 0H830L845 45H827L841 81H829L839 126L811 83L800 126H780V0H795V110H805L815 0Z',
-  // A
-  'M855 40H875L915 126H895L888 110H842L835 126H815L855 40ZM850 90H880L865 60L850 90Z',
-  // C
-  'M955 40C978 40 998 53 1005 75H985C980 63 969 58 955 58C941 58 930 68 930 83C930 98 940 106 955 106C969 106 980 101 985 89H1005C998 111 978 126 955 126C929 126 910 107 910 83C910 59 929 40 955 40Z',
-  // K
-  'M1020 0H1040V55L1075 0H1095L1060 55L1095 126H1075L1050 70L1040 85V126H1020V0Z',
-  // S
-  'M1120 40C1140 40 1155 50 1155 65C1155 95 1105 90 1105 100C1105 105 1110 107 1120 107C1130 107 1135 102 1137 97H1155C1152 115 1140 126 1120 126C1100 126 1085 116 1085 100C1085 70 1135 75 1135 65C1135 60 1130 58 1120 58C1110 58 1105 63 1103 68H1085C1088 50 1100 40 1120 40Z'
-];
+import { useRef } from "react"
+import { motion, useInView } from "framer-motion"
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { ArrowRight, Mail, Github, Linkedin, Twitter, Instagram, Facebook, Hexagon, Code, Cpu } from "lucide-react"
 
 const Footer = () => {
-  const container = useRef<HTMLDivElement>(null);
-  // const [Send, cilentData] = useNewsLetter()
-  const [, setOpenPopUp] = useState(false);
-  const ref = useRef(null);
-  const isInView = useInView(ref);
+  const container = useRef<HTMLDivElement>(null)
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: false, amount: 0.3 })
 
-  const variants = {
-    visible: (i: unknown) => ({
-      translateY: 0,
+  // Animation variants for the futuristic text
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
       transition: {
-        type: 'spring',
-        stiffness: 100,
-        damping: 12,
-        duration: 0.4,
-        delay: i as number * 0.03,
+        staggerChildren: 0.04,
+        delayChildren: 0.1,
       },
-    }),
+    },
+  }
 
-    hidden: { translateY: 200 },
-  };
-  
-  const handleNewsLetterData = (e: FormEvent) => {
-    e.preventDefault();
-    console.log(e);
-    e.preventDefault();
-    const target = e.target as HTMLFormElement;
+  const letterVariants = {
+    hidden: {
+      y: 20,
+      opacity: 0,
+      scale: 0.8,
+    },
+    visible: {
+      y: 0,
+      opacity: 1,
+      scale: 1,
+      transition: {
+        type: "spring",
+        damping: 8,
+        stiffness: 100,
+      },
+    },
+  }
 
-
-    
-
-    // const data: ClientData = {
-    //   email: clientEmail.toString(),
-    // }
-
-    // Send(data)
-    setOpenPopUp(true);
-    target.reset();
-    if (setOpenPopUp) {
-      setTimeout(() => {
-        setOpenPopUp(false);
-      }, 2000);
-    }
-  };
+  const logoText = "HELLOWORLDHACKS"
 
   return (
-    <>
-      {/* <Toast.Provider>
-        <Toast.Provider swipeDirection="right">
-          <Toast.Root
-            className="ToastRoot"
-            open={openPopup}
-            onOpenChange={setOpenPopUp}
-          >
-            <Toast.Title className="ToastTitle">
-              We Received Your Message, Thanks
-            </Toast.Title>
-            <Toast.Action
-              className="ToastAction"
-              asChild
-              altText="Goto schedule to undo"
-            >
-              <button className="bg-white text-black px-3 py-1 rounded-lg">
-                ok
-              </button>
-            </Toast.Action>
-          </Toast.Root>
-          <Toast.Viewport className="ToastViewport" />
-        </Toast.Provider>
-        <Toast.Viewport />
-      </Toast.Provider> */}
+    <footer
+      className="relative h-full pt-12 bg-gradient-to-b from-[#050510] to-[#0a0a20] text-white overflow-hidden"
+      ref={container}
+    >
+      {/* Tech-inspired background elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Grid lines */}
+        <div className="absolute inset-0 opacity-10">
+          <div
+            className="h-full w-full"
+            style={{
+              backgroundImage:
+                "linear-gradient(0deg, transparent 24%, rgba(61, 239, 233, 0.3) 25%, rgba(61, 239, 233, 0.3) 26%, transparent 27%, transparent 74%, rgba(61, 239, 233, 0.3) 75%, rgba(61, 239, 233, 0.3) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(61, 239, 233, 0.3) 25%, rgba(61, 239, 233, 0.3) 26%, transparent 27%, transparent 74%, rgba(61, 239, 233, 0.3) 75%, rgba(61, 239, 233, 0.3) 76%, transparent 77%, transparent)",
+              backgroundSize: "50px 50px",
+            }}
+          />
+        </div>
 
-      <div
-        className='relative h-full sm:pt-14 pt-8 bg-[#f7f7f7] text-black'
-        ref={container}
-      >
-        <div className='sm:container px-4 mx-auto'>
-          <div className='md:flex justify-between w-full'>
-            <div>
-              <h1 className='md:text-4xl text-2xl font-semibold'>
-                Let&lsquo;s do great work together
-              </h1>
-              <div className='pt-2 pb-6 md:w-99'>
-                <p className='md:text-2xl text-xl py-4'>
-                  Sign up for our newsletter*
-                </p>
-                <div className='hover-button relative bg-black flex justify-between items-center border-2 overflow-hidden border-black rounded-full text-white hover:text-black md:text-2xl'>
-                  <form
-                    onSubmit={(e) => handleNewsLetterData(e)}
-                    className='relative z-2 grid grid-cols-6 w-full h-full'
-                  >
-                    <input
-                      type='email'
-                      name='newsletter_email'
-                      className='border-none bg-transparent py-3 px-6 col-span-5'
-                      placeholder='Your Email * '
-                    />{' '}
-                    <button
-                      type='submit'
-                      className='cursor-pointer w-full hover:bg-primaryColor bg-white text-white h-full cols-span-1'
-                    >
-                      <svg
-                        width='15'
-                        height='15'
-                        viewBox='0 0 15 15'
-                        fill='none'
-                        className='w-full h-[80%]'
-                        xmlns='http://www.w3.org/2000/svg'
-                      >
-                        <path
-                          d='M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z'
-                          fill='#000'
-                          fillRule='evenodd'
-                          clipRule='evenodd'
-                        ></path>
-                      </svg>
-                    </button>
-                  </form>
-                </div>
+        {/* Glowing orbs */}
+        <div className="absolute -top-20 -left-20 w-40 h-40 rounded-full bg-[#3DEFE9] blur-[100px] opacity-20"></div>
+        <div className="absolute top-1/2 -right-20 w-60 h-60 rounded-full bg-[#6D5AE6] blur-[120px] opacity-20"></div>
+      </div>
+
+      <div className="sm:container px-4 mx-auto relative z-10">
+        <div className="md:flex justify-between w-full">
+          <div>
+            <h1 className="md:text-4xl text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#3DEFE9] to-[#6D5AE6]">
+              Let&lsquo;s build the future together
+            </h1>
+
+            {/* Contact Us section */}
+            <div className="pt-2 pb-6 md:w-99">
+              <p className="md:text-2xl text-xl py-4 text-gray-300">Connect with our network</p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button
+                  className="rounded-md bg-gradient-to-r from-[#3DEFE9] to-[#6D5AE6] text-black hover:opacity-90 flex items-center gap-2 px-6 border border-[#3DEFE9]/30"
+                  asChild
+                >
+                  <Link href="mailto:helloworldhacks6@gmail.com">
+  <Mail className="h-4 w-4" />
+  Contact Us
+  <ArrowRight className="h-4 w-4 ml-2" />
+</Link>
+                </Button>
+              
               </div>
             </div>
-            <div className='flex gap-10'>
-              <ul>
-                <li className='text-2xl pb-2 text-black font-semibold'>
-                  SITEMAP
-                </li>
-                <li className='text-xl font-medium'>
-                  <Link href='/'>Home</Link>
-                </li>
-                <li className='text-xl font-medium'>
-                  <Link href='/about'>About us</Link>
-                </li>
-                
-              </ul>
-              <ul>
-                <li className='text-2xl pb-2 text-black font-semibold'>
-                  SOCIAL
-                </li>
-                <li className='text-xl font-medium'>
-                  <a
-                    href=' https://www.linkedin.com/company/hello-world-hacks/'
-                    target='_blank'
-                    className='underline'
-                  >
-                    LinkedIn
-                  </a>
-                </li>
-                <li className='text-xl font-medium'>
-                  <a
-                    href=' https://x.com/HelloWorldHacks'
-                    target='_blank'
-                    className='underline'
-                  >
-                    Twitter
-                  </a>
-                </li>
-                <li className='text-xl font-medium'>
-                  <a
-                    href=' https://www.instagram.com/hello.world.hacks?igsh=MTJqcXU5MDJ4dDZmcQ=='
-                    target='_blank'
-                    className='underline'
-                  >
-                    Instagram
-                  </a>
-                </li>
-                <li className='text-xl font-medium'>
-                  <a
-                    href='https://www.facebook.com/profile.php?id=61573844267737'
-                    target='_blank'
-                    className='underline'
-                  >
-                    Facebook
-                  </a>
-                </li>
-              </ul>
-            </div>
           </div>
-          <div className='border-y-2 md:py-4 border-gray-200'>
-            <motion.svg
-              width='1200'
-              ref={ref}
-              height='137'
-              viewBox='0 0 1200 137'
-              fill='none'
-              className='sm:h-fit h-20 md:px-8 px-2 footer-logo w-full'
-              xmlns='http://www.w3.org/2000/svg'
-              initial='hidden'
-              animate={isInView ? 'visible' : 'hidden'}
-            >
-              {pathArr.map((path, index) => {
-                return (
-                  <motion.path
-                    key={index}
-                    custom={index}
-                    variants={variants}
-                    d={path}
-                    fill='#3E7AEE'
-                  />
-                );
-              })}
-            </motion.svg>
-          </div>
-          <div className='flex md:flex-row flex-col-reverse gap-3 justify-between py-2'>
-            <span className='font-medium'>
-              &copy; 2025 HelloWorldHacks. All Rights Reserved.
-            </span>
+
+          <div className="flex gap-10">
+            <ul>
+              <li className="text-xl pb-2 text-[#3DEFE9] font-bold flex items-center gap-2">
+                <Hexagon className="h-4 w-4" />
+                NAVIGATION
+              </li>
+              <li className="text-lg font-medium hover:text-[#3DEFE9] transition-colors">
+                <Link href="/" className="flex items-center gap-2 py-1">
+                  <span className="text-xs text-[#3DEFE9]">01</span>
+                  Home
+                </Link>
+              </li>
+              <li className="text-lg font-medium hover:text-[#3DEFE9] transition-colors">
+                <Link href="/about" className="flex items-center gap-2 py-1">
+                  <span className="text-xs text-[#3DEFE9]">02</span>
+                  About us
+                </Link>
+              </li>
+            </ul>
+
+            <ul>
+              <li className="text-xl pb-2 text-[#3DEFE9] font-bold flex items-center gap-2">
+                <Cpu className="h-4 w-4" />
+                CONNECT
+              </li>
+              <li className="text-lg font-medium">
+                <a
+                  href="https://www.linkedin.com/company/hello-world-hacks/"
+                  target="_blank"
+                  className="hover:text-[#3DEFE9] transition-colors flex items-center gap-2 py-1"
+                  rel="noreferrer"
+                >
+                  <Linkedin className="h-4 w-4" />
+                  LinkedIn
+                </a>
+              </li>
+              <li className="text-lg font-medium">
+                <a
+                  href="https://x.com/HelloWorldHacks"
+                  target="_blank"
+                  className="hover:text-[#3DEFE9] transition-colors flex items-center gap-2 py-1"
+                  rel="noreferrer"
+                >
+                  <Twitter className="h-4 w-4" />
+                  Twitter
+                </a>
+              </li>
+              <li className="text-lg font-medium">
+                <a
+                  href="https://www.instagram.com/hello.world.hacks?igsh=MTJqcXU5MDJ4dDZmcQ=="
+                  target="_blank"
+                  className="hover:text-[#3DEFE9] transition-colors flex items-center gap-2 py-1"
+                  rel="noreferrer"
+                >
+                  <Instagram className="h-4 w-4" />
+                  Instagram
+                </a>
+              </li>
+              <li className="text-lg font-medium">
+                <a
+                  href="https://www.facebook.com/profile.php?id=61573844267737"
+                  target="_blank"
+                  className="hover:text-[#3DEFE9] transition-colors flex items-center gap-2 py-1"
+                  rel="noreferrer"
+                >
+                  <Facebook className="h-4 w-4" />
+                  Facebook
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
-      </div>
-    </>
-  );
-};
 
-export default Footer;
+        {/* Futuristic logo text with animation */}
+        <div className="border-y border-[#3DEFE9]/20 md:py-8 py-6 my-8 overflow-hidden relative">
+          {/* Tech circuit lines */}
+          <div className="absolute inset-0 pointer-events-none">
+            <svg
+              width="100%"
+              height="100%"
+              viewBox="0 0 800 100"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="opacity-10"
+            >
+              <path d="M0 50H800" stroke="#3DEFE9" strokeWidth="0.5" />
+              <path d="M100 0V100" stroke="#3DEFE9" strokeWidth="0.5" />
+              <path d="M200 0V100" stroke="#3DEFE9" strokeWidth="0.5" />
+              <path d="M300 0V100" stroke="#3DEFE9" strokeWidth="0.5" />
+              <path d="M400 0V100" stroke="#3DEFE9" strokeWidth="0.5" />
+              <path d="M500 0V100" stroke="#3DEFE9" strokeWidth="0.5" />
+              <path d="M600 0V100" stroke="#3DEFE9" strokeWidth="0.5" />
+              <path d="M700 0V100" stroke="#3DEFE9" strokeWidth="0.5" />
+              <circle cx="100" cy="50" r="5" fill="#3DEFE9" fillOpacity="0.5" />
+              <circle cx="200" cy="50" r="5" fill="#3DEFE9" fillOpacity="0.5" />
+              <circle cx="300" cy="50" r="5" fill="#3DEFE9" fillOpacity="0.5" />
+              <circle cx="400" cy="50" r="5" fill="#3DEFE9" fillOpacity="0.5" />
+              <circle cx="500" cy="50" r="5" fill="#3DEFE9" fillOpacity="0.5" />
+              <circle cx="600" cy="50" r="5" fill="#3DEFE9" fillOpacity="0.5" />
+              <circle cx="700" cy="50" r="5" fill="#3DEFE9" fillOpacity="0.5" />
+            </svg>
+          </div>
+
+          <div ref={ref} className="flex justify-center items-center">
+            <motion.div
+              className="flex justify-center overflow-hidden"
+              variants={containerVariants}
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
+            >
+              {logoText.split("").map((letter, index) => (
+                <motion.span
+                  key={index}
+                  className="text-4xl md:text-6xl lg:text-7xl font-black tracking-wider"
+                  variants={letterVariants}
+                  style={{
+                    display: "inline-block",
+                    fontFamily: "monospace", // Fallback font
+                    background: "linear-gradient(135deg, #3DEFE9 0%, #6D5AE6 100%)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    textShadow: "0 0 15px rgba(61, 239, 233, 0.5)",
+                    padding: "0 1px",
+                    position: "relative",
+                  }}
+                >
+                  {letter}
+                  {/* Digital glitch effect */}
+                  <motion.span
+                    className="absolute inset-0 text-[#3DEFE9] opacity-30"
+                    animate={{
+                      opacity: [0.3, 0.5, 0.3],
+                      x: [0, 1, -1, 0],
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Number.POSITIVE_INFINITY,
+                      repeatType: "reverse",
+                      delay: index * 0.1,
+                    }}
+                    style={{
+                      clipPath:
+                        "polygon(0 0, 100% 0, 100% 5%, 0 5%, 0 10%, 100% 10%, 100% 15%, 0 15%, 0 45%, 100% 45%, 100% 60%, 0 60%, 0 65%, 100% 65%, 100% 80%, 0 80%)",
+                    }}
+                  >
+                    {letter}
+                  </motion.span>
+                </motion.span>
+              ))}
+            </motion.div>
+          </div>
+
+          {/* Code brackets decoration */}
+          <div className="absolute left-4 top-1/2 -translate-y-1/2 text-[#3DEFE9] opacity-50 text-4xl md:text-6xl font-mono">{`<`}</div>
+          <div className="absolute right-4 top-1/2 -translate-y-1/2 text-[#3DEFE9] opacity-50 text-4xl md:text-6xl font-mono">{`/>`}</div>
+        </div>
+
+        <div className="flex md:flex-row flex-col-reverse gap-3 justify-between py-4 border-t border-[#3DEFE9]/20">
+          <span className="font-medium text-gray-400 flex items-center gap-2">
+            <Code className="h-4 w-4 text-[#3DEFE9]" />
+            &copy; 2025 HelloWorldHacks. All Rights Reserved.
+          </span>
+          
+        </div>
+      </div>
+    </footer>
+  )
+}
+
+export default Footer
+

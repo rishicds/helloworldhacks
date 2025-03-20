@@ -8,6 +8,7 @@ import LoadingWrapper from "@/components/shared/LoaderClient";
 import CoolHeader from "@/components/shared/Header";
 import MusicButton from "@/components/shared/MusicButton";
 import LenisProvider from "@/components/shared/LenisProvider";
+import SplashCursor from "@/components/shared/Mouse";
 
 export const metadata: Metadata = {
   title: "HELLOWORLDHACKS | A Hackathon for Everyone",
@@ -109,6 +110,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         </head>
         <body>
           <LoadingWrapper>
+            <SplashCursor />
             <LenisProvider>
               <header>
                 <CoolHeader />

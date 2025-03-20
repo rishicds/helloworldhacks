@@ -3573,6 +3573,7 @@ snapshots:
       class-variance-authority: 0.7.1
       clsx: 2.1.1
       framer-motion: 12.5.0(@emotion/is-prop-valid@1.2.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      lenis: 1.2.3(react@19.0.0)
       lucide-react: 0.481.0(react@19.0.0)
       next: 15.2.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       react: 19.0.0
@@ -3585,6 +3586,7 @@ snapshots:
     transitivePeerDependencies:
       - '@babel/core'
       - '@emotion/is-prop-valid'
+      - '@nuxt/kit'
       - '@opentelemetry/api'
       - '@playwright/test'
       - '@remix-run/react'
