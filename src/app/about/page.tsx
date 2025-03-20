@@ -274,6 +274,16 @@ const TeamPage = () => {
             instagram: "xxtanisaxx?igsh=Z2J0NzQ3MWVnYmlo"
           }
         },
+        { 
+          name: "Meghna Santra", 
+          role: "PR and Social Media team", 
+          image: "/team/meghna_pr.jpg",
+          social: {
+            github: " ",
+            linkedin: "meghna-santra-9a3623324",
+            instagram: "_itz_meghnaa_?igsh=bm5mYmdweDc3OG16"
+          }
+        },
         
       ],
     },
@@ -356,9 +366,6 @@ const TeamPage = () => {
         {/* Enhanced SPD-themed heading */}
         <div className="text-center mb-8 sm:mb-16">
           <div className="inline-block relative bg-gray-800/80 border-2 border-blue-600 rounded-lg px-4 sm:px-8 py-4 sm:py-6 shadow-lg shadow-blue-500/20 max-w-full sm:max-w-3xl mx-auto">
-            <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-red-600 text-white px-2 sm:px-4 py-1 text-[10px] sm:text-xs font-mono rounded">
-              SECURITY CLEARANCE LEVEL 5
-            </div>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
               {/* Enhanced SPD Logo */}
@@ -583,40 +590,7 @@ const TeamPage = () => {
           </div>
         ))}
       </div>
-
-      {/* Control panel footer - Enhanced with responsive layout */}
-      <div className="fixed bottom-0 left-0 right-0 bg-gray-800/90 border-t border-gray-700 py-2 sm:py-3 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto px-2 sm:px-4">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-0">
-            <div className="text-[10px] sm:text-sm text-gray-400 flex items-center gap-2">
-              <span className="text-green-500 animate-pulse">●</span>
-              <span>SYSTEM ONLINE</span>
-              <span className="text-[8px] sm:text-xs opacity-50 ml-1 sm:ml-2">[{new Date().toLocaleTimeString()}]</span>
-            </div>
-
-            <div className="flex space-x-3 order-first sm:order-none">
-              {teams.map((team, index) => (
-                <button key={`indicator-${index}`} onClick={() => handleTeamChange(index)} className={`relative group`}>
-                  <div
-                    className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full ${activeTeam === index ? team.color : "bg-gray-600"} transition-colors duration-300`}
-                  ></div>
-                  {activeTeam === index && (
-                    <div className={`absolute -inset-1 rounded-full ${team.color} opacity-30 animate-ping`}></div>
-                  )}
-                  <span className="absolute -top-8 left-1/2 -translate-x-1/2 text-[10px] bg-gray-800 px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                    {team.name}
-                  </span>
-                </button>
-              ))}
-            </div>
-
-            <div className="text-[10px] sm:text-sm text-gray-400 font-mono flex items-center gap-2 hidden sm:flex">
-              <span className="inline-block w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-blue-500 animate-[blink_1.5s_ease-in-out_infinite]"></span>
-              SPD COMMAND • EARTH DIVISION
-            </div>
-          </div>
-        </div>
-      </div>
+     
 
       {/* Add CSS for custom animations */}
       <style jsx>{`
