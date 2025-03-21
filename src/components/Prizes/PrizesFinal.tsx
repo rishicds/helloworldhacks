@@ -1,186 +1,352 @@
-"use client";
+"use client"
 
-import { useRef, useEffect, Suspense } from "react";
-import { useInView } from "framer-motion";
-import { motion } from "framer-motion";
-import type { Group } from "three";
-import * as THREE from "three";
+import type React from "react"
 
-import { Award, Gift, Trophy } from "lucide-react";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { useGLTF, OrbitControls, Environment, PerspectiveCamera, useAnimations } from "@react-three/drei";
+import { useRef, useEffect, Suspense, useState } from "react"
+import { useInView } from "framer-motion"
+import { motion } from "framer-motion"
+import type { Group } from "three"
+import * as THREE from "three"
 
-function DiamondModel() {
-  const group = useRef<Group>(null);
-  const { scene } = useGLTF("/models/minecraft_diamond.glb");
+import { Award, Gift, Trophy, Sparkles } from "lucide-react"
+import { Canvas, useFrame, useThree } from "@react-three/fiber"
+import { useGLTF, Environment, Float, Stars, } from "@react-three/drei"
 
-  useFrame(() => {
-    if (group.current) {
-      group.current.rotation.y += 0.01;
-    }
-  });
-
-  return (
-    <group ref={group}>
-      <primitive object={scene} scale={0.15} position={[0, -0.5, 0]} rotation={[0, Math.PI * 0.25, 0]} />
-    </group>
-  );
+// Add these interfaces at the top of the file, after the imports
+interface ModelProps {
+  position?: [number, number, number]
+  scale?: number
+  rotation?: [number, number, number]
 }
 
-function DragonScene() {
-    const dragonRef = useRef<Group>(null);
-    const goldPileRef = useRef<Group>(null);
-  
-    // Load the dragon model - replace with your actual model path
-    const { scene: dragonScene, animations: dragonAnimations } = useGLTF("/models/snow_dragon.glb");
-    const { actions: dragonActions } = useAnimations(dragonAnimations, dragonRef);
-  
-    // Load the gold pile model - replace with your actual model path
-    const { scene: goldScene, animations: goldAnimations } = useGLTF("/models/treasure.glb");
-    const { actions: goldActions } = useAnimations(goldAnimations, goldPileRef);
-  
-    // Set up camera position for the background scene
-    const { camera } = useThree();
-  
-    useEffect(() => {
-      // Position the camera to see both models
-      camera.position.set(0, 2, 8);
-      camera.lookAt(0, 0, 0);
-  
-      // Play the gold pile animation
-      if (goldActions && goldAnimations.length > 0) {
-        const action = goldActions[goldAnimations[0].name];
-        if (action) {
-          action.reset().fadeIn(0.5).play();
-          action.loop = THREE.LoopRepeat;
-        }
-      }
-  
-      // Play the dragon animation
-      if (dragonActions && dragonAnimations.length > 2) {
-        const action = dragonActions[dragonAnimations[2].name];
-        if (action) {
-          action.reset().fadeIn(0.5).play();
-          action.loop = THREE.LoopRepeat;
-        }
-      }
-    }, [camera, goldActions, goldAnimations, dragonActions, dragonAnimations]);
-  
-    useFrame(({ clock }) => {
-      // Subtle animation for the dragon
-      if (dragonRef.current) {
-        dragonRef.current.rotation.y = Math.sin(clock.getElapsedTime() * 0.2) * 0.1;
-        dragonRef.current.position.y = Math.sin(clock.getElapsedTime() * 0.5) * 0.1 + 1;
-      }
-  
-      // Subtle animation for the gold pile
-      if (goldPileRef.current) {
-        goldPileRef.current.rotation.y = Math.sin(clock.getElapsedTime() * 0.1) * 0.05;
-      }
-    });
-  
-    return (
-      <>
-        {/* Ambient light for overall illumination */}
-        <ambientLight intensity={2} />
-  
-        {/* Main directional light to simulate sun/main light source */}
-        <directionalLight
-          position={[5, 5, 5]}
-          intensity={1}
-          castShadow
-          shadow-mapSize={[1024, 1024]}
-        />
-  
-        {/* Point light to highlight the gold */}
-        <pointLight position={[0, 2, 2]} intensity={1} color="#FFD700" />
-  
-        {/* Dragon model */}
-        <group ref={dragonRef} position={[-2, -4, 0]} rotation={[0, -Math.PI * 0.25, 0]}>
-  <primitive object={dragonScene} scale={2} />
-</group>
+interface PrizeModelProps {
+  type: string
+  position: [number, number, number]
+}
 
-{/* Gold pile */}
-<group ref={goldPileRef} position={[2, 0.5, 0]}>
-  <primitive object={goldScene} scale={2} />
-</group>
-  
-        {/* Environment map for reflections, especially on the gold */}
-        <Environment preset="sunset" />
-      </>
-    );
-  }
+// Trophy model for 1st place
+function TrophyModel({ position = [0, 0, 0], scale = 0.5, rotation = [0, 0, 0] }: ModelProps) {
+  const group = useRef<Group>(null)
+  const { scene } = useGLTF("/models/trophy.glb")
 
-// Background component that fills the entire section
-function BackgroundScene() {
+  // Gold material
+  const goldMaterial = new THREE.MeshStandardMaterial({
+    color: new THREE.Color("#FFD700"),
+    metalness: 1,
+    roughness: 0.3,
+    envMapIntensity: 1,
+  })
+
+  useEffect(() => {
+    if (scene) {
+      scene.traverse((child) => {
+        if (child instanceof THREE.Mesh) {
+          child.material = goldMaterial
+          child.castShadow = true
+          child.receiveShadow = true
+        }
+      })
+    }
+  }, [scene])
+
+  useFrame(({ clock }) => {
+    if (group.current) {
+      group.current.rotation.y = clock.getElapsedTime() * 0.3
+    }
+  })
+
   return (
-    <div className="absolute inset-0 z-0 opacity-50">
-      <Canvas shadows className="bg-transparent">
-        <PerspectiveCamera makeDefault position={[0, 2, 8]} fov={45} />
-        <Suspense fallback={null}>
-          <DragonScene />
-        </Suspense>
-        <OrbitControls
-          enableZoom={false}
-          enablePan={false}
-          enableRotate={false}
-          autoRotate={false}
-        />
-      </Canvas>
-    </div>
-  );
+    <group ref={group} position={position} rotation={rotation}>
+      <primitive object={scene} scale={scale} />
+      {/* Glow effect */}
+      <pointLight position={[0, 0, 0]} intensity={1} color="#FFBE0B" distance={3} />
+    </group>
+  )
+}
+
+// Medal model for 2nd place
+function MedalModel({ position = [0, 0, 0], scale = 1, rotation = [0, 0, 0] }: ModelProps) {
+  const group = useRef<Group>(null)
+  const { scene } = useGLTF("/models/trophys.glb")
+
+  // Silver material
+  const silverMaterial = new THREE.MeshStandardMaterial({
+    color: new THREE.Color("#C0C0C0"),
+    metalness: 0.9,
+    roughness: 0.2,
+    envMapIntensity: 1,
+  })
+
+  useEffect(() => {
+    if (scene) {
+      scene.traverse((child) => {
+        if (child instanceof THREE.Mesh) {
+          child.material = silverMaterial
+          child.castShadow = true
+          child.receiveShadow = true
+        }
+      })
+    }
+  }, [scene])
+
+  useFrame(({ clock }) => {
+    if (group.current) {
+      group.current.rotation.y = clock.getElapsedTime() * 0.3
+      group.current.position.y = Math.sin(clock.getElapsedTime()) * 0.1 + position[1]
+    }
+  })
+
+  return (
+    <group ref={group} position={position} rotation={rotation}>
+      <primitive object={scene} scale={scale} />
+      {/* Glow effect */}
+      <pointLight position={[0, 0, 0]} intensity={0.8} color="#3DEFE9" distance={2} />
+    </group>
+  )
+}
+
+// Gift box model for 3rd place
+function GiftModel({ position = [0, 0, 0], scale = 1, rotation = [0, 0, 0] }: ModelProps) {
+  const group = useRef<Group>(null)
+  const { scene } = useGLTF("/models/trophyb.glb")
+
+  // Bronze material
+  const bronzeMaterial = new THREE.MeshStandardMaterial({
+    color: new THREE.Color("#CD7F32"),
+    metalness: 0.7,
+    roughness: 0.3,
+    envMapIntensity: 0.8,
+  })
+
+  useEffect(() => {
+    if (scene) {
+      scene.traverse((child) => {
+        if (child instanceof THREE.Mesh) {
+          child.material = bronzeMaterial
+          child.castShadow = true
+          child.receiveShadow = true
+        }
+      })
+    }
+  }, [scene])
+
+  useFrame(({ clock }) => {
+    if (group.current) {
+      group.current.rotation.y = clock.getElapsedTime() * 0.3
+      group.current.position.y = Math.sin(clock.getElapsedTime() * 0.8) * 0.1 + position[1]
+    }
+  })
+
+  return (
+    <group ref={group} position={position} rotation={rotation}>
+      <primitive object={scene} scale={scale} />
+      {/* Glow effect */}
+      <pointLight position={[0, 0, 0]} intensity={0.6} color="#FF5470" distance={2} />
+    </group>
+  )
+}
+
+// Diamond model for header
+function DiamondModel() {
+  const group = useRef<Group>(null)
+  const { scene } = useGLTF("/models/minecraft_diamond.glb")
+
+  useFrame(({ clock }) => {
+    if (group.current) {
+      group.current.rotation.y = clock.getElapsedTime() * 0.5
+      group.current.rotation.z = Math.sin(clock.getElapsedTime() * 0.3) * 0.1
+    }
+  })
+
+  return (
+    <Float speed={2} rotationIntensity={0.2} floatIntensity={0.5}>
+      <group ref={group}>
+        <primitive object={scene} scale={0.15} position={[0, -0.5, 0]} rotation={[0, Math.PI * 0.25, 0]} />
+        {/* Add a point light inside the diamond for glow */}
+        <pointLight position={[0, 0, 0]} intensity={1.5} color="#3DEFE9" distance={3} />
+      </group>
+    </Float>
+  )
+}
+
+// Optimized background scene
+function BackgroundScene() {
+  const { camera } = useThree()
+
+  useEffect(() => {
+    camera.position.set(0, 2, 8)
+    camera.lookAt(0, 0, 0)
+  }, [camera])
+
+  return (
+    <>
+      {/* Ambient light for overall illumination */}
+      <ambientLight intensity={0.5} />
+
+      {/* Main directional light */}
+      <directionalLight position={[5, 5, 5]} intensity={0.8} castShadow />
+
+      {/* Subtle stars background */}
+      <Stars radius={100} depth={50} count={1000} factor={4} saturation={0} fade speed={1} />
+
+      
+
+      {/* Environment for reflections */}
+      <Environment preset="night" />
+    </>
+  )
+}
+
+// Prize model display component
+function PrizeModel({ type }: PrizeModelProps) {
+  if (type === "1st") {
+    return <TrophyModel position={[0,-2.4,0]} scale={1} />
+  } else if (type === "2nd") {
+    return <MedalModel position={[0,-2.4,0]} scale={1} />
+  } else {
+    return <GiftModel position={[0,-2.4,0]} scale={1} />
+  }
+}
+
+// Add this interface before the PrizeCard3D component
+interface PrizeCardProps {
+  prize: {
+    place: string
+    prize: string
+    icon: React.ReactNode
+    extras: string[]
+    color: string
+  }
+  index: number
+}
+
+// Update the function signature
+function PrizeCard3D({ prize, index }: PrizeCardProps) {
+  const [hovered, setHovered] = useState(false)
+
+  return (
+    <motion.div
+      className="relative h-[500px] md:h-[600px]"
+      variants={{
+        hidden: { opacity: 0, y: 20 },
+        show: { opacity: 1, y: 0, transition: { duration: 0.8, delay: index * 0.2 } },
+      }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      <div
+        className="absolute inset-0 rounded-2xl overflow-hidden"
+        style={{
+          background: `linear-gradient(to bottom, ${prize.color}20, transparent)`,
+          border: `2px solid ${prize.color}40`,
+          boxShadow: hovered ? `0 0 30px ${prize.color}40` : `0 10px 30px -15px ${prize.color}40`,
+          transition: "all 0.3s ease",
+        }}
+      >
+        {/* 3D Model Canvas */}
+        <div className="h-[50%] w-full">
+          <Canvas shadows camera={{ position: [0, 0, 5], fov: 45 }}>
+            <Suspense fallback={null}>
+              <PrizeModel type={prize.place.split(" ")[0]} position={[0, 0, 0]} />
+              <BackgroundScene />
+            </Suspense>
+          </Canvas>
+        </div>
+
+        {/* Prize Info */}
+        <div className="absolute bottom-0 left-0 right-0 p-6 text-center bg-gradient-to-t from-black/80 to-transparent">
+          <div
+            className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
+            style={{ color: prize.color, backgroundColor: `${prize.color}20` }}
+          >
+            {prize.icon}
+          </div>
+
+          <h3 className="text-xl font-bold mb-2" style={{ color: prize.color }}>
+            {prize.place}
+          </h3>
+          <p className="text-4xl font-bold mb-4 text-white">{prize.prize}</p>
+
+          <ul className="text-white/70 text-sm space-y-2">
+            {prize.extras.map((extra, i) => (
+              <li key={i} className="flex items-center justify-center gap-2">
+                <span className="w-1 h-1 rounded-full" style={{ backgroundColor: prize.color }}></span>
+                {extra}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </motion.div>
+  )
 }
 
 export default function PrizesFinal() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: false, amount: 0.3 });
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: false, amount: 0.1 })
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+
+    checkMobile()
+    window.addEventListener("resize", checkMobile)
+
+    return () => {
+      window.removeEventListener("resize", checkMobile)
+    }
+  }, [])
 
   const mainPrizes = [
     {
       place: "1st PLACE",
-      prize: "₹50,000",
+      prize: "Coming soon",
       icon: <Trophy className="w-12 h-12" />,
-      extras: ["Internship opportunities", "1-year software subscriptions", "Mentorship from industry experts"],
+      extras: ["Coming soon"],
       color: "#FFBE0B",
     },
     {
       place: "2nd PLACE",
-      prize: "₹30,000",
+      prize: "Coming soon",
       icon: <Award className="w-12 h-12" />,
-      extras: ["6-month software subscriptions", "Cloud credits worth ₹20,000", "Exclusive swag kit"],
+      extras: ["Coming soon"],
       color: "#3DEFE9",
     },
     {
       place: "3rd PLACE",
-      prize: "₹20,000",
+      prize: "Coming soon",
       icon: <Gift className="w-12 h-12" />,
-      extras: ["3-month software subscriptions", "Cloud credits worth ₹10,000", "Swag kit"],
+      extras: ["Coming soon"],
       color: "#FF5470",
     },
   ];
-
+  
   const specialPrizes = [
     {
       category: "BEST UI/UX",
-      prize: "₹10,000 + Design Software Licenses",
+      prize: "Coming soon",
       color: "#8A4FFF",
     },
     {
       category: "MOST INNOVATIVE",
-      prize: "₹10,000 + Innovation Lab Access",
+      prize: "Coming soon",
       color: "#FFBE0B",
     },
     {
       category: "BEST USE OF AI",
-      prize: "₹10,000 + AI Platform Credits",
+      prize: "Coming soon",
       color: "#3DEFE9",
     },
     {
       category: "COMMUNITY CHOICE",
-      prize: "₹10,000 + Feature on Tech Blogs",
+      prize: "Coming soon",
       color: "#FF5470",
     },
   ];
+  
 
   // Animation variants
   const container = {
@@ -192,129 +358,153 @@ export default function PrizesFinal() {
         delayChildren: 0.3,
       },
     },
-  };
+  }
 
   const item = {
     hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0, transition: { duration: 0.8 } },
-  };
+  }
 
   return (
-    <section className="py-32 px-4 sm:px-6 bg-[#0d0916] relative overflow-hidden" ref={ref}>
-      {/* The 3D background scene */}
-      <BackgroundScene />
+    <section
+      className="py-32 px-4 sm:px-6 bg-gradient-to-b from-[#0d0916] to-[#050505] relative overflow-hidden"
+      ref={ref}
+    >
+      {/* Animated particles */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        {Array.from({ length: 20 }).map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute rounded-full"
+            style={{
+              width: Math.random() * 6 + 2,
+              height: Math.random() * 6 + 2,
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              background: i % 3 === 0 ? "#FFBE0B" : i % 3 === 1 ? "#3DEFE9" : "#FF5470",
+              opacity: 0.3,
+            }}
+            animate={{
+              y: [0, Math.random() * 100 - 50],
+              x: [0, Math.random() * 100 - 50],
+              opacity: [0.3, 0.6, 0.3],
+            }}
+            transition={{
+              duration: Math.random() * 10 + 10,
+              repeat: Number.POSITIVE_INFINITY,
+              repeatType: "reverse",
+            }}
+          />
+        ))}
+      </div>
 
       {/* Semi-transparent overlay to improve text readability */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#0d0916] via-transparent to-[#0d0916] z-10"></div>
 
-      <div className="relative z-20">
-        {/* Brutalist background elements */}
+      <div className="relative z-20 max-w-7xl mx-auto">
+        {/* Decorative elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-40 left-10 w-40 h-40 border-4 border-[#FFBE0B] rotate-12 opacity-20"></div>
-          <div className="absolute bottom-20 right-20 w-60 h-60 border-4 border-[#FFBE0B] -rotate-12 opacity-20"></div>
+          <div className="absolute top-40 left-10 w-40 h-40 border-4 border-[#FFBE0B] rotate-12 opacity-10"></div>
+          <div className="absolute bottom-20 right-20 w-60 h-60 border-4 border-[#3DEFE9] -rotate-12 opacity-10"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full border border-[#FFBE0B]/10"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full border border-[#3DEFE9]/10"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full border border-[#FF5470]/10"></div>
         </div>
 
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0.5, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <div className="flex items-center justify-center gap-4">
-              <div className="w-32 h-32">
-                <Canvas camera={{ position: [0, 0, 3], fov: 45 }} style={{ background: "transparent" }}>
-                  <ambientLight intensity={3} />
-                  <directionalLight position={[0, 10, 10]} intensity={0.8} />
-                  <DiamondModel />
-                  <OrbitControls enableZoom={false} enablePan={false} autoRotate autoRotateSpeed={2} />
-                </Canvas>
-              </div>
-              <h2 className="text-4xl sm:text-5xl font-bold text-white">WIN BIG</h2>
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
+        >
+          <div className="inline-block mb-4 px-6 py-2 rounded-full bg-white/5 border border-[#FFBE0B]/20">
+            <div className="flex items-center gap-2">
+              <Sparkles className="w-5 h-5 text-[#FFBE0B]" />
+              <span className="text-[#FFBE0B] font-medium">EPIC REWARDS AWAIT</span>
             </div>
+          </div>
 
-            <div className="w-20 h-1 bg-[#FFBE0B] mx-auto my-6"></div>
-            <p className="text-xl text-white/70 max-w-3xl mx-auto">
-              Get ready for amazing prizes, plus internship opportunities, software subscriptions, cloud credits, and
-              more!
-            </p>
-          </motion.div>
+          <div className="flex flex-col md:flex-row items-center justify-center gap-4">
+            <div className="w-32 h-32">
+              <Canvas camera={{ position: [0, 0, 3], fov: 45 }} style={{ background: "transparent" }}>
+                <ambientLight intensity={3} />
+                <directionalLight position={[0, 10, 10]} intensity={0.8} />
+                <DiamondModel />
+                <Environment preset="night" />
+              </Canvas>
+            </div>
+            <h2 className="text-5xl sm:text-6xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#FFBE0B] via-[#3DEFE9] to-[#FF5470]">
+              GRAND PRIZES
+            </h2>
+          </div>
 
-          <motion.div
-            variants={container}
-            initial="hidden"
-            animate={isInView ? "show" : "hidden"}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16"
-          >
-            {mainPrizes.map((prize, index) => (
-              <motion.div key={index} variants={item} className="group">
-                <div
-                  className="relative overflow-hidden border-2 border-white/10 bg-white/5 backdrop-blur-md rounded-lg p-8 transform transition-all duration-500 hover:scale-105 text-center"
-                  style={{
-                    borderColor: prize.color,
-                    boxShadow: `0 10px 30px -15px ${prize.color}40`,
-                  }}
-                >
-                  <div className="absolute -right-20 -top-20 w-40 h-40 bg-white/5 opacity-20 rounded-full group-hover:opacity-30 transition-opacity duration-500"></div>
+          <div className="w-32 h-1 bg-gradient-to-r from-[#FFBE0B] via-[#3DEFE9] to-[#FF5470] mx-auto my-6"></div>
+          <p className="text-xl md:text-2xl text-white/70 max-w-3xl mx-auto">
+            Compete for extraordinary rewards, prestigious recognition, and career-changing opportunities!
+          </p>
+        </motion.div>
 
-                  <div className="relative z-10">
-                    <div
-                      className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4"
-                      style={{ color: prize.color, backgroundColor: `${prize.color}20` }}
-                    >
-                      {prize.icon}
-                    </div>
+        {/* Main prizes with 3D models */}
+        <motion.div
+          variants={container}
+          initial="hidden"
+          animate={isInView ? "show" : "hidden"}
+          className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16"
+        >
+          {mainPrizes.map((prize, index) => (
+            <PrizeCard3D key={index} prize={prize} index={index} />
+          ))}
+        </motion.div>
 
-                    <h3 className="text-xl font-bold mb-2" style={{ color: prize.color }}>
-                      {prize.place}
-                    </h3>
-                    <p className="text-4xl font-bold mb-4 text-white">{prize.prize}</p>
-
-                    <ul className="text-white/70 text-sm space-y-2">
-                      {prize.extras.map((extra, i) => (
-                        <li key={i}>{extra}</li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          <motion.h3
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-2xl font-bold text-center mb-8 text-white"
-          >
+        {/* Special prizes section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="text-center mb-8"
+        >
+          <h3 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#8A4FFF] to-[#3DEFE9]">
             SPECIAL CATEGORY PRIZES
-          </motion.h3>
+          </h3>
+          <div className="w-20 h-1 bg-gradient-to-r from-[#8A4FFF] to-[#3DEFE9] mx-auto my-4"></div>
+        </motion.div>
 
-          <motion.div
-            variants={container}
-            initial="hidden"
-            animate={isInView ? "show" : "hidden"}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
-          >
-            {specialPrizes.map((prize, index) => (
-              <motion.div key={index} variants={item} className="group">
+        <motion.div
+          variants={container}
+          initial="hidden"
+          animate={isInView ? "show" : "hidden"}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+        >
+          {specialPrizes.map((prize, index) => (
+            <motion.div key={index} variants={item} className="group">
+              <div
+                className="relative overflow-hidden border-2 rounded-xl p-6 transform transition-all duration-300 hover:scale-105 text-center h-full"
+                style={{
+                  background: `linear-gradient(135deg, ${prize.color}10, transparent)`,
+                  borderColor: `${prize.color}40`,
+                  boxShadow: `0 5px 20px -10px ${prize.color}60`,
+                }}
+              >
+                {/* Glowing corner */}
                 <div
-                  className="relative overflow-hidden border-2 border-white/10 bg-white/5 backdrop-blur-md rounded-lg p-6 transform transition-all duration-300 hover:scale-105 text-center"
-                  style={{
-                    borderColor: prize.color,
-                    boxShadow: `0 5px 15px -10px ${prize.color}40`,
-                  }}
-                >
-                  <h3 className="text-lg font-bold mb-2" style={{ color: prize.color }}>
-                    {prize.category}
-                  </h3>
-                  <p className="text-white/90 text-sm">{prize.prize}</p>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
+                  className="absolute -top-10 -right-10 w-20 h-20 rounded-full opacity-30"
+                  style={{ background: prize.color }}
+                ></div>
+
+                <h3 className="text-xl font-bold mb-3" style={{ color: prize.color }}>
+                  {prize.category}
+                </h3>
+                <p className="text-white/90 text-lg">{prize.prize}</p>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* CTA Button */}
+        
       </div>
     </section>
-  );
+  )
 }
+
