@@ -44,7 +44,7 @@ function TrophyModel({
   roughness = 0.2,
 }: ModelProps) {
   const group = useRef<THREE.Group>(null)
-  const { scene, nodes, materials, animations } = useGLTF("/models/trophy.glb")
+  const { scene, } = useGLTF("/models/trophy.glb")
 
   // Fallback if model fails to load
   const [modelLoaded, setModelLoaded] = useState(true)
@@ -246,21 +246,29 @@ function PrizeCard({ prize, index, isMobile }: PrizeCardProps) {
 }
 
 export default function PrizesFinal() {
-  const ref = useRef(null)
-  const [isMobile, setIsMobile] = useState(false)
+  const ref = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 1024)
-    }
-
-    checkMobile()
-    window.addEventListener("resize", checkMobile)
-
+    const checkDeviceType = () => {
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+      const isTouchScreen = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+      const isSmallScreen = window.innerWidth <= 1024; // Covers mobile + tablets
+  
+      const isMobileDevice =
+        /android|iphone|ipad|ipod/i.test(userAgent) || isTouchScreen;
+  
+      setIsMobile(isMobileDevice && isSmallScreen);
+    };
+  
+    checkDeviceType();
+    window.addEventListener("resize", checkDeviceType);
+  
     return () => {
-      window.removeEventListener("resize", checkMobile)
-    }
-  }, [])
+      window.removeEventListener("resize", checkDeviceType);
+    };
+  }, []);
+  
 
   const mainPrizes = [
     {
