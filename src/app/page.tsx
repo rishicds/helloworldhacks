@@ -1,7 +1,8 @@
 import Faq from '@/components/FAQ/FAQ'
 import Features from '@/components/Features/Features'
 import Hero from '@/components/Hero/Hero'
-import PrizesFinal from '@/components/Prizes/PrizesFinal'
+import Prizes from '@/components/Prizes/Prizes'
+
 import Schedule from '@/components/Schedule/Schedule'
 import Sponsors from '@/components/Sponsors/Sponsors'
 import Tracks from '@/components/Tracks/Tracks'
@@ -15,8 +16,8 @@ const page = () => {
     <Schedule />
     <Tracks />
     <Features />
-   
-    <PrizesFinal />
+   <Prizes />
+    {/* <PrizesFinal /> */}
     <Sponsors/>
     <Faq/>
     </>
