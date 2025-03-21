@@ -1,7 +1,5 @@
 "use client"
 
-import { useRef } from "react"
-import { motion, useInView } from "framer-motion"
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -19,9 +17,6 @@ import {
 } from "lucide-react"
 
 export default function Tracks() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: false, amount: 0.2 })
-
   // Updated Track data based on Tracks.docx
   const tracks = [
     {
@@ -136,53 +131,13 @@ export default function Tracks() {
     }
   }
 
-  // List item animations
-  const listItemVariants = {
-    hidden: { opacity: 0, x: -20 },
-    visible: { opacity: 1, x: 0 },
-    hover: {
-      backgroundColor: "rgba(61, 239, 233, 0.1)",
-      transition: { duration: 0.2 },
-    },
-  }
-
   return (
     <section
-      className="py-24 px-4 sm:px-6 bg-gradient-to-b from-[#0a1a2a] to-[#000000] relative overflow-hidden"
-      ref={ref}
+      className="py-24 px-4 sm:px-6 bg-gradient-to-b from-[#0a1a2a] to-[#000000] relative"
     >
-      {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        {Array.from({ length: 15 }).map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-10 bg-gradient-to-b from-transparent via-[#3DEFE9] to-transparent opacity-20"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              height: Math.random() * 100 + 50,
-            }}
-            animate={{
-              y: [0, 500],
-              opacity: [0, 0.2, 0],
-            }}
-            transition={{
-              duration: Math.random() * 10 + 10,
-              repeat: Number.POSITIVE_INFINITY,
-              delay: Math.random() * 5,
-            }}
-          />
-        ))}
-      </div>
-
       <div className="relative max-w-7xl mx-auto">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
+        {/* Header - No animations */}
+        <div className="text-center mb-16">
           <div className="inline-block mb-4 px-4 py-1 rounded-full bg-[#3DEFE9]/10 border border-[#3DEFE9]/20">
             <div className="flex items-center gap-2">
               <Sparkles className="w-5 h-5 text-[#3DEFE9]" />
@@ -204,31 +159,12 @@ export default function Tracks() {
             Select your challenge domain and embark on an epic coding adventure. Each track offers unique quests and
             legendary rewards.
           </p>
-        </motion.div>
+        </div>
 
-        {/* List View */}
-        <motion.div
-          className="space-y-4 max-w-4xl mx-auto"
-          initial="hidden"
-          animate="visible"
-          variants={{
-            visible: {
-              transition: {
-                staggerChildren: 0.05,
-              },
-            },
-          }}
-        >
+        {/* List View - No animations */}
+        <div className="space-y-4 max-w-4xl mx-auto">
           {tracks.map((track) => (
-            <motion.div
-              key={track.id}
-              variants={listItemVariants}
-              initial="hidden"
-              animate="visible"
-              whileHover="hover"
-              transition={{ duration: 0.3 }}
-              className="relative"
-            >
+            <div key={track.id} className="relative">
               <Tabs defaultValue="overview" className="w-full">
                 <Card className="border-2 border-[#3DEFE9]/20 bg-black/30 backdrop-blur-md overflow-hidden">
                   {/* Colored left border */}
@@ -306,21 +242,16 @@ export default function Tracks() {
                   </TabsContent>
                 </Card>
               </Tabs>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
 
-        {/* Bottom message */}
-        <motion.div
-          className="mt-16 text-center"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-        >
+        {/* Bottom message - No animations */}
+        <div className="mt-16 text-center">
           <p className="text-white/70 mb-6 max-w-2xl mx-auto">
             Can&apos;t decide? You can always participate in multiple tracks. The choice is yours, brave adventurer!
           </p>
-        </motion.div>
+        </div>
       </div>
     </section>
   )
