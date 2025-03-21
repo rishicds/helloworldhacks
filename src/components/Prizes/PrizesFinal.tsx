@@ -251,7 +251,8 @@ export default function PrizesFinal() {
 
   useEffect(() => {
     const checkDeviceType = () => {
-      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const userAgent = navigator.userAgent || navigator.vendor || (window as any).opera;
       const isTouchScreen = "ontouchstart" in window || navigator.maxTouchPoints > 0;
       const isSmallScreen = window.innerWidth <= 1024; // Covers mobile + tablets
   
