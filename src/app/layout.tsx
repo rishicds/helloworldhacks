@@ -7,7 +7,7 @@ import Footer from "@/components/shared/Footer";
 import LoadingWrapper from "@/components/shared/LoaderClient";
 import CoolHeader from "@/components/shared/Header";
 import MusicButton from "@/components/shared/MusicButton";
-//import LenisProvider from "@/components/shared/LenisProvider";
+import LenisProvider from "@/components/shared/LenisProvider";
 import SplashCursor from "@/components/shared/Mouse";
 
 export const metadata: Metadata = {
@@ -116,6 +116,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         </head>
         <body>
           <LoadingWrapper>
+            <LenisProvider>
             <SplashCursor />
      
               <header>
@@ -127,6 +128,7 @@ export default function Layout({ children }: { children: ReactNode }) {
               </footer>
               <MusicButton />
               <Analytics />
+              </LenisProvider>
            
           </LoadingWrapper>
           {/* <script src="https://cdn.splitbee.io/sb.js" async /> */}  
