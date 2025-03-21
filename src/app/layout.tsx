@@ -7,7 +7,7 @@ import Footer from "@/components/shared/Footer";
 import LoadingWrapper from "@/components/shared/LoaderClient";
 import CoolHeader from "@/components/shared/Header";
 import MusicButton from "@/components/shared/MusicButton";
-import LenisProvider from "@/components/shared/LenisProvider";
+//import LenisProvider from "@/components/shared/LenisProvider";
 import SplashCursor from "@/components/shared/Mouse";
 
 export const metadata: Metadata = {
@@ -63,7 +63,8 @@ export const metadata: Metadata = {
 export default function Layout({ children }: { children: ReactNode }) {
   return (
     <>
-      <Script
+    
+  {/* <Script
         id="clarity-script"
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
@@ -75,7 +76,12 @@ export default function Layout({ children }: { children: ReactNode }) {
             })(window, document, "clarity", "script", "qp5ayba370");
           `,
         }}
-      />
+      />  */}
+     
+
+
+
+     
       <html lang="en">
         <head>
           <link rel="canonical" href="https://helloworldhacks.com" />
@@ -111,7 +117,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         <body>
           <LoadingWrapper>
             <SplashCursor />
-            <LenisProvider>
+     
               <header>
                 <CoolHeader />
               </header>
@@ -121,7 +127,7 @@ export default function Layout({ children }: { children: ReactNode }) {
               </footer>
               <MusicButton />
               <Analytics />
-            </LenisProvider>
+           
           </LoadingWrapper>
           {/* <script src="https://cdn.splitbee.io/sb.js" async /> */}  
         </body>
