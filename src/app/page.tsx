@@ -17,7 +17,7 @@ const page = () => {
     <Schedule />
     <Tracks />
     <Features />
-   <Prizes />
+  {/* <Prizes />*/}
      <PrizesFinal /> 
     <Sponsors/>
     <Faq/>
