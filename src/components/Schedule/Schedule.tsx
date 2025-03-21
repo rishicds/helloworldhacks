@@ -62,9 +62,6 @@ const useFrame = (callback: (state: any, delta: number) => void) => {
   }, [callback])
 }
 
-// 3D Title component
-
-
 export default function Schedule() {
   const ref = useRef(null)
   
@@ -130,7 +127,7 @@ export default function Schedule() {
   }
 
   return (
-    <section  className="py-32 px-4 sm:px-6 bg-gradient-to-b from-[#000000] to-[#0a1a2a] relative" ref={ref}>
+    <section className="py-32 px-4 sm:px-6 bg-gradient-to-b from-[#000000] to-[#0a1a2a] relative" ref={ref}>
       {/* Animated background particles */}
       <div className="absolute inset-0 overflow-hidden">
         {Array.from({ length: 20 }).map((_, i) => (
@@ -209,11 +206,12 @@ export default function Schedule() {
             <div className="absolute -bottom-4 -left-4 w-16 h-16 border-l-2 border-b-2 border-[#3DEFE9] opacity-70" />
             <div className="absolute -bottom-4 -right-4 w-16 h-16 border-r-2 border-b-2 border-[#3DEFE9] opacity-70" />
             
-            <Tabs defaultValue="day1" className="w-full  max-w-6xl mx-auto" onValueChange={setActiveTab}>
-              <TabsList className="flex w-full grid-cols-2 mb-5 bg-black/50 border-1 border-[#3DEFE9]/30 rounded-xl p-1 whitespace-nowrap ">
-              <TabsTrigger
+            <Tabs defaultValue="day1" className="w-full max-w-6xl mx-auto" onValueChange={setActiveTab}>
+              <TabsList className="flex w-full grid-cols-2 mb-5 bg-black/50 border-1 border-[#3DEFE9]/30 rounded-xl p-1 whitespace-nowrap">
+                {/* Making the tabs equal width with flex-1 class */}
+                <TabsTrigger
                   value="day1"
-                  className="relative text-sm sm:text-lg py-6 data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#3DEFE9] data-[state=active]:to-[#00a8e8] data-[state=active]:text-black font-bold rounded-lg transition-all duration-300 min-w-[180px]"
+                  className="flex-1 relative text-sm sm:text-lg py-6 data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#3DEFE9] data-[state=active]:to-[#00a8e8] data-[state=active]:text-black font-bold rounded-lg transition-all duration-300"
                 >
                   <div className="absolute inset-0 bg-white/5 rounded-lg opacity-0 data-[state=inactive]:opacity-100" />
                   <div className="flex items-center justify-center gap-2">
@@ -223,7 +221,7 @@ export default function Schedule() {
                 </TabsTrigger>
                 <TabsTrigger
                   value="day2"
-                  className="relative text-lg sm:text-lg py-6 data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#3DEFE9] data-[state=active]:to-[#00a8e8] data-[state=active]:text-black font-bold rounded-lg transition-all duration-300"
+                  className="flex-1 relative text-sm sm:text-lg py-6 data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#3DEFE9] data-[state=active]:to-[#00a8e8] data-[state=active]:text-black font-bold rounded-lg transition-all duration-300"
                 >
                   <div className="absolute inset-0 bg-white/5 rounded-lg opacity-0 data-[state=inactive]:opacity-100" />
                   <div className="flex items-center justify-center gap-2">
@@ -287,8 +285,6 @@ export default function Schedule() {
               ))}
             </Tabs>
           </div>
-
-          
         </div>
       </div>
     </section>
