@@ -63,7 +63,7 @@ export default function Layout({ children }: { children: ReactNode }) {
   return (
     <>
     
-  {/* <Script
+   <Script
         id="clarity-script"
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
@@ -75,7 +75,7 @@ export default function Layout({ children }: { children: ReactNode }) {
             })(window, document, "clarity", "script", "qp5ayba370");
           `,
         }}
-      />  */}
+      />  
      
 
 
