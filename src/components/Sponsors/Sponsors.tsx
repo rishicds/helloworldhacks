@@ -229,42 +229,51 @@ export default function Sponsors() {
           </motion.div>
         </>
       )}
-        <Button 
-          className="bg-[#3DEFE9] text-black hover:bg-[#3DEFE9]/90 font-bold text-lg sm:text-2xl 
-            px-6 sm:px-[8.5rem] py-4 sm:py-[3rem] rounded-lg
-            shadow-[0_0_15px_rgba(61,239,233,0.3)] hover:shadow-[0_0_25px_rgba(61,239,233,0.5)]
-            transition-all duration-300 w-full sm:w-auto"
-          onClick={downloadBrochure}
-        >
-          <div className="flex flex-col items-center">
-            <motion.span
-              animate={{ 
-          opacity: [1, 0.7, 1],
-          scale: [1, 1.02, 1]
-              }}
-              transition={{
-          duration: 2,
-          repeat: Infinity,
-          ease: "easeInOut"
-              }}
-              className="mb-1 text-center"
-            >
-              Download Sponsorship Deck
-            </motion.span>
-            
-            <motion.p 
-              className="text-xs sm:text-sm font-medium mt-2 text-center"
-              animate={{ opacity: [0, 1, 0] }}
-              transition={{ 
-          duration: 4, 
-          repeat: Infinity,
-          repeatType: "reverse" 
-              }}
-            >
-              {quirkySlogans[Math.floor(Math.random() * quirkySlogans.length)]}
-            </motion.p>
-          </div>
-        </Button>
+<Button 
+  className="bg-[#3DEFE9] text-black hover:bg-[#3DEFE9]/90 font-bold 
+    text-sm sm:text-lg md:text-2xl 
+    px-3 sm:px-8 md:px-16 lg:px-[8.5rem]
+    py-6 sm:py-6 md:py-8 lg:py-[3.5rem] 
+    rounded-lg
+    shadow-[0_0_15px_rgba(61,239,233,0.3)] hover:shadow-[0_0_25px_rgba(61,239,233,0.5)]
+    transition-all duration-300 
+    w-full max-w-full sm:w-auto sm:min-w-[280px] md:min-w-[320px]"
+  onClick={downloadBrochure}
+>
+  <div className="flex flex-col items-center justify-center">
+    <motion.span
+      animate={{ 
+        opacity: [1, 0.7, 1],
+        scale: [1, 1.02, 1]
+      }}
+      transition={{
+        duration: 2,
+        repeat: Infinity,
+        ease: "easeInOut"
+      }}
+      className="text-center whitespace-normal px-1"
+    >
+      Download Sponsorship Deck
+    </motion.span>
+    
+    <motion.p 
+      className="text-[10px] sm:text-sm font-medium 
+                mt-2
+                text-center whitespace-normal 
+                px-1 
+                overflow-visible 
+                mb-1"
+      animate={{ opacity: [0, 1, 0] }}
+      transition={{ 
+        duration: 4, 
+        repeat: Infinity,
+        repeatType: "reverse" 
+      }}
+    >
+      {quirkySlogans[Math.floor(Math.random() * quirkySlogans.length)]}
+    </motion.p>
+  </div>
+</Button>
       </motion.div>
           </motion.div>
         </div>
