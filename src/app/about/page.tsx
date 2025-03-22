@@ -45,7 +45,7 @@ const TeamPage = () => {
         { 
           name: "Sagnik Datta", 
           role: "Lead Organizer", 
-          image: "/team/sagnikda_organiser.jpg",
+          image: "https://i.postimg.cc/NM0WQZ6S/sagnikda-organiser.jpg",
           social: {
             github: "sagnik-datta-02",
             linkedin: "sagnik-datta-96bb8a265",
@@ -54,7 +54,7 @@ const TeamPage = () => {
         { 
           name: "Adrita Chakraborty", 
           role: "Lead Organizer", 
-          image: "/team/adritadi_organiser.jpg",
+          image: "https://i.postimg.cc/y8cK5qjT/adritadi-organiser.jpg",
           social: {
             github: "ADRITA-art",
             linkedin: "adrita-chakraborty-ba9b2a24b",
@@ -74,7 +74,7 @@ const TeamPage = () => {
         { 
           name: "Swapnendu Banerjee", 
           role: "Co-Organizer", 
-          image: "/team/swapnenduda_coorganiser.jpg",
+          image: "https://i.postimg.cc/wvfYJ9x9/swapnenduda-coorganiser.jpg",
           social: {
             github: "Swapnendu003",
             linkedin: "swapnendu-banerjee-36ba06219",
@@ -84,7 +84,7 @@ const TeamPage = () => {
         { 
           name: "Moyukh Chowdhury", 
           role: "Co-Organizer", 
-          image: "/team/moyukhda_coorganiser.jpg",
+          image: "https://i.postimg.cc/qRZWqQQR/moyukhda-coorganiser.jpg",
           social: {
             github: "Moyukh999",
             linkedin: "moyukh-chowdhury-07b03224b",
@@ -94,7 +94,7 @@ const TeamPage = () => {
         { 
           name: "Swastika Bose", 
           role: "Co-Organizer", 
-          image: "/team/swastikadi_coorganiser.JPG",
+          image: "https://i.postimg.cc/fy14250F/swastikadi-coorganiser.jpg",
           social: {
             github: "swastika07bose",
             linkedin: "swastika-bose-25x25",
@@ -104,7 +104,7 @@ const TeamPage = () => {
         { 
           name: "Hirak Sabui", 
           role: "Co-Organizer", 
-          image: "/team/hirakda_coorganiser.jpg",
+          image: "https://i.postimg.cc/QNzrdNnb/hirakda-coorganiser.jpg",
           social: {
             github: "HirakSabui",
             linkedin: "hirak-sabui-5540b8257",
@@ -115,7 +115,7 @@ const TeamPage = () => {
         { 
           name: "Debayudh Basu", 
           role: "Co-Organizer", 
-          image: "/team/debayudh_tech.jpeg",
+          image: "https://i.postimg.cc/nrXbGNMB/debayudh-tech.jpg",
           social: {
             github: "debayudh07",
             linkedin: "debayudh-basu-5280562b2",
@@ -125,7 +125,7 @@ const TeamPage = () => {
         { 
           name: "Rishi Paul", 
           role: "Co-Organizer", 
-          image: "/team/rishi_tech.png",
+          image: "https://i.postimg.cc/y8mqjm6Q/rishi-tech.png",
           social: {
             github: "rishicds",
             linkedin: "rishi-paul04",
@@ -135,7 +135,7 @@ const TeamPage = () => {
         { 
           name: "Smaranika Porel", 
           role: "Co-Organizer", 
-          image: "/team/Smaranika_pr.jpg",
+          image: "https://i.postimg.cc/1XdPxsbv/Smaranika-pr.jpg",
           social: {
             github: "Smaranika2005",
             linkedin: "smaranika-porel-43a11b291",
@@ -155,7 +155,7 @@ const TeamPage = () => {
         { 
           name: "Rishi Paul", 
           role: "Tech Lead", 
-          image: "/team/rishi_tech.png",
+          image: "https://i.postimg.cc/y8mqjm6Q/rishi-tech.png",
           social: {
             github: "rishicds",
             linkedin: "rishi-paul04",
@@ -165,7 +165,7 @@ const TeamPage = () => {
         { 
           name: "Debayudh Basu", 
           role: "Tech Vice Lead", 
-          image: "/team/debayudh_tech.jpeg",
+          image: "https://i.postimg.cc/nrXbGNMB/debayudh-tech.jpg",
           social: {
             github: "debayudh07",
             linkedin: "debayudh-basu-5280562b2",
@@ -176,7 +176,7 @@ const TeamPage = () => {
         { 
           name: "Pragya Singh", 
           role: "Tech Team Member", 
-          image: "/team/pragya_tech.jpg",
+          image: "https://i.postimg.cc/0yRR7WvK/pragya-tech.jpg",
           social: {
             github: "Pragya79645",
             linkedin: "pragya-singh-71884b30b",
@@ -197,7 +197,7 @@ const TeamPage = () => {
         { 
           name: "Soumi Khanra", 
           role: "Graphics Team", 
-          image: "/team/soumi_graphics.jpg",
+          image: "https://i.postimg.cc/J4yMNHBv/soumi-graphics.jpg",
           social: {
             github: "Soumi-10",
             linkedin: "soumi-khanra-b1b723325",
@@ -207,7 +207,7 @@ const TeamPage = () => {
         { 
           name: "Anirban Kar", 
           role: "Graphics Team", 
-          image: "/team/anirban_graphics.jpg",
+          image: "https://i.postimg.cc/yNKKCfrC/anirban-graphics.webp",
           social: {
             github: "",
             linkedin: "anirban-kar-3100b2250/",
@@ -219,7 +219,7 @@ const TeamPage = () => {
         { 
           name: "Ankur Bag", 
           role: "Graphics Team", 
-          image: "/team/ankur_graphics.jpg",
+          image: "https://i.postimg.cc/LsVp9zrY/ankur-graphics.jpg",
           social: {
             github: "ankur-bag",
             linkedin: "ankur-bag-017664314",
@@ -229,7 +229,7 @@ const TeamPage = () => {
         { 
           name: "Tirtha Bhattacharya", 
           role: "Graphics Team", 
-          image: "/team/tirtha_graphics.jpg",
+          image: "https://i.postimg.cc/J49mP7Nn/tirtha-graphics.jpg",
           social: {
             github: "Tirtha28",
             linkedin: "tirtha-bhattacharyya-372b26297?trk=contact-info",
@@ -239,7 +239,7 @@ const TeamPage = () => {
         { 
           name: "Sreyashi Dubey", 
           role: "Graphics Team", 
-          image: "/team/Sreyashi_graphics.jpeg",
+          image: "https://i.postimg.cc/XN1nBkX9/Sreyashi-graphics.jpg",
           social: {
             github: "shrey0781",
             linkedin: " sreyashi-dubey-b4abaa315",
@@ -259,7 +259,7 @@ const TeamPage = () => {
         { 
           name: "Smaranika Porel", 
           role: "PR and Social Media team", 
-          image: "/team/Smaranika_pr.jpg",
+          image: "https://i.postimg.cc/1XdPxsbv/Smaranika-pr.jpg",
           social: {
             github: "Smaranika2005",
             linkedin: "smaranika-porel-43a11b291",
@@ -269,7 +269,7 @@ const TeamPage = () => {
         { 
           name: "Nirjhar Barma", 
           role: "PR and Social Media team", 
-          image: "/team/nirjhar_pr.jpg",
+          image: "https://i.postimg.cc/kXtP6r0d/nirjhar-pr.jpg",
           social: {
             github: "0M4NU4L",
             linkedin: "nirjhar-barma-aa268a226/",
@@ -282,7 +282,7 @@ const TeamPage = () => {
         { 
           name: "Debjoy Sarkar", 
           role: "PR and Social Media team",  
-          image: "/team/debjoy_pr.jpg",
+          image: "https://i.postimg.cc/jjcp0R7y/debjoy-pr.jpg",
           social: {
             github: "Debjoy26",
             linkedin: "debjoysarkar",
@@ -292,7 +292,7 @@ const TeamPage = () => {
         { 
           name: "Tanisa Dey", 
           role: "PR and Social Media team", 
-          image: "/team/tanisha_pr.jpg",
+          image: "https://i.postimg.cc/zBX1Vyrd/tanisha-pr.jpg",
           social: {
             github: "TanisaDey05 ",
             linkedin: "tanisa-dey-286769287",
@@ -302,7 +302,7 @@ const TeamPage = () => {
         { 
           name: "Meghna Santra", 
           role: "PR and Social Media team", 
-          image: "/team/meghna_pr.jpg",
+          image: "https://i.postimg.cc/mrBv5Ptb/meghna-pr.jpg",
           social: {
             github: " ",
             linkedin: "meghna-santra-9a3623324",
@@ -510,12 +510,14 @@ const TeamPage = () => {
                     boxShadow: `0 10px 20px rgba(0,0,0,0.3)`,
                   }}
                 >
-                  <div className="relative">
-                    <img
-                      src={member.image || "/placeholder.svg"}
-                      alt={member.name}
-                      className="w-full h-48 sm:h-64 object-cover object-center"
-                    />
+                 <div className="relative w-full pb-[75%]"> 
+  <img
+    src={member.image || "/placeholder.svg"}
+    alt={member.name}
+    className="absolute inset-0 w-full h-full object-cover object-center"
+  />
+ 
+
 
                     {/* SPD ID card effect - Enhanced */}
                     <div className="absolute top-0 left-0 bg-gray-900/80 px-2 py-1 text-[10px] sm:text-xs font-mono flex items-center gap-1">
