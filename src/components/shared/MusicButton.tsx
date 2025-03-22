@@ -1,38 +1,39 @@
-"use client"
+"use client";
 import { motion, useMotionTemplate, useMotionValue, useSpring } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { FaPlay, FaPause } from "react-icons/fa";
 
 const MusicButton = () => {
   const ref = useRef<HTMLButtonElement | null>(null);
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false); // Initially false to avoid autoplay
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     audioRef.current = new Audio("/music2.mp3");
     audioRef.current.loop = true;
-    audioRef.current.play();
-
-    return () => {
-      audioRef.current?.pause();
-    };
+    audioRef.current.muted = true; // Mute initially to prevent autoplay issues
+    audioRef.current.play().catch(() => {
+      console.warn("Autoplay blocked, waiting for user interaction.");
+    });
   }, []);
 
   const togglePlay = () => {
+    if (!audioRef.current) return;
+
     if (isPlaying) {
-      audioRef.current?.pause();
+      audioRef.current.pause();
     } else {
-      audioRef.current?.play();
+      audioRef.current.muted = false; // Unmute when user interacts
+      audioRef.current.play().catch((err) => console.error("Playback blocked:", err));
     }
+
     setIsPlaying(!isPlaying);
   };
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-
   const xSpring = useSpring(x, { mass: 3, stiffness: 400, damping: 50 });
   const ySpring = useSpring(y, { mass: 3, stiffness: 400, damping: 50 });
-
   const transform = useMotionTemplate`translateX(${xSpring}px) translateY(${ySpring}px)`;
 
   const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -56,7 +57,11 @@ const MusicButton = () => {
       style={{ transform }}
       className="fixed bottom-4 right-4 z-50 grid h-[80px] w-[80px] place-content-center rounded-full border-2 border-black bg-white transition-colors duration-700 ease-out"
     >
-      {isPlaying ? <FaPause className="text-3xl text-black transition-all duration-700 ease-out" /> : <FaPlay className="text-3xl text-black transition-all duration-700 ease-out" />}
+      {isPlaying ? (
+        <FaPause className="text-3xl text-black transition-all duration-700 ease-out" />
+      ) : (
+        <FaPlay className="text-3xl text-black transition-all duration-700 ease-out" />
+      )}
 
       <div className="pointer-events-none absolute inset-0 scale-0 rounded-full bg-black transition-transform duration-700 ease-out group-hover:scale-100" />
 

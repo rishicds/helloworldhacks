@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef, useState } from "react"
+import { useRef, useState ,useEffect} from "react"
 import { useInView } from "framer-motion"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
@@ -11,34 +11,40 @@ import Image from "next/image"
 import { Group } from "three";
 
 const DragonModel = () => {
-    const group = useRef<Group>(null)
-    const { scene, } = useGLTF("/models/coins.glb")
-    
-    // Simple rotation animation
-    useRef(() => {
-      const animate = () => {
-        if (group.current) {
-          group.current.rotation.y += 0.2
-        }
-        requestAnimationFrame(animate)
-      }
-      const id = requestAnimationFrame(animate)
-      return () => cancelAnimationFrame(id)
-    })
-    
-    
+  const group = useRef<Group>(null)
+  const { scene, } = useGLTF("/models/coins.glb")
   
-    return (
-      <group ref={group}>
-        <primitive 
-          object={scene} 
-          scale={0.16}
-          position={[0, -0.5, 0]}
-          rotation={[0, Math.PI * 0.25, 0]}
-        />
-      </group>
-    )
-  }
+  // Simple rotation animation
+  useEffect(() => {
+    let frameId: number;
+    const animate = () => {
+      if (group.current) {
+        group.current.rotation.y += 0.01; // Reduced rotation speed
+      }
+      frameId = requestAnimationFrame(animate);
+    };
+
+    // Start the animation
+    frameId = requestAnimationFrame(animate);
+
+    // Cleanup function to cancel the animation frame
+    return () => cancelAnimationFrame(frameId);
+  }, []);
+  
+  
+
+  return (
+    <group ref={group}>
+      <primitive 
+        object={scene} 
+        scale={0.006}
+        position={[0, -0.5, 0]}
+        rotation={[0, Math.PI * 0.25, 0]}
+      />
+    </group>
+  )
+}
+  
 
 
 export default function Sponsors() {
