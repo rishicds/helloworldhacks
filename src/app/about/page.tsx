@@ -43,7 +43,7 @@ const TeamPage = () => {
       icon: <Shield className="w-6 h-6" />,
       members: [
         { 
-          name: "Sagnik Dutta", 
+          name: "Sagnik Datta", 
           role: "Lead Organizer", 
           image: "/team/sagnikda_organiser.jpg",
           social: {
@@ -205,6 +205,18 @@ const TeamPage = () => {
           }
         },
         { 
+          name: "Anirban Kar", 
+          role: "Graphics Team", 
+          image: "/team/anirban_graphics.jpg",
+          social: {
+            github: "",
+            linkedin: "anirban-kar-3100b2250/",
+            instagram: "anirbank12/"
+          }
+        },
+
+
+        { 
           name: "Ankur Bag", 
           role: "Graphics Team", 
           image: "/team/ankur_graphics.jpg",
@@ -254,6 +266,19 @@ const TeamPage = () => {
             instagram: "smaranika.porel/profilecard/?igsh=MXNjdWhoanNjNHR4eQ=="
           }
         },
+        { 
+          name: "Nirjhar Barma", 
+          role: "PR and Social Media team", 
+          image: "/team/nirjhar_pr.jpg",
+          social: {
+            github: "0M4NU4L",
+            linkedin: "nirjhar-barma-aa268a226/",
+            instagram: "penguininsidethehoodie/"
+          }
+        },
+
+
+
         { 
           name: "Debjoy Sarkar", 
           role: "PR and Social Media team",  
