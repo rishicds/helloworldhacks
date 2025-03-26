@@ -199,8 +199,10 @@ export default function Sponsors() {
     { name: "DEVFOLIO", tier: "GOLD SPONSORS", imageWidth: 180 },
     { name: "ETHINDIA", tier: "SILVER SPONSORS", imageWidth: 150 },
     { name: "PIECES", tier: "EDUCATION SPONSORS", imageWidth: 220 },
-    { name: "INTERVIEW", tier: "EDUCATION SPONSORS", imageWidth: 200 },
     { name: "DEVREL", tier: "TECHNICAL SPONSORS", imageWidth: 180 },
+    { name: "XYZLOGO", tier: "DOMAIN SPONSORS", imageWidth: 140 },
+    { name: "INTERVIEWLOGO", tier: "INTERVIEW SPONSORS", imageWidth: 270 },
+    { name: "INTERVIEW", tier: "INTERVIEW SPONSORS", imageWidth: 200 },
   ]
 
   // Group sponsors by tier

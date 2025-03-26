@@ -91,28 +91,38 @@ export default function PrizesFinal() {
   const mainPrizes = [
     {
       place: "1st PLACE",
-      prize: "Coming soon",
+      prize: "Rs.8000",
       icon: <Trophy className="w-12 h-12" />,
-      extras: ["Coming soon"],
+      extras: [],
       color: "#FFBE0B",
     },
     {
       place: "2nd PLACE",
-      prize: "Coming soon",
+      prize: "Rs.4000",
       icon: <Award className="w-12 h-12" />,
-      extras: ["Coming soon"],
+      extras: [],
       color: "#3DEFE9",
     },
     {
       place: "3rd PLACE",
-      prize: "Coming soon",
+      prize: "Rs.2500",
       icon: <Gift className="w-12 h-12" />,
-      extras: ["Coming soon"],
+      extras: [],
       color: "#FF5470",
     },
   ]
 
   const specialPrizes = [
+    {
+      category: "BEST BEGINNERS' TEAM",
+      prize: "Rs.2000",
+      color: "#8A4FFF",
+    },
+    {
+      category: "BEST GIRLS' TEAM",
+      prize: "Rs.2000",
+      color: "#FFBE0B",
+    },
     {
       category: "BEST UI/UX",
       prize: "Coming soon",
@@ -192,7 +202,7 @@ export default function PrizesFinal() {
           <div className="w-20 h-1 bg-gradient-to-r from-[#8A4FFF] to-[#3DEFE9] mx-auto my-4"></div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {specialPrizes.map((prize, index) => (
             <div
               key={index}
