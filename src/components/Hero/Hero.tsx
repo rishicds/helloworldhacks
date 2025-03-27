@@ -5,6 +5,7 @@ import { OrbitControls, Stage, Float } from "@react-three/drei"
 import { Suspense, useRef, useState, useEffect } from "react"
 import Model from "./Model"
 import GradientBackground from "./gradient-background"
+import { LiaDiscord } from "react-icons/lia";
 
 interface TextRevealProps {
   text: string;
@@ -120,6 +121,8 @@ const Hero: React.FC = () => {
               style={{ height: "44px", width: "312px", maxWidth: "100%" }}
             ></div>
           </div>
+
+
           <div className="mt-4 fade-in slide-up" style={{ animationDelay: "2000ms" }}>
             <a
               href="https://discord.gg/AV65TSa8"
@@ -129,7 +132,8 @@ const Hero: React.FC = () => {
               style={{ height: "44px", width: "312px", maxWidth: "100%", display: "inline-block" }}
             >
               <span className="absolute inset-0 bg-white rounded-md"></span>
-              <span className="relative inline-flex items-center justify-center h-full w-full bg-gradient-to-r from-[#5865F2] to-[#4752C4] text-white font-medium">
+              <span className="relative inline-flex items-center justify-center h-full w-full bg-gradient-to-r from-[#5865F2] to-[#4752C4] text-white font-medium px-4">
+                <LiaDiscord size={32} className="mr-2" />
                 Join Discord
               </span>
             </a>
