@@ -15,8 +15,8 @@ interface TextRevealProps {
 // Simple CSS animation replacement for AnimatedText component
 const TextReveal: React.FC<TextRevealProps> = ({ text, className = "", delay = 0 }) => {
   return (
-    <div 
-      className={`${className} reveal-text`} 
+    <div
+      className={`${className} reveal-text`}
       style={{ animationDelay: `${delay}ms` }}
     >
       {text}
@@ -41,7 +41,7 @@ const Hero: React.FC = () => {
 
     // Initialize scroll position
     handleScroll()
-    
+
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
@@ -119,6 +119,20 @@ const Hero: React.FC = () => {
               data-button-theme="light"
               style={{ height: "44px", width: "312px", maxWidth: "100%" }}
             ></div>
+          </div>
+          <div className="mt-4 fade-in slide-up" style={{ animationDelay: "2000ms" }}>
+            <a
+              href="https://discord.gg/AV65TSa8"
+              className="discord-button relative text-center rounded-md"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ height: "44px", width: "312px", maxWidth: "100%", display: "inline-block" }}
+            >
+              <span className="absolute inset-0 bg-white rounded-md"></span>
+              <span className="relative inline-flex items-center justify-center h-full w-full bg-gradient-to-r from-[#5865F2] to-[#4752C4] text-white font-medium">
+                Join Discord
+              </span>
+            </a>
           </div>
         </div>
       </div>
