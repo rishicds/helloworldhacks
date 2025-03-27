@@ -89,19 +89,20 @@ export default function PrizesFinal() {
   const ref = useRef(null);
 
   const mainPrizes = [
-    {
-      place: "1st PLACE",
-      prize: "Rs.8000",
-      icon: <Trophy className="w-12 h-12" />,
-      extras: [],
-      color: "#FFBE0B",
-    },
+    
     {
       place: "2nd PLACE",
       prize: "Rs.4000",
       icon: <Award className="w-12 h-12" />,
       extras: [],
       color: "#3DEFE9",
+    },
+    {
+      place: "1st PLACE",
+      prize: "Rs.8000",
+      icon: <Trophy className="w-12 h-12" />,
+      extras: [],
+      color: "#FFBE0B",
     },
     {
       place: "3rd PLACE",
@@ -123,26 +124,8 @@ export default function PrizesFinal() {
       prize: "Rs.2000",
       color: "#FFBE0B",
     },
-    {
-      category: "BEST UI/UX",
-      prize: "Coming soon",
-      color: "#8A4FFF",
-    },
-    {
-      category: "MOST INNOVATIVE",
-      prize: "Coming soon",
-      color: "#FFBE0B",
-    },
-    {
-      category: "BEST USE OF AI",
-      prize: "Coming soon",
-      color: "#3DEFE9",
-    },
-    {
-      category: "COMMUNITY CHOICE",
-      prize: "Coming soon",
-      color: "#FF5470",
-    },
+   
+   
   ]
 
   return (
@@ -202,7 +185,7 @@ export default function PrizesFinal() {
           <div className="w-20 h-1 bg-gradient-to-r from-[#8A4FFF] to-[#3DEFE9] mx-auto my-4"></div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
           {specialPrizes.map((prize, index) => (
             <div
               key={index}
