@@ -129,10 +129,10 @@ const Hero: React.FC = () => {
               className="discord-button relative text-center rounded-md"
               target="_blank"
               rel="noopener noreferrer"
-              style={{ height: "44px", width: "312px", maxWidth: "100%", display: "inline-block" }}
+              style={{ height: "44px", width: "320px", maxWidth: "100%", display: "inline-block" }}
             >
-              <span className="absolute inset-0 bg-white rounded-md"></span>
-              <span className="relative inline-flex items-center justify-center h-full w-full bg-gradient-to-r from-[#5865F2] to-[#4752C4] text-white font-medium px-4">
+              <span className="absolute inset-0 bg-white rounded-sm"></span>
+              <span className="relative inline-flex items-center rounded-sm justify-center h-full w-full bg-gradient-to-r from-[#5865F2] to-[#4752C4] text-white font-medium px-4">
                 <LiaDiscord size={32} className="mr-2" />
                 Join Discord
               </span>
