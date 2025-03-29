@@ -1,3 +1,4 @@
+import CommunityPartners from '@/components/CommunityPartners/CommunityPartners'
 import Faq from '@/components/FAQ/FAQ'
 import Features from '@/components/Features/Features'
 import Hero from '@/components/Hero/Hero'
@@ -17,6 +18,7 @@ const page = () => {
     <Features />
     <PrizesFinal /> 
     <Sponsors/>
+    <CommunityPartners/>
     <Faq/>
     </>
   )
