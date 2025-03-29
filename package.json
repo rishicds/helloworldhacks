@@ -22,6 +22,7 @@
     "helloworldhacks": "file:",
     "lenis": "^1.2.3",
     "lucide-react": "^0.481.0",
+    "motion": "^12.6.2",
     "next": "15.2.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

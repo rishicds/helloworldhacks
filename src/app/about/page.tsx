@@ -499,116 +499,94 @@ const TeamPage = () => {
               </div>
             </div>
 
-            {/* Enhanced card grid with SPD-style layout */}
+
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
               {team.members.map((member, memberIndex) => (
                 <div
                   key={memberIndex}
-                  className={`rounded-lg overflow-hidden transform transition duration-500 hover:scale-105 hover:shadow-2xl group`}
+                  className="rounded-lg overflow-hidden transform transition duration-500 hover:scale-105 group"
                   style={{
                     background: `linear-gradient(135deg, #1a202c 0%, #2d3748 100%)`,
-                    boxShadow: `0 10px 20px rgba(0,0,0,0.3)`,
+                    boxShadow: `0 10px 20px rgba(0,0,0,0.3), inset 0 0 15px rgba(${
+                      team.color === "bg-red-600" ? "239, 68, 68" : 
+                      team.color === "bg-blue-600" ? "59, 130, 246" : 
+                      team.color === "bg-green-600" ? "34, 197, 94" : 
+                      team.color === "bg-yellow-500" ? "234, 179, 8" : "168, 85, 247"
+                    }, 0.15)`,
                   }}
                 >
-                 <div className="relative w-full pb-[75%]"> 
-  <img
-    src={member.image || "/placeholder.svg"}
-    alt={member.name}
-    className="absolute inset-0 w-full h-full object-cover object-center"
-  />
- 
-
-
-                    {/* SPD ID card effect - Enhanced */}
-                    <div className="absolute top-0 left-0 bg-gray-900/80 px-2 py-1 text-[10px] sm:text-xs font-mono flex items-center gap-1">
-                      <span className="inline-block w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-green-500 animate-pulse"></span>
-                      SPD ID: {Math.floor(Math.random() * 9000) + 1000}
+                  <div className="relative w-full pb-[80%]">
+                    <div className="absolute inset-0 bg-gradient-to-b from-gray-800 to-gray-900"></div>
+                    <img
+                      src={member.image || "/placeholder.svg"}
+                      alt={member.name}
+                      className="absolute inset-0 w-full h-full object-cover object-center mix-blend-luminosity hover:mix-blend-normal transition-all duration-300"
+                    />
+                    
+                    {/* SPD ID Overlay */}
+                    <div className="absolute top-0 left-0 right-0 px-3 py-2 bg-gradient-to-r from-gray-900/90 to-transparent flex items-center justify-between">
+                      <div className="flex items-center gap-1">
+                        <span className={`w-2 h-2 rounded-full ${team.color} animate-pulse`}></span>
+                        <span className="text-[10px] font-mono">{team.name.slice(0,3)}-{Math.floor(Math.random() * 9000) + 1000}</span>
+                      </div>
+                      <div className={`w-4 h-4 rounded-full border border-${team.textColor.replace('text-', '')} flex items-center justify-center`}>
+                        <span className="text-[6px] font-bold">SPD</span>
+                      </div>
                     </div>
-
-                    {/* Animated border */}
-                    <div className={`absolute bottom-0 left-0 right-0 ${team.color} h-1`}>
-                      <div className="absolute inset-0 bg-white opacity-30 animate-[scan_2s_ease-in-out_infinite]"></div>
+                    
+                    {/* Diagonal stripe with role */}
+                    <div className={`absolute bottom-6 -right-8 ${team.color} text-black py-1 px-6 text-xs font-bold transform rotate-[-35deg] shadow-md`}>
+                      {member.role.split(' ').pop()}
                     </div>
-
-                    {/* SPD scanner overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-40"></div>
-                    <div className="absolute inset-0 overflow-hidden">
-                      <div className="absolute top-0 left-0 right-0 h-px bg-blue-500/50 animate-[scanline_2s_linear_infinite]"></div>
-                    </div>
-
-                    {/* Morpher effect on hover */}
-                    <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-0 group-hover:opacity-70 flex items-center justify-center transition-opacity duration-300">
-                      <div
-                        className={`w-8 h-8 sm:w-12 sm:h-12 ${team.color} rounded-full opacity-0 group-hover:opacity-100 animate-ping`}
-                      ></div>
-                    </div>
-
-                    {/* SPD badge overlay */}
-                    <div className="absolute top-2 right-2 w-6 h-6 sm:w-8 sm:h-8 rounded-full border border-white/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                      <span className="text-[6px] sm:text-[8px] font-bold">SPD</span>
+                    
+                    {/* Tech scanner overlay */}
+                    <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
+                      <div className="absolute top-0 left-0 right-0 h-px bg-blue-500 animate-[scanline_4s_linear_infinite]"></div>
+                      <div className={`absolute h-full w-full bg-grid-pattern opacity-30`}></div>
                     </div>
                   </div>
 
-                  <div className={`p-2 sm:p-3 border-l-4 relative group ${team.borderColor}`}>
-                    {/* Tech scanner effect */}
-                    <div className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-transparent via-blue-500 to-transparent opacity-75 animate-scanner"></div>
-
-                    <h3 className="text-base sm:text-xl font-bold mb-1">{member.name}</h3>
-                    <p className="text-gray-300 text-sm">{member.role}</p>
-
-                    {/* Social Links */}
-                    <div className="mt-2 flex items-center gap-2">
-                      {member.social?.github && (
-                        <a 
-                          href={`https://github.com/${member.social.github}`} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className={`text-gray-400 hover:${team.textColor} transition-colors duration-300`}
-                        >
-                          <Github className="w-4 h-4 sm:w-5 sm:h-5" />
-                        </a>
-                      )}
-                      {member.social?.linkedin && (
-                        <a 
-                          href={`https://linkedin.com/in/${member.social.linkedin}`} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="text-gray-400 hover:text-blue-400 transition-colors duration-300"
-                        >
-                          <Linkedin className="w-4 h-4 sm:w-5 sm:h-5" />
-                        </a>
-                      )}
-                      {member.social?.instagram && (
-                        <a 
-                          href={`https://instagram.com/${member.social.instagram}`} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="text-gray-400 hover:text-pink-400 transition-colors duration-300"
-                        >
-                          <Instagram className="w-4 h-4 sm:w-5 sm:h-5" />
-                        </a>
-                      )}
+                  <div className={`p-3 pt-2 border-l-2 border-t-2 relative ${team.borderColor}`}>
+                    <div className="absolute -top-4 -left-1 h-4 w-4 border-l-2 border-t-2 border-white/20 transform -rotate-45"></div>
+                    
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <h3 className={`text-base font-bold mb-0 leading-tight ${team.textColor}`}>{member.name}</h3>
+                        <div className="flex items-center gap-2 mt-1">
+                          {member.social?.github && (
+                            <a href={`https://github.com/${member.social.github}`} target="_blank" rel="noopener noreferrer" 
+                               className="text-gray-400 hover:text-white transition-colors duration-300">
+                              <Github className="w-4 h-4" />
+                            </a>
+                          )}
+                          {member.social?.linkedin && (
+                            <a href={`https://linkedin.com/in/${member.social.linkedin}`} target="_blank" rel="noopener noreferrer"
+                               className="text-gray-400 hover:text-white transition-colors duration-300">
+                              <Linkedin className="w-4 h-4" />
+                            </a>
+                          )}
+                          {member.social?.instagram && (
+                            <a href={`https://instagram.com/${member.social.instagram}`} target="_blank" rel="noopener noreferrer"
+                               className="text-gray-400 hover:text-white transition-colors duration-300">
+                              <Instagram className="w-4 h-4" />
+                            </a>
+                          )}
+                        </div>
+                      </div>
+                      
+                      {/* Futuristic element */}
+                      <div className={`h-8 w-8 relative overflow-hidden rounded-full border ${team.borderColor} opacity-80`}>
+                        <div className={`absolute inset-0 ${team.color} opacity-20`}></div>
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <div className="w-4 h-4 rounded-full border-2 border-dashed border-current animate-spin-slow"></div>
+                        </div>
+                        <div className="absolute inset-0 bg-grid-lines opacity-30"></div>
+                      </div>
                     </div>
-
-                    {/* Social links hover tooltip */}
-                    <div className="mt-1 text-[8px] sm:text-[10px] text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      Click icons to view profiles
-                    </div>
-
-                    {/* SPD-style tech details - Enhanced */}
-                    <div className="mt-2 sm:mt-3 pt-2 sm:pt-3 border-t border-gray-700 text-[10px] sm:text-xs text-gray-500 font-mono">
-                      <div className="flex items-center gap-1">
-                        <span className="inline-block w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-green-500 animate-pulse"></span>
-                        STATUS: ACTIVE
-                      </div>
-                      <div className="flex justify-between mt-1">
-                        <span>CLEARANCE: LEVEL {Math.floor(Math.random() * 5) + 1}</span>
-                        <span className="text-blue-400 animate-pulse">[AUTHORIZED]</span>
-                      </div>
-                      <div className="mt-1 text-[8px] sm:text-[10px] opacity-50">
-                        LOCATION: SECTOR {Math.floor(Math.random() * 20) + 1}-
-                        {String.fromCharCode(65 + Math.floor(Math.random() * 26))}
-                      </div>
+                    
+                    {/* Animated tech bar */}
+                    <div className="mt-2 h-1 bg-gray-700 rounded-full overflow-hidden">
+                      <div className={`h-full ${team.color} animate-pulse-width`} style={{width: `${(memberIndex + 1) * 15 % 85 + 15}%`}}></div>
                     </div>
                   </div>
                 </div>
@@ -673,6 +651,18 @@ const TeamPage = () => {
         }
         .animate-blink {
           animation: blink 1.5s ease-in-out infinite;
+        }
+        @keyframes pulse-width {
+          0%, 100% { opacity: 0.7; }
+          50% { opacity: 1; }
+        }
+        .bg-grid-pattern {
+          background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                            linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+          background-size: 10px 10px;
+        }
+        .bg-grid-lines {
+          background-image: repeating-linear-gradient(0deg, currentColor, currentColor 1px, transparent 1px, transparent 5px);
         }
       `}</style>
     </div>

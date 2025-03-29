@@ -5,7 +5,6 @@ import { useInView } from "framer-motion"
 import { motion } from "framer-motion"
 import { Canvas } from "@react-three/fiber"
 import Image from "next/image"
-import { Globe, Mail } from "lucide-react"
 
 const SectionTitle = () => (
   <Canvas className="absolute top-0 left-0 right-0 h-40 -mt-20 z-10 pointer-events-none">
@@ -20,45 +19,58 @@ export default function CommunityPartners() {
 
   const partners = [
     {
-      name: "InnovateNow Foundation",
-      category: "Education",
-      image: "/placeholder.svg?height=300&width=300",
-      description: "Supporting tech education and digital literacy programs for underserved communities.",
-      links: {
-        website: "#",
-        contact: "contact@innovatenow.org",
-      },
+      name: "GDGC GCELT",
+      image: "https://i.postimg.cc/TPtq4BMH/20250322-114205-0000-Arijit-Ghosal.png",
     },
     {
-      name: "TechDiversity Alliance",
-      category: "Diversity & Inclusion",
-      image: "/placeholder.svg?height=300&width=300",
-      description: "Working to increase representation of underrepresented groups in technology fields.",
-      links: {
-        website: "#",
-        contact: "info@techdiversity.org",
-      },
+      name: "Apex Circle",
+      image: "https://i.postimg.cc/fLkjn5MW/Apex-Circle-logo-Apex-Circle.jpg",
     },
     {
-      name: "GreenTech Initiative",
-      category: "Sustainability",
-      image: "/placeholder.svg?height=300&width=300",
-      description: "Promoting sustainable technology solutions for environmental challenges.",
-      links: {
-        website: "#",
-        contact: "partnerships@greentech.org",
-      },
+      name: "GDGC AOT",
+      image: "https://i.postimg.cc/sfvKtf2P/centered-color-t-Debarshee-Chakraborty.png",
     },
     {
-      name: "StartUp Hub",
-      category: "Entrepreneurship",
-      image: "/placeholder.svg?height=300&width=300",
-      description: "Accelerating early-stage tech ventures through mentorship and resources.",
-      links: {
-        website: "#",
-        contact: "hello@startuphub.co",
-      },
+      name: "GDGC BBIT",
+      image: "https://i.postimg.cc/6QWfztSv/Copy-of-GDG-On-Campus-Centered-Template-Supravat-Paul-1.png",
     },
+    {
+      name: "GDGC SLIET",
+      image: "https://i.postimg.cc/YqFRCXYh/GDG-On-Campus-SLIET-LOGO-Kundan-Kumar.png"
+    },
+    {
+      name: "Postman Community Kolkata",
+      image: "https://i.postimg.cc/Nj7x15Nt/image-20250322-19195281f3dce0-fc24-4601-95a3-c261193065e2-Suman-Singha.png",
+
+    },
+    {
+      name: "GDGC IEM",
+      image: "https://i.postimg.cc/Z0z5YDm8/IMG-20250325-WA0006-Ayush-Jha.jpg"
+    },
+    {
+      name: "Tech Masters India",
+      image: "https://i.postimg.cc/NGSbYhy3/instagram-dp-Tech-Masters-India-2025-20250115-025844-0000-Aaradhy-Gaur.png",
+    },
+    {
+      name:"LNC Community",
+      image: "https://i.postimg.cc/8c6Rs5Fq/LNC-logo-for-websites-Snihita-Nandi.png"
+    },
+    {
+      name: "NooBuild",
+      image: "https://i.postimg.cc/NG38S1SY/Noo-Build-Logo-4k-Anurag-Verma.jpg"
+    },
+    {
+      name: "Codasauras",
+      image: "https://i.postimg.cc/NG97dNNp/original-logo-Codasauras.png"
+    },
+    {
+      name: "IEI Students' Chapter CSE",
+      image: "https://i.postimg.cc/XJhKVFvf/sc-logo-black-text-1-SCCSE-AOT.png"
+    },
+    {
+      name: "Samarth",
+      image: "https://i.postimg.cc/bwjTDQ9L/violetlogo-57f93a3bc68d1d4bddd8-Sujay-Dey.webp"
+    }
   ]
 
   const container = {
@@ -125,26 +137,13 @@ export default function CommunityPartners() {
                         alt={partner.name}
                         width={80}
                         height={80}
-                        className="object-contain"
+                        className="object-contain rounded-lg"
                       />
                     </div>
                     
                     <h3 className="text-xl font-bold text-center mb-1 text-white">{partner.name}</h3>
-                    <div className="inline-block px-3 py-1 bg-[#3BCEAC]/20 rounded-full text-[#3BCEAC] text-center text-xs font-semibold mb-3 mx-auto block w-max">
-                      {partner.category}
-                    </div>
-                    <p className="text-white/70 text-center text-sm mb-4">{partner.description}</p>
+           
                     
-                    <div className="flex justify-center space-x-4">
-                      <a href={partner.links.website} className="text-white/70 hover:text-[#3BCEAC] transition-colors flex items-center gap-1 text-sm">
-                        <Globe size={16} />
-                        <span>Website</span>
-                      </a>
-                      <a href={`mailto:${partner.links.contact}`} className="text-white/70 hover:text-[#3BCEAC] transition-colors flex items-center gap-1 text-sm">
-                        <Mail size={16} />
-                        <span>Contact</span>
-                      </a>
-                    </div>
                   </div>
                 </div>
               </motion.div>
