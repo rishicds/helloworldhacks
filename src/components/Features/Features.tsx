@@ -68,12 +68,7 @@ export default function Features() {
       description: "No restrictions on what you can build. Web, mobile, hardware - it's all fair game!",
       color: "#FF5470",
     },
-    {
-      icon: <Gamepad2 className="w-10 h-10" />,
-      title: "GAME DEVELOPMENT",
-      description: "Special tracks for game developers with dedicated mentors and resources.",
-      color: "#3DEFE9",
-    },
+    
     {
       icon: <Code className="w-10 h-10" />,
       title: "CODING CHALLENGES",
