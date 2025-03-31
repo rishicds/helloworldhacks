@@ -1,6 +1,27 @@
 "use client"
 import { useState, useEffect, useRef } from "react"
 import { Shield, Radio, Zap, AlertTriangle, Activity, Github, Instagram, Linkedin } from "lucide-react"
+import { Canvas } from "@react-three/fiber"
+import { useGLTF, OrbitControls } from "@react-three/drei"
+import * as THREE from "three"
+
+
+const RangerModel = () => {
+  const group = useRef<THREE.Group>(null)
+  const { scene } = useGLTF("/models/power_rangers_model.glb")
+  
+  // Simple rotation animation
+
+  return (
+    <group ref={group}>
+      <primitive 
+        object={scene} 
+        scale={25} // Increased from 2.5 to 4.5
+        position={[0, -2, 0]} // Adjusted Y position further down to compensate
+      />
+    </group>
+  )
+}
 
 const TeamPage = () => {
   const [activeTeam, setActiveTeam] = useState<number>(0)
@@ -393,39 +414,31 @@ const TeamPage = () => {
           <div className="inline-block relative bg-gray-800/80 border-2 border-blue-600 rounded-lg px-4 sm:px-8 py-4 sm:py-6 shadow-lg shadow-blue-500/20 max-w-full sm:max-w-3xl mx-auto">
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
-              {/* Enhanced SPD Logo */}
-              <div className="relative w-16 h-16 sm:w-24 sm:h-24">
-                <div className="absolute inset-0 bg-blue-900 rounded-full"></div>
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-700 to-blue-950 rounded-full border-2 border-blue-500"></div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-12 h-12 sm:w-20 sm:h-20 rounded-full bg-gray-900 flex flex-col items-center justify-center border border-blue-400">
-                    <span className="text-xl sm:text-2xl font-bold text-white">SPD</span>
-                    <div className="w-full h-px bg-blue-400 my-1"></div>
-                    <span className="text-[6px] sm:text-[8px] text-blue-300">EARTH DIVISION</span>
-                  </div>
-                </div>
-                <div className="absolute inset-0 border-4 border-red-600 rounded-full clip-path-badge"></div>
-                <div className="absolute -top-1 -right-1 w-4 h-4 sm:w-6 sm:h-6 bg-red-500 rounded-full flex items-center justify-center text-[6px] sm:text-[8px] font-bold animate-pulse">
-                  E-1
-                </div>
-                <div className="absolute inset-0 rounded-full border border-blue-400 animate-[radar-ping_3s_ease-out_infinite]"></div>
+              {/* 3D Model */}
+              <div className="relative w-32 h-32 sm:w-48 sm:h-48">
+              <Canvas>
+                <ambientLight intensity={0.5} />
+                <pointLight position={[10, 10, 10]} />
+                <RangerModel />
+                <OrbitControls enableZoom={false} />
+              </Canvas>
               </div>
 
               <div className="text-center sm:text-left">
-                <div className="flex items-center gap-2 justify-center sm:justify-start">
-                  <div className="w-2 h-2 sm:w-3 sm:h-3 bg-green-500 rounded-full animate-pulse"></div>
-                  <h1 className="text-xl sm:text-3xl md:text-4xl font-bold tracking-tight text-white uppercase font-mono border-b-2 border-red-500 pb-1">
-                    SPD PERSONNEL
-                  </h1>
-                </div>
-                <div className="mt-2 flex items-center gap-2 justify-center sm:justify-start">
-                  <span className="text-[10px] sm:text-xs font-mono text-gray-400">FILE:</span>
-                  <span className="text-xs sm:text-sm font-bold text-blue-300">HELLOWORLD-TEAM</span>
-                  <span className="hidden sm:inline-block ml-auto text-[10px] sm:text-xs font-mono text-gray-400 animate-blink">ACTIVE</span>
-                </div>
-                <p className="text-xs sm:text-sm text-gray-300 mt-2 font-mono border-l-2 border-blue-500 pl-2">
-                  AUTHORIZED PERSONNEL ONLY
-                </p>
+              <div className="flex items-center gap-2 justify-center sm:justify-start">
+                <div className="w-2 h-2 sm:w-3 sm:h-3 bg-green-500 rounded-full animate-pulse"></div>
+                <h1 className="text-xl sm:text-3xl md:text-4xl font-bold tracking-tight text-white uppercase font-mono border-b-2 border-red-500 pb-1">
+                SPD PERSONNEL
+                </h1>
+              </div>
+              <div className="mt-2 flex items-center gap-2 justify-center sm:justify-start">
+                <span className="text-[10px] sm:text-xs font-mono text-gray-400">FILE:</span>
+                <span className="text-xs sm:text-sm font-bold text-blue-300">HELLOWORLD-TEAM</span>
+                <span className="hidden sm:inline-block ml-auto text-[10px] sm:text-xs font-mono text-gray-400 animate-blink">ACTIVE</span>
+              </div>
+              <p className="text-xs sm:text-sm text-gray-300 mt-2 font-mono border-l-2 border-blue-500 pl-2">
+                AUTHORIZED PERSONNEL ONLY
+              </p>
               </div>
             </div>
 
