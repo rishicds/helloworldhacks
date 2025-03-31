@@ -53,7 +53,7 @@ const TransparentNavbar = () => {
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
         <motion.div
-          className={`rounded-full px-4 py-3 ${scrolled ? "bg-black/80 backdrop-blur-md shadow-lg" : "bg-transparent"}`}
+          className={`rounded-full px-4 py-3 ${scrolled ? "bg-[#0A192F] border border-[#3DEFE9] backdrop-blur-md shadow-lg" : "bg-white/10 backdrop-blur-md shadow-lg"}`}
           whileHover={{ scale: 1.02 }}
         >
           <div className="flex items-center justify-between">
@@ -144,7 +144,7 @@ const TransparentNavbar = () => {
               exit={{ y: -20, opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.2 }}
             >
-              <div className="mx-2 bg-black/95 backdrop-blur-md rounded-lg shadow-xl border border-gray-800 p-4">
+              <div className="mx-2 bg-black/90 backdrop-blur-md rounded-lg shadow-xl border border-gray-800 p-4">
                 {navItems.map((item, index) => (
                   <motion.a
                     key={item.name}
