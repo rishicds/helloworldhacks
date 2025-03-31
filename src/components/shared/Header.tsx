@@ -53,7 +53,7 @@ const TransparentNavbar = () => {
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
         <motion.div
-          className={`rounded-full px-4 py-3 ${scrolled ? "bg-black/80 backdrop-blur-md shadow-lg" : "bg-transparent"}`}
+          className={`rounded-full px-4 py-3 ${scrolled ? "bg-[#0A192F] border border-[#3DEFE9] backdrop-blur-md shadow-lg" : "bg-white/10 backdrop-blur-md shadow-lg"}`}
           whileHover={{ scale: 1.02 }}
         >
           <div className="flex items-center justify-between">
