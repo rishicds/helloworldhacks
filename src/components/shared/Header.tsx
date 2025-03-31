@@ -144,7 +144,7 @@ const TransparentNavbar = () => {
               exit={{ y: -20, opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.2 }}
             >
-              <div className="mx-2 bg-black/95 backdrop-blur-md rounded-lg shadow-xl border border-gray-800 p-4">
+              <div className="mx-2 bg-black/90 backdrop-blur-md rounded-lg shadow-xl border border-gray-800 p-4">
                 {navItems.map((item, index) => (
                   <motion.a
                     key={item.name}
