@@ -3,7 +3,7 @@
 import { useRef, useEffect, useState } from "react"
 import * as THREE from "three"
 
-import { Code, Gamepad2, Trophy, Users, LightbulbIcon, CuboidIcon as Cube } from "lucide-react"
+import { Code, Gamepad2, Trophy, Users, LightbulbIcon, CuboidIcon as Cube, Wifi, Globe, UserCog, BarChart2, HeartHandshake } from "lucide-react"
 import { Canvas } from "@react-three/fiber"
 import { useGLTF, OrbitControls } from "@react-three/drei"
 
@@ -63,35 +63,40 @@ export default function Features() {
 
   const features = [
     {
-      icon: <Cube className="w-10 h-10" />,
-      title: "BUILD ANYTHING",
-      description: "No restrictions on what you can build. Web, mobile, hardware - it's all fair game!",
+      icon: <Wifi className="w-10 h-10" />,
+      title: "HYBRID FORMAT",
+      description: "Participate online or on-site, ensuring flexibility for all.",
+      color: "#3DEFE9",
+    },
+    {
+      icon: <Globe className="w-10 h-10" />,
+      title: "REAL-WORLD IMPACT",
+      description: "Work on projects that bridge the gap between theory and practice.",
       color: "#FF5470",
     },
-    
     {
-      icon: <Code className="w-10 h-10" />,
-      title: "CODING CHALLENGES",
-      description: "Solve mini-challenges throughout the event to win bonus prizes and swag.",
-      color: "#FFBE0B",
-    },
-    {
-      icon: <LightbulbIcon className="w-10 h-10" />,
-      title: "INNOVATION FOCUS",
-      description: "We value creative solutions to real-world problems. Think outside the box!",
+      icon: <UserCog className="w-10 h-10" />,
+      title: "EXPERT MENTORSHIP",
+      description: "Learn from industry professionals and experienced developers.",
       color: "#8A4FFF",
     },
     {
-      icon: <Users className="w-10 h-10" />,
-      title: "TEAM BUILDING",
-      description: "Don't have a team? No problem! We'll help you find the perfect teammates.",
-      color: "#FF5470",
+      icon: <BarChart2 className="w-10 h-10" />,
+      title: "SKILL ENHANCEMENT",
+      description: "Improve technical communication and build your portfolio.",
+      color: "#FFBE0B",
+    },
+    {
+      icon: <HeartHandshake className="w-10 h-10" />,
+      title: "INCLUSIVE & COLLABORATIVE",
+      description: "Open to all, fostering a supportive and diverse environment.",
+      color: "#8A4FFF",
     },
     {
       icon: <Trophy className="w-10 h-10" />,
       title: "AMAZING PRIZES",
       description: "Win cash prizes, gadgets, software subscriptions, and more!",
-      color: "#3DEFE9",
+      color: "#FFBE0B",
     },
   ]
 
