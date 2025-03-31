@@ -3,7 +3,7 @@
 import { useRef, useEffect, useState } from "react"
 import * as THREE from "three"
 
-import { Code, Gamepad2, Trophy, Users, LightbulbIcon, CuboidIcon as Cube, Wifi, Globe, UserCog, BarChart2, HeartHandshake } from "lucide-react"
+import {  Trophy, Wifi, Globe, UserCog, BarChart2, HeartHandshake } from "lucide-react"
 import { Canvas } from "@react-three/fiber"
 import { useGLTF, OrbitControls } from "@react-three/drei"
 

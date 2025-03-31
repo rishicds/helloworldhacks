@@ -1,9 +1,9 @@
 "use client"
 
-import React, { useState } from "react"
+import type React from "react"
+import { useState } from "react"
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
 import {
   Brain,
   Link,
@@ -13,12 +13,13 @@ import {
   Gamepad,
   Shield,
   Plane,
-  Code,
+  
   Sparkles,
   ChevronRight,
   X,
 } from "lucide-react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import { motion, AnimatePresence } from "framer-motion"
 
 // Track data type
 export type Track = {
@@ -32,13 +33,16 @@ export type Track = {
   tools: string[]
 }
 
-export default function Tracks() {
+export default function UnconventionalTracks() {
+  const [activeFilter, setActiveFilter] = useState<string | null>(null)
+  const [hoveredTrack, setHoveredTrack] = useState<string | null>(null)
+
   // Updated Track data based on Tracks.docx
   const tracks: Track[] = [
     {
       id: "ai-for-good",
       name: "AI for Good",
-      icon: <Brain className="w-6 h-6" />,
+      icon: <Brain className="w-5 h-5" />,
       color: "#FF5757",
       description:
         "🚀 Building AI-powered solutions that address societal challenges, such as accessibility, sustainability, and education.",
@@ -49,8 +53,8 @@ export default function Tracks() {
     },
     {
       id: "blockchain-web3",
-      name: "Decentralized Future: Blockchain & Web3",
-      icon: <Link className="w-6 h-6" />,
+      name: "Decentralized Future",
+      icon: <Link className="w-5 h-5" />,
       color: "#9945FF",
       description: "🔗 Exploring blockchain technology for secure, transparent, and decentralized applications.",
       fulldescription:
@@ -61,7 +65,7 @@ export default function Tracks() {
     {
       id: "healthtech",
       name: "HealthTech & Wellness",
-      icon: <Heart className="w-6 h-6" />,
+      icon: <Heart className="w-5 h-5" />,
       color: "#FF00E5",
       description: "🏥 Developing applications that improve healthcare accessibility, mental well-being, and fitness.",
       fulldescription:
@@ -72,7 +76,7 @@ export default function Tracks() {
     {
       id: "greentech",
       name: "Green Tech & Sustainability",
-      icon: <Leaf className="w-6 h-6" />,
+      icon: <Leaf className="w-5 h-5" />,
       color: "#14F195",
       description: "🌱 Using technology to address climate change, sustainability, and environmental protection.",
       fulldescription:
@@ -83,7 +87,7 @@ export default function Tracks() {
     {
       id: "fintech",
       name: "FinTech & Smart Transactions",
-      icon: <CreditCard className="w-6 h-6" />,
+      icon: <CreditCard className="w-5 h-5" />,
       color: "#FFC107",
       description:
         "🏦 Creating innovative financial solutions that improve accessibility, security, and automation in banking and payments.",
@@ -95,7 +99,7 @@ export default function Tracks() {
     {
       id: "edtech",
       name: "Gamified Learning & EdTech",
-      icon: <Gamepad className="w-6 h-6" />,
+      icon: <Gamepad className="w-5 h-5" />,
       color: "#00E4FF",
       description: "🎮 Enhancing education through interactive, AI-driven, or gamified learning experiences.",
       fulldescription:
@@ -105,8 +109,8 @@ export default function Tracks() {
     },
     {
       id: "safetech",
-      name: "SafeTech+: Predictive Safety & Autonomous Response",
-      icon: <Shield className="w-6 h-6" />,
+      name: "SafeTech+",
+      icon: <Shield className="w-5 h-5" />,
       color: "#14F195",
       description:
         "🛡️ Leveraging AI, predictive analytics, and decentralized networks to create proactive safety solutions.",
@@ -118,7 +122,7 @@ export default function Tracks() {
     {
       id: "smarttourism",
       name: "Smart Tourism & Cultural Tech",
-      icon: <Plane className="w-6 h-6" />,
+      icon: <Plane className="w-5 h-5" />,
       color: "#00a8e8",
       description:
         "✈️ Innovating tourism through AI, AR/VR experiences, and smart travel planning to enhance exploration and accessibility.",
@@ -130,7 +134,7 @@ export default function Tracks() {
     {
       id: "open-innovation",
       name: "Open Innovation",
-      icon: <Sparkles className="w-6 h-6" />,
+      icon: <Sparkles className="w-5 h-5" />,
       color: "#FF9900",
       description:
         "🌟 Explore groundbreaking ideas beyond predefined tracks, fostering creativity and disruptive tech solutions in any domain.",
@@ -141,20 +145,36 @@ export default function Tracks() {
     },
   ]
 
+  // Filter tracks based on active filter
+  const filteredTracks = activeFilter ? tracks.filter((track) => track.difficulty === activeFilter) : tracks
+
   // Get difficulty badge color
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
-      case "Beginner": return "bg-green-500"
-      case "Intermediate": return "bg-yellow-500"
-      case "Advanced": return "bg-red-500"
-      default: return "bg-blue-500"
+      case "Beginner":
+        return "bg-green-500"
+      case "Intermediate":
+        return "bg-yellow-500"
+      case "Advanced":
+        return "bg-red-500"
+      default:
+        return "bg-blue-500"
     }
   }
 
   return (
-    <section className="py-12 md:py-24 px-4 sm:px-6 bg-gradient-to-b from-[#0a1a2a] to-[#000000] relative min-h-screen">
-      <div className="relative max-w-7xl mx-auto">
-        {/* Header */}
+    <section className="py-8 px-4 bg-gradient-to-b from-[#0a1a2a] to-[#000000] relative overflow-hidden">
+      {/* Background elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 left-0 w-full h-full opacity-10">
+          <div className="absolute top-[10%] left-[5%] w-32 h-32 rounded-full bg-[#3DEFE9]/20 blur-xl"></div>
+          <div className="absolute top-[40%] right-[10%] w-40 h-40 rounded-full bg-[#FF5757]/20 blur-xl"></div>
+          <div className="absolute bottom-[20%] left-[20%] w-36 h-36 rounded-full bg-[#9945FF]/20 blur-xl"></div>
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto relative">
+        {/* Unconventional Header - Diagonal design */}
         <div className="text-center mb-12 md:mb-16">
           <div className="inline-block mb-3 md:mb-4 px-3 py-1 rounded-full bg-[#3DEFE9]/10 border border-[#3DEFE9]/20">
             <div className="flex items-center gap-2">
@@ -166,146 +186,213 @@ export default function Tracks() {
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 md:mb-6 text-transparent bg-clip-text bg-gradient-to-r from-[#3DEFE9] to-[#00a8e8]">
             QUEST TRACKS
           </h2>
-
-          <div className="flex items-center justify-center gap-2 mb-4 md:mb-6">
-            <div className="w-12 md:w-20 h-1 bg-[#3DEFE9]/30"></div>
-            <Code className="w-5 h-5 md:w-6 md:h-6 text-[#3DEFE9]" />
-            <div className="w-12 md:w-20 h-1 bg-[#3DEFE9]/30"></div>
-          </div>
-
-          <p className="text-base md:text-xl text-white/70 max-w-3xl mx-auto">
-            Select your challenge domain and embark on an epic coding adventure.
-          </p>
         </div>
 
-        {/* List View */}
-        <div className="space-y-3 md:space-y-4 max-w-4xl mx-auto">
-          {tracks.map((track, index) => (
-            <Dialog key={track.id}>
-              <DialogTrigger asChild>
+        {/* Difficulty filters - Hexagonal design */}
+        <div className="flex justify-center mb-6 relative">
+          <div className="flex space-x-1">
+            {["Beginner", "Intermediate", "Advanced"].map((difficulty) => (
+              <button
+                key={difficulty}
+                onClick={() => setActiveFilter(activeFilter === difficulty ? null : difficulty)}
+                className={`relative h-8 px-3 flex items-center justify-center transition-all duration-300 
+                  ${
+                    activeFilter === difficulty
+                      ? getDifficultyColor(difficulty) + " text-white"
+                      : "bg-black/30 text-white/70 hover:bg-black/50"
+                  }
+                  clip-path-hex`}
+              >
+                <span className="text-xs font-medium">{difficulty}</span>
+              </button>
+            ))}
+            {activeFilter && (
+              <button
+                onClick={() => setActiveFilter(null)}
+                className="relative h-8 w-8 flex items-center justify-center bg-black/30 hover:bg-black/50 transition-all duration-300 clip-path-hex"
+              >
+                <X className="w-3 h-3 text-white/70" />
+              </button>
+            )}
+          </div>
+        </div>
+
+        {/* Unconventional Track Grid - Staggered layout */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 relative">
+  <AnimatePresence>
+    {filteredTracks.map((track, index) => (
+      <motion.div
+        key={track.id}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.9 }}
+        transition={{ duration: 0.3, delay: index * 0.05 }}
+        className={`${index % 3 === 1 ? "mt-6" : index % 3 === 2 ? "mt-3" : ""}`}
+        onMouseEnter={() => setHoveredTrack(track.id)}
+        onMouseLeave={() => setHoveredTrack(null)}
+      >
+        <Dialog>
+          <DialogTrigger asChild>
+            <div className="cursor-pointer group">
+              <div className="relative">
+                {/* Glowing border effect on hover */}
                 <div
-                  className="relative transform transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
+                  className={`absolute inset-0 rounded-lg transition-opacity duration-300 ${
+                    hoveredTrack === track.id ? "opacity-100" : "opacity-0"
+                  }`}
                   style={{
-                    animationDelay: `${index * 100}ms`,
-                    animationFillMode: "both",
-                    animationName: "fadeInUp",
-                    animationDuration: "600ms",
+                    boxShadow: `0 0 20px ${track.color}80`,
+                    background: `linear-gradient(45deg, ${track.color}30, transparent)`,
                   }}
-                >
-                  <Card className="border-2 border-[#3DEFE9]/20 bg-black/30 backdrop-blur-md overflow-hidden cursor-pointer group">
-                    {/* Colored left border */}
-                    <div
-                      className="absolute top-0 bottom-0 left-0 w-1 group-hover:w-2 transition-all duration-300"
-                      style={{ backgroundColor: track.color }}
-                    />
+                ></div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-3 md:gap-4 p-3 md:p-4">
-                      <div className="flex items-center gap-3 md:gap-4">
-                        <div
-                          className="w-10 h-10 md:w-12 md:h-12 rounded-lg flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110"
-                          style={{ backgroundColor: `${track.color}20` }}
-                        >
-                          <div className="text-xl md:text-2xl" style={{ color: track.color }}>
-                            {track.icon}
-                          </div>
-                        </div>
+                <Card className="border border-[#3DEFE9]/30 bg-black/40 backdrop-blur-md overflow-hidden relative z-10 p-6 rounded-xl">
+                  {/* Diagonal color accent */}
+                  <div
+                    className="absolute top-0 left-0 w-20 h-20 -translate-x-10 -translate-y-10 rotate-45 transform origin-bottom-right transition-all duration-300 group-hover:scale-110"
+                    style={{ backgroundColor: track.color }}
+                  ></div>
 
-                        <div>
-                          <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
-                            <h3 className="text-lg md:text-xl font-bold text-white">{track.name}</h3>
-                            <Badge className={`${getDifficultyColor(track.difficulty)} text-white text-xs md:text-sm`}>
-                              {track.difficulty}
-                            </Badge>
-                          </div>
-                          <p className="text-white/70 text-xs md:text-sm line-clamp-2">{track.description}</p>
+                  <div className="p-4 relative">
+                    {/* Icon in top-left */}
+                    <div className="flex justify-between items-start mb-3">
+                      <div
+                        className="relative z-10 w-10 h-10 rounded-full flex items-center justify-center"
+                        style={{ backgroundColor: "rgba(0,0,0,0.5)" }}
+                      >
+                        <div className="text-lg" style={{ color: track.color }}>
+                          {track.icon}
                         </div>
                       </div>
 
-                        <div className="flex items-center justify-start md:justify-end">
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          className="border-[#3DEFE9]/20 hover:bg-[#3DEFE9]/10 group-hover:border-[#3DEFE9]/50 text-xs md:text-sm relative overflow-hidden"
-                          style={{
-                          color: track.color,
-                          borderColor: `${track.color}40`,
-                          }}
-                        >
-                          <span>View Details</span>
-                          <ChevronRight className="ml-1 md:ml-2 h-3 w-3 md:h-4 md:w-4 group-hover:translate-x-1 transition-transform" />
-                        </Button>
-                        </div>
-                      </div>
-                      </Card>
-                    </div>
-                    </DialogTrigger>
-
-              <DialogContent className="max-w-[90vw] sm:max-w-md md:max-w-2xl lg:max-w-3xl bg-black/90 backdrop-blur-md border-2 border-[#3DEFE9]/30 rounded-lg overflow-hidden">
-                <DialogHeader>
-                  <DialogTitle className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
-                    <div
-                      className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-xl flex items-center justify-center"
-                      style={{ backgroundColor: `${track.color}20` }}
-                    >
-                      <div className="text-2xl sm:text-3xl" style={{ color: track.color }}>
-                        {track.icon}
-                      </div>
-                    </div>
-                    <div>
-                      <h2 className="text-xl sm:text-2xl font-bold text-white mb-1 sm:mb-2">{track.name}</h2>
-                      <Badge className={`${getDifficultyColor(track.difficulty)} text-white text-xs sm:text-sm`}>
-                        {track.difficulty}
+                      <Badge className={`${getDifficultyColor(track.difficulty)} text-white text-xs px-3 py-1`}>
+                        {track.difficulty.substring(0, 3)}
                       </Badge>
                     </div>
-                  </DialogTitle>
-                </DialogHeader>
 
-                <div className="space-y-4 sm:space-y-6">
-                  <div>
-                    <h3 className="text-lg sm:text-xl font-semibold text-white/90 mb-1 sm:mb-2">Description</h3>
-                    <p className="text-sm sm:text-base text-white/70">{track.fulldescription}</p>
-                  </div>
+                    {/* Track name */}
+                    <h3 className="text-lg font-bold text-white mb-2 line-clamp-1">{track.name}</h3>
 
-                  <div>
-                    <h3 className="text-lg sm:text-xl font-semibold text-white/90 mb-1 sm:mb-2">Tools & Technologies</h3>
-                    <div className="flex flex-wrap gap-1 sm:gap-2">
-                      {track.tools.map((tool) => (
-                        <Badge
-                          key={tool}
-                          className="bg-black/50 border border-white/20 hover:border-white/40 text-white/80 text-xs sm:text-sm"
-                        >
-                          {tool}
-                        </Badge>
-                      ))}
+                    {/* Description - always visible on mobile, hover effect on larger screens */}
+                    <div
+                      className="overflow-hidden transition-all duration-300 md:hidden"
+                    >
+                      <p className="text-white/80 text-sm line-clamp-3">{track.description}</p>
+                    </div>
+
+                    <div
+                      className="overflow-hidden transition-all duration-300 hidden md:block"
+                      style={{
+                        maxHeight: hoveredTrack === track.id ? "100px" : "0",
+                        opacity: hoveredTrack === track.id ? 1 : 0,
+                      }}
+                    >
+                      <p className="text-white/80 text-sm line-clamp-3">{track.description}</p>
+                    </div>
+
+                    {/* View details button */}
+                    <div
+                      className="flex justify-end mt-3 transition-all duration-300"
+                      style={{
+                        opacity: hoveredTrack === track.id ? 1 : 0.5,
+                      }}
+                    >
+                      <div className="flex items-center text-sm" style={{ color: track.color }}>
+                        <span>Details</span>
+                        <ChevronRight className="ml-1 h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
+                      </div>
                     </div>
                   </div>
+                </Card>
+              </div>
+            </div>
+          </DialogTrigger>
+
+          <DialogContent className="max-w-[95vw] sm:max-w-lg bg-black/90 backdrop-blur-lg border border-[#3DEFE9]/40 rounded-xl overflow-hidden p-6">
+            <DialogHeader>
+              <DialogTitle className="flex items-center gap-4">
+                <div
+                  className="w-12 h-12 rounded-lg flex items-center justify-center"
+                  style={{ backgroundColor: `${track.color}30` }}
+                >
+                  <div className="text-2xl" style={{ color: track.color }}>
+                    {track.icon}
+                  </div>
                 </div>
-              </DialogContent>
-            </Dialog>
-          ))}
-        </div>
+                <div>
+                  <h2 className="text-xl font-bold text-white">{track.name}</h2>
+                  <Badge className={`${getDifficultyColor(track.difficulty)} text-white text-sm mt-1 px-4 py-1`}>
+                    {track.difficulty}
+                  </Badge>
+                </div>
+              </DialogTitle>
+            </DialogHeader>
+
+            <div className="space-y-4">
+              <div>
+                <h3 className="text-lg font-semibold text-white/90 mb-2">Description</h3>
+                <p className="text-base text-white/80">{track.fulldescription}</p>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-semibold text-white/90 mb-2">Suggested Tools & Technologies</h3>
+                <div className="flex flex-wrap gap-2">
+                  {track.tools.map((tool) => (
+                    <Badge
+                      key={tool}
+                      className="bg-black/50 border border-white/30 hover:border-white/50 text-white/80 text-sm px-3 py-1"
+                    >
+                      {tool}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </DialogContent>
+        </Dialog>
+      </motion.div>
+    ))}
+  </AnimatePresence>
+</div>
+
+
 
         {/* Bottom message */}
-        <div className="mt-12 md:mt-16 text-center">
-          <p className="text-sm md:text-base text-white/70 mb-6 max-w-2xl mx-auto">
-            Can't decide? You can always participate in multiple tracks.
-          </p>
+        <div className="mt-4 text-center">
+          <p className="text-xs text-white/70">Can&apos;t decide? You can always participate in multiple tracks.</p>
         </div>
       </div>
 
-      {/* Global Animation Styles */}
+      {/* Custom CSS for hexagonal buttons and animations */}
       <style jsx global>{`
+        .clip-path-hex {
+          clip-path: polygon(10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%, 0% 50%);
+        }
+        
         @keyframes fadeInUp {
           from {
             opacity: 0;
-            transform: translateY(20px);
+            transform: translateY(10px);
           }
           to {
             opacity: 1;
             transform: translateY(0);
           }
         }
+        
+        @keyframes pulse {
+          0% {
+            box-shadow: 0 0 0 0 rgba(61, 239, 233, 0.4);
+          }
+          70% {
+            box-shadow: 0 0 0 10px rgba(61, 239, 233, 0);
+          }
+          100% {
+            box-shadow: 0 0 0 0 rgba(61, 239, 233, 0);
+          }
+        }
       `}</style>
     </section>
   )
 }
+
