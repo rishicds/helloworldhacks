@@ -152,34 +152,34 @@ export default function Tracks() {
   }
 
   return (
-    <section className="py-24 px-4 sm:px-6 bg-gradient-to-b from-[#0a1a2a] to-[#000000] relative min-h-screen">
+    <section className="py-12 md:py-24 px-4 sm:px-6 bg-gradient-to-b from-[#0a1a2a] to-[#000000] relative min-h-screen">
       <div className="relative max-w-7xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-16">
-          <div className="inline-block mb-4 px-4 py-1 rounded-full bg-[#3DEFE9]/10 border border-[#3DEFE9]/20">
+        <div className="text-center mb-12 md:mb-16">
+          <div className="inline-block mb-3 md:mb-4 px-3 py-1 rounded-full bg-[#3DEFE9]/10 border border-[#3DEFE9]/20">
             <div className="flex items-center gap-2">
-              <Sparkles className="w-5 h-5 text-[#3DEFE9]" />
-              <span className="text-[#3DEFE9] font-medium">Choose Your Path</span>
+              <Sparkles className="w-4 h-4 md:w-5 md:h-5 text-[#3DEFE9]" />
+              <span className="text-sm md:text-base text-[#3DEFE9] font-medium">Choose Your Path</span>
             </div>
           </div>
 
-          <h2 className="text-5xl sm:text-6xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-[#3DEFE9] to-[#00a8e8]">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 md:mb-6 text-transparent bg-clip-text bg-gradient-to-r from-[#3DEFE9] to-[#00a8e8]">
             QUEST TRACKS
           </h2>
 
-          <div className="flex items-center justify-center gap-2 mb-6">
-            <div className="w-20 h-1 bg-[#3DEFE9]/30"></div>
-            <Code className="w-6 h-6 text-[#3DEFE9]" />
-            <div className="w-20 h-1 bg-[#3DEFE9]/30"></div>
+          <div className="flex items-center justify-center gap-2 mb-4 md:mb-6">
+            <div className="w-12 md:w-20 h-1 bg-[#3DEFE9]/30"></div>
+            <Code className="w-5 h-5 md:w-6 md:h-6 text-[#3DEFE9]" />
+            <div className="w-12 md:w-20 h-1 bg-[#3DEFE9]/30"></div>
           </div>
 
-          <p className="text-xl text-white/70 max-w-3xl mx-auto">
+          <p className="text-base md:text-xl text-white/70 max-w-3xl mx-auto">
             Select your challenge domain and embark on an epic coding adventure.
           </p>
         </div>
 
         {/* List View */}
-        <div className="space-y-4 max-w-4xl mx-auto">
+        <div className="space-y-3 md:space-y-4 max-w-4xl mx-auto">
           {tracks.map((track, index) => (
             <Dialog key={track.id}>
               <DialogTrigger asChild>
@@ -199,80 +199,80 @@ export default function Tracks() {
                       style={{ backgroundColor: track.color }}
                     />
 
-                    <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-4 p-4">
-                      <div className="flex items-center gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-3 md:gap-4 p-3 md:p-4">
+                      <div className="flex items-center gap-3 md:gap-4">
                         <div
-                          className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110"
+                          className="w-10 h-10 md:w-12 md:h-12 rounded-lg flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110"
                           style={{ backgroundColor: `${track.color}20` }}
                         >
-                          <div className="text-2xl" style={{ color: track.color }}>
+                          <div className="text-xl md:text-2xl" style={{ color: track.color }}>
                             {track.icon}
                           </div>
                         </div>
 
                         <div>
-                          <div className="flex items-center gap-2">
-                            <h3 className="text-xl font-bold text-white">{track.name}</h3>
-                            <Badge className={`${getDifficultyColor(track.difficulty)} text-white`}>
+                          <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
+                            <h3 className="text-lg md:text-xl font-bold text-white">{track.name}</h3>
+                            <Badge className={`${getDifficultyColor(track.difficulty)} text-white text-xs md:text-sm`}>
                               {track.difficulty}
                             </Badge>
                           </div>
-                          <p className="text-white/70 text-sm line-clamp-2">{track.description}</p>
+                          <p className="text-white/70 text-xs md:text-sm line-clamp-2">{track.description}</p>
                         </div>
                       </div>
 
-                      <div className="flex items-center gap-2 md:justify-end">
+                        <div className="flex items-center justify-start md:justify-end">
                         <Button
                           variant="outline"
                           size="sm"
-                          className="border-[#3DEFE9]/20 hover:bg-[#3DEFE9]/10 group-hover:border-[#3DEFE9]/50"
+                          className="border-[#3DEFE9]/20 hover:bg-[#3DEFE9]/10 group-hover:border-[#3DEFE9]/50 text-xs md:text-sm relative overflow-hidden"
                           style={{
-                            color: track.color,
-                            borderColor: `${track.color}40`,
+                          color: track.color,
+                          borderColor: `${track.color}40`,
                           }}
                         >
                           <span>View Details</span>
-                          <ChevronRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                          <ChevronRight className="ml-1 md:ml-2 h-3 w-3 md:h-4 md:w-4 group-hover:translate-x-1 transition-transform" />
                         </Button>
+                        </div>
                       </div>
+                      </Card>
                     </div>
-                  </Card>
-                </div>
-              </DialogTrigger>
+                    </DialogTrigger>
 
-              <DialogContent className="max-w-3xl bg-black/90 backdrop-blur-md border-2 border-[#3DEFE9]/30 rounded-lg overflow-hidden">
+              <DialogContent className="max-w-[90vw] sm:max-w-md md:max-w-2xl lg:max-w-3xl bg-black/90 backdrop-blur-md border-2 border-[#3DEFE9]/30 rounded-lg overflow-hidden">
                 <DialogHeader>
-                  <DialogTitle className="flex items-center gap-4">
+                  <DialogTitle className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
                     <div
-                      className="w-16 h-16 rounded-xl flex items-center justify-center"
+                      className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-xl flex items-center justify-center"
                       style={{ backgroundColor: `${track.color}20` }}
                     >
-                      <div className="text-3xl" style={{ color: track.color }}>
+                      <div className="text-2xl sm:text-3xl" style={{ color: track.color }}>
                         {track.icon}
                       </div>
                     </div>
                     <div>
-                      <h2 className="text-2xl font-bold text-white mb-2">{track.name}</h2>
-                      <Badge className={`${getDifficultyColor(track.difficulty)} text-white`}>
+                      <h2 className="text-xl sm:text-2xl font-bold text-white mb-1 sm:mb-2">{track.name}</h2>
+                      <Badge className={`${getDifficultyColor(track.difficulty)} text-white text-xs sm:text-sm`}>
                         {track.difficulty}
                       </Badge>
                     </div>
                   </DialogTitle>
                 </DialogHeader>
 
-                <div className="space-y-6">
+                <div className="space-y-4 sm:space-y-6">
                   <div>
-                    <h3 className="text-xl font-semibold text-white/90 mb-2">Description</h3>
-                    <p className="text-white/70">{track.fulldescription}</p>
+                    <h3 className="text-lg sm:text-xl font-semibold text-white/90 mb-1 sm:mb-2">Description</h3>
+                    <p className="text-sm sm:text-base text-white/70">{track.fulldescription}</p>
                   </div>
 
                   <div>
-                    <h3 className="text-xl font-semibold text-white/90 mb-2">Tools & Technologies</h3>
-                    <div className="flex flex-wrap gap-2">
+                    <h3 className="text-lg sm:text-xl font-semibold text-white/90 mb-1 sm:mb-2">Tools & Technologies</h3>
+                    <div className="flex flex-wrap gap-1 sm:gap-2">
                       {track.tools.map((tool) => (
                         <Badge
                           key={tool}
-                          className="bg-black/50 border border-white/20 hover:border-white/40 text-white/80"
+                          className="bg-black/50 border border-white/20 hover:border-white/40 text-white/80 text-xs sm:text-sm"
                         >
                           {tool}
                         </Badge>
@@ -286,8 +286,8 @@ export default function Tracks() {
         </div>
 
         {/* Bottom message */}
-        <div className="mt-16 text-center">
-          <p className="text-white/70 mb-6 max-w-2xl mx-auto">
+        <div className="mt-12 md:mt-16 text-center">
+          <p className="text-sm md:text-base text-white/70 mb-6 max-w-2xl mx-auto">
             Can't decide? You can always participate in multiple tracks.
           </p>
         </div>
