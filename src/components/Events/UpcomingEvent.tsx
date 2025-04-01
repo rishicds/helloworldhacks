@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Calendar, MapPin, Users, Clock, ChevronRight, Flame, ExternalLink } from "lucide-react"
+import { Calendar, MapPin, Clock, ChevronRight, Flame, ExternalLink } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
