@@ -203,7 +203,7 @@ export default function CommunityPartners() {
                 Interested in supporting our community? Reach out to explore partnership opportunities.
               </p>
               <a 
-                href="#" 
+                href="https://forms.gle/o2gmuyEqVpgYP36NA" 
                 className="inline-block px-6 py-2 bg-[#3BCEAC] text-[#0D0221] font-bold rounded-md hover:bg-[#3BCEAC]/80 transition-colors"
               >
                 Get In Touch
