@@ -174,7 +174,7 @@ const BadgeGenerator = () => {
   return (
     <div className="min-h-screen bg-black text-green-400 p-8">
       {/* Container with responsive layout */}
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-5xl mx-auto pt-46">
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
