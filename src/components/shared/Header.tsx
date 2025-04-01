@@ -21,6 +21,9 @@ const TransparentNavbar = () => {
   // Navigation items with icons
   const navItems = [
     {
+      name: "Events",
+    },
+    {
       name: "About",
       icon: (
         <svg
@@ -43,7 +46,6 @@ const TransparentNavbar = () => {
 
   return (
     <>
-
       <motion.div
         className={`fixed top-6 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-300 ${
           scrolled ? "w-5/6 md:w-3/4 lg:w-2/3" : "w-11/12 md:w-4/5 lg:w-3/4"
@@ -53,11 +55,14 @@ const TransparentNavbar = () => {
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
         <motion.div
-          className={`rounded-full px-4 py-3 ${scrolled ? "bg-[#0A192F] border border-[#3DEFE9] backdrop-blur-md shadow-lg" : "bg-white/10 backdrop-blur-md shadow-lg"}`}
+          className={`rounded-full px-4 py-3 ${
+            scrolled
+              ? "bg-[#0A192F] border border-[#3DEFE9] backdrop-blur-md shadow-lg"
+              : "bg-white/10 backdrop-blur-md shadow-lg"
+          }`}
           whileHover={{ scale: 1.02 }}
         >
           <div className="flex items-center justify-between">
-      
             <Link href="/">
               <motion.div
                 className="flex items-center cursor-pointer"
@@ -86,19 +91,23 @@ const TransparentNavbar = () => {
             {/* Desktop Nav */}
             <nav className="hidden md:flex items-center space-x-4 lg:space-x-6">
               {navItems.map((item, index) => (
-                <motion.a
+                <Link
                   key={item.name}
-                  href={`${item.name.toLowerCase()}`}
+                  href={`/${item.name.toLowerCase()}`}
                   className="flex items-center text-gray-300 hover:text-[#3DEFE9] transition-colors duration-300 font-medium text-base"
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 * index + 0.5, duration: 0.3 }}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
                 >
-                  <span className="mr-2 text-[#3DEFE9]">{item.icon}</span>
-                  {item.name}
-                </motion.a>
+                  <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 * index + 0.5, duration: 0.3 }}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="flex items-center"
+                  >
+                    <span className="mr-2 text-[#3DEFE9]">{item.icon}</span>
+                    {item.name}
+                  </motion.div>
+                </Link>
               ))}
             </nav>
 
@@ -146,18 +155,22 @@ const TransparentNavbar = () => {
             >
               <div className="mx-2 bg-black/90 backdrop-blur-md rounded-lg shadow-xl border border-gray-800 p-4">
                 {navItems.map((item, index) => (
-                  <motion.a
+                  <Link
                     key={item.name}
-                    href={`${item.name.toLowerCase()}`}
+                    href={`/${item.name.toLowerCase()}`}
                     className="flex items-center py-3 text-gray-300 hover:text-[#3DEFE9] transition-colors duration-300 text-lg"
-                    initial={{ x: -20, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ delay: 0.05 * index, duration: 0.2 }}
                     onClick={() => setMenuOpen(false)}
                   >
-                    <span className="mr-3 text-[#3DEFE9]">{item.icon}</span>
-                    {item.name}
-                  </motion.a>
+                    <motion.div
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ delay: 0.05 * index, duration: 0.2 }}
+                      className="flex items-center w-full"
+                    >
+                      <span className="mr-3 text-[#3DEFE9]">{item.icon}</span>
+                      {item.name}
+                    </motion.div>
+                  </Link>
                 ))}
               </div>
             </motion.div>
