@@ -22,24 +22,45 @@ const TransparentNavbar = () => {
   const navItems = [
     {
       name: "Events",
+      icon: (
+        <svg
+  xmlns="http://www.w3.org/2000/svg"
+  className="h-6 w-6"
+  fill="none"
+  viewBox="0 0 24 24"
+  stroke="currentColor"
+  strokeWidth={2.2}
+  strokeLinecap="round"
+  strokeLinejoin="round"
+>
+  
+  <rect x="4" y="5" width="16" height="14" rx="2" />
+  <path d="M8 3v4M16 3v4M4 10h16" />
+
+  <circle cx="8" cy="14" r="1.5" />
+  <circle cx="12" cy="14" r="1.5" />
+  <circle cx="16" cy="14" r="1.5" />
+</svg>
+
+      )
     },
     {
       name: "About",
       icon: (
         <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-5 w-5"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-          />
-        </svg>
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        strokeWidth={2.2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 8h.01M11 12h2v4h-2z" />
+      </svg>
+      
       ),
     },
   ]
