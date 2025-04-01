@@ -189,6 +189,17 @@ const TeamPage = () => {
           }
         },
 
+        { 
+          name: "Sohom Roy", 
+          role: "Tech Team Member", 
+          image: "https://i.postimg.cc/63sNBX3p/Whats-App-Image-2025-03-31-at-23-25-16-28ba98b7.jpg",
+          social: {
+            github: "omsohom01",
+            linkedin: "sohom-roy-9a9852291/",
+            instagram: "codersohom007/"
+          }
+        },
+
       ],
     },
     {
