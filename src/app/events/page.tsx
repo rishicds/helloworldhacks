@@ -9,7 +9,7 @@ import Link from "next/link"
 import { useRef, useState } from "react"
 
 // Enhanced Particle component with more dynamic animations
-const Particle = ({ index }: { index: number }) => {
+const Particle = ({ }: { index: number }) => {
   const randomSize = Math.floor(Math.random() * 4) + 1
   const randomDuration = Math.floor(Math.random() * 25) + 10
   const randomDelay = Math.random() * 8
@@ -63,11 +63,11 @@ const GlowingBorder = ({ className = "" }) => {
 
 const EventsPage = () => {
   const [isHovering, setIsHovering] = useState(false)
-  const [activeTab, setActiveTab] = useState(0)
+
 
   // Refs for scroll animations
   const containerRef = useRef<HTMLDivElement>(null)
-  const speakersRef = useRef<HTMLDivElement>(null)
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"],
