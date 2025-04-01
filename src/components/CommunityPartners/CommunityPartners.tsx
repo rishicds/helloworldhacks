@@ -1,3 +1,4 @@
+/* eslint-disable react/no-children-prop */
 "use client"
 import { useRef } from "react"
 import { useInView } from "framer-motion"
@@ -11,6 +12,49 @@ const SectionTitle = () => (
     <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
   </Canvas>
 )
+
+// Logo wrapper component for animation
+const TranslateWrapper = ({
+  children,
+  reverse,
+}: {
+  children: React.ReactNode;
+  reverse: boolean;
+}) => {
+  return (
+    <motion.div
+      initial={{ translateX: reverse ? "-100%" : "0%" }}
+      animate={{ translateX: reverse ? "0%" : "-100%" }}
+      transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
+      className="flex gap-8 px-2"
+    >
+      {children}
+    </motion.div>
+  );
+};
+
+// Single partner logo component
+const PartnerItem = ({ partner }: { partner: { name: string; image: string } }) => {
+  return (
+    <div className="group relative overflow-hidden border-2 border-[#3BCEAC] bg-white/5 backdrop-blur-md rounded-lg p-4 w-40 h-40 flex flex-col items-center justify-center transform transition-all duration-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(59,206,172,0.3)]">
+      <div className="absolute -right-10 -top-10 w-20 h-20 bg-[#3BCEAC] opacity-20 rounded-full group-hover:opacity-30 transition-opacity duration-500"></div>
+      
+      <div className="relative z-10">
+        <div className="w-16 h-16 rounded-lg overflow-hidden mx-auto mb-2 border-2 border-[#3BCEAC] bg-white/10 flex items-center justify-center">
+          <Image
+            src={partner.image || "/placeholder.svg"}
+            alt={partner.name}
+            width={50}
+            height={50}
+            className="object-contain rounded-lg"
+          />
+        </div>
+        
+        <h3 className="text-sm font-bold text-center text-white">{partner.name}</h3>
+      </div>
+    </div>
+  );
+};
 
 export default function CommunityPartners() {
   const ref = useRef(null)
@@ -40,7 +84,6 @@ export default function CommunityPartners() {
     {
       name: "Postman Community Kolkata",
       image: "https://i.postimg.cc/Nj7x15Nt/image-20250322-19195281f3dce0-fc24-4601-95a3-c261193065e2-Suman-Singha.png",
-
     },
     {
       name: "GDGC IEM",
@@ -72,21 +115,9 @@ export default function CommunityPartners() {
     }
   ]
 
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.3,
-      },
-    },
-  }
-
-  const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.8 } },
-  }
+  // Create two groups for top and bottom rows
+  const topRowPartners = partners.slice(0, Math.ceil(partners.length / 2));
+  const bottomRowPartners = partners.slice(Math.ceil(partners.length / 2));
 
   return (
     <section className="py-32 px-4 sm:px-6 bg-[#0D0221] relative" ref={ref}>
@@ -114,39 +145,50 @@ export default function CommunityPartners() {
             </p>
           </motion.div>
           
+          {/* Scrolling partners section */}
           <motion.div 
-            variants={container}
-            initial="hidden"
-            animate={isInView ? "show" : "hidden"}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="overflow-hidden py-10"
           >
-            {partners.map((partner, index) => (
-              <motion.div 
-                key={index}
-                variants={item}
-                className="group"
-              >
-                <div className="relative overflow-hidden border-2 border-[#3BCEAC] bg-white/5 backdrop-blur-md rounded-lg p-6 transform transition-all duration-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(59,206,172,0.3)]">
-                  <div className="absolute -right-20 -top-20 w-40 h-40 bg-[#3BCEAC] opacity-20 rounded-full group-hover:opacity-30 transition-opacity duration-500"></div>
-                  
-                  <div className="relative z-10">
-                    <div className="w-24 h-24 rounded-lg overflow-hidden mx-auto mb-4 border-2 border-[#3BCEAC] bg-white/10 flex items-center justify-center">
-                      <Image
-                        src={partner.image || "/placeholder.svg"}
-                        alt={partner.name}
-                        width={80}
-                        height={80}
-                        className="object-contain rounded-lg"
-                      />
-                    </div>
-                    
-                    <h3 className="text-xl font-bold text-center mb-1 text-white">{partner.name}</h3>
-           
-                    
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+            {/* Top row - left to right */}
+            <div className="flex overflow-hidden mb-8">
+              <TranslateWrapper reverse={false}>
+                {topRowPartners.map((partner, index) => (
+                  <PartnerItem key={`top-1-${index}`} partner={partner} />
+                ))}
+              </TranslateWrapper>
+              <TranslateWrapper  reverse={false}>
+                {topRowPartners.map((partner, index) => (
+                  <PartnerItem key={`top-2-${index}`} partner={partner} />
+                ))}
+              </TranslateWrapper>
+              <TranslateWrapper reverse={false}>
+                {topRowPartners.map((partner, index) => (
+                  <PartnerItem key={`top-3-${index}`} partner={partner} />
+                ))}
+              </TranslateWrapper>
+            </div>
+            
+            {/* Bottom row - right to left */}
+            <div className="flex overflow-hidden">
+              <TranslateWrapper reverse>
+                {bottomRowPartners.map((partner, index) => (
+                  <PartnerItem key={`bottom-1-${index}`} partner={partner} />
+                ))}
+              </TranslateWrapper>
+              <TranslateWrapper reverse>
+                {bottomRowPartners.map((partner, index) => (
+                  <PartnerItem key={`bottom-2-${index}`} partner={partner} />
+                ))}
+              </TranslateWrapper>
+              <TranslateWrapper reverse>
+                {bottomRowPartners.map((partner, index) => (
+                  <PartnerItem key={`bottom-3-${index}`} partner={partner} />
+                ))}
+              </TranslateWrapper>
+            </div>
           </motion.div>
           
           <motion.div 
