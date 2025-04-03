@@ -20,7 +20,6 @@ function PrizeCard({ prize, index }: PrizeCardProps) {
   const [hovered, setHovered] = useState(false)
   const placeType = prize.place.split(" ")[0]
 
-  // Trophy image paths
   const trophyImages = {
     "1st": "/trophies/gold.png",
     "2nd": "/trophies/silver.png",
@@ -47,7 +46,6 @@ function PrizeCard({ prize, index }: PrizeCardProps) {
         }}
       >
         <div className="h-[50%] w-full">
-          {/* Display image for both mobile and desktop */}
           <div className="h-full w-full flex items-center justify-center p-4">
             <img
               src={trophyImages[placeType as keyof typeof trophyImages] || "/trophies/gold.png"}
@@ -123,8 +121,6 @@ export default function PrizesFinal() {
       prize: "Rs.2000",
       color: "#FFBE0B",
     },
-   
-   
   ]
 
   return (
@@ -132,7 +128,6 @@ export default function PrizesFinal() {
       className="py-32 px-4 sm:px-6 bg-gradient-to-b from-[#0d0916] to-[#050505] relative overflow-hidden"
       ref={ref}
     >
-      {/* Add floating animation keyframes */}
       <style jsx global>{`
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(20px); }
@@ -154,7 +149,6 @@ export default function PrizesFinal() {
             </div>
           </div>
           <div className="flex flex-col md:flex-row items-center justify-center gap-4">
-            {/* Replace 3D diamond model with animated sparkles image */}
             <div className="w-24 h-24 flex items-center justify-center">
               <div className="relative w-16 h-16" style={{ animation: "float 3s ease-in-out infinite" }}>
                 <Sparkles className="w-16 h-16 text-[#3DEFE9] absolute" />
@@ -172,9 +166,18 @@ export default function PrizesFinal() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-          {mainPrizes.map((prize, index) => (
-            <PrizeCard key={index} prize={prize} index={index} />
-          ))}
+          {/* 2nd Place - appears first on desktop */}
+          <div className="order-2 md:order-1">
+            <PrizeCard prize={mainPrizes[1]} index={1} />
+          </div>
+          {/* 1st Place - appears middle on desktop, first on mobile */}
+          <div className="order-1 md:order-2">
+            <PrizeCard prize={mainPrizes[0]} index={0} />
+          </div>
+          {/* 3rd Place - appears last on both */}
+          <div className="order-3 md:order-3">
+            <PrizeCard prize={mainPrizes[2]} index={2} />
+          </div>
         </div>
 
         <div className="text-center mb-8">
