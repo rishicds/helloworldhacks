@@ -13,15 +13,34 @@ import React from 'react'
 const page = () => {
   return (
     <>
-    <Hero />
-    <UpcomingEvent />
-    <Schedule />
-    <Tracks />
-    <Features />
-    <PrizesFinal /> 
-    <Sponsors/>
-    <CommunityPartners/>
-    <Faq/>
+      <section id="hero">
+        <Hero />
+      </section>
+      <section id="upcoming-event">
+        <UpcomingEvent />
+      </section>
+      <section id="schedule">
+        <Schedule />
+      </section>
+      <section id="tracks">
+        <Tracks />
+      </section>
+      <section id="features">
+        <Features />
+      </section>
+      <section id="prizes">
+        <PrizesFinal /> 
+      </section>
+      <section id="sponsors">
+        <Sponsors />
+      </section>
+      <section id="community-partners">
+        <CommunityPartners />
+      </section>
+      <section id="faq">
+        <Faq />
+      </section>
+      
     </>
   )
 }

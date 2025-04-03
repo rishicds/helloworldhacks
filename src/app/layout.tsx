@@ -6,9 +6,10 @@ import { ReactNode } from "react";
 import Footer from "@/components/shared/Footer";
 import LoadingWrapper from "@/components/shared/LoaderClient";
 import CoolHeader from "@/components/shared/Header";
-import MusicButton from "@/components/shared/MusicButton";
-import SplashCursor from "@/components/shared/Mouse";
 
+import SplashCursor from "@/components/shared/Mouse";
+import { AstroBotChatbot } from "@/components/Chatbot/ChatBot";
+// import MusicButton from "@/components/shared/MusicButton";
 export const metadata: Metadata = {
   title: "HELLOWORLDHACKS | A Hackathon for Everyone",
   description: "Join HELLOWORLDHACKS, an inclusive hackathon for beginners and experts alike. Collaborate, innovate, and build amazing projects in a supportive environment.",
@@ -117,6 +118,7 @@ export default function Layout({ children }: { children: ReactNode }) {
           <LoadingWrapper>
             
             <SplashCursor />
+           
      
               <header>
                 <CoolHeader />
@@ -125,7 +127,8 @@ export default function Layout({ children }: { children: ReactNode }) {
               <footer>
                 <Footer />
               </footer>
-              <MusicButton />
+              {/* <MusicButton /> */}
+              <AstroBotChatbot />
               <Analytics />
               
            

@@ -123,21 +123,7 @@ const DragonModel = () => {
   const { scene } = useGLTF("/models/coins.glb")
 
   // Simple rotation animation
-  useEffect(() => {
-    let frameId: number
-    const animate = () => {
-      if (group.current) {
-        group.current.rotation.y += 0.01 // Reduced rotation speed
-      }
-      frameId = requestAnimationFrame(animate)
-    }
-
-    // Start the animation
-    frameId = requestAnimationFrame(animate)
-
-    // Cleanup function to cancel the animation frame
-    return () => cancelAnimationFrame(frameId)
-  }, [])
+ 
 
   return (
     <group ref={group}>
@@ -199,7 +185,11 @@ export default function Sponsors() {
     { name: "DEVFOLIO", tier: "GOLD SPONSORS", imageWidth: 180 },
     { name: "ETHINDIA", tier: "SILVER SPONSORS", imageWidth: 150 },
     { name: "PIECES", tier: "EDUCATION SPONSORS", imageWidth: 220 },
-   
+    { name: "DESKREE", tier: "GOLD SPONSORS", imageWidth: 180 },
+    { name: "APTOS", tier: "GOLD SPONSORS", imageWidth: 180 },
+    { name: "STELLAR", tier: "GOLD SPONSORS", imageWidth: 180 },
+    { name: "RISEIN", tier: "EDUCATION SPONSORS", imageWidth: 180 },
+    { name: "DEFANG", tier: "SILVER SPONSORS", imageWidth: 180 },
     { name: "DEVREL", tier: "TECHNICAL SPONSORS", imageWidth: 180 },
     { name: "XYZLOGO", tier: "DOMAIN SPONSORS", imageWidth: 140 },
     { name: "INTERVIEWLOGO", tier: "INTERVIEW SPONSORS", imageWidth: 270 },
@@ -236,12 +226,19 @@ export default function Sponsors() {
           <div className={`text-center mb-16 fade-in ${isInView ? "visible" : ""}`}>
             <div className="flex items-center justify-center gap-4">
               <div className="w-42 h-42">
-                <Canvas camera={{ position: [0, 0, 3], fov: 45 }} style={{ background: "transparent" }}>
-                  <ambientLight intensity={4} />
-                  <directionalLight position={[10, 10, 10]} intensity={40} />
-                  <DragonModel />
-                  <OrbitControls enableZoom={false} enablePan={false} autoRotate autoRotateSpeed={2} />
-                </Canvas>
+              <Canvas camera={{ position: [0, 1.3, 3], fov: 45 }} style={{ background: "transparent" }}>
+  {/* Softer ambient light */}
+  <ambientLight intensity={0.8} />
+
+  {/* Softer directional light */}
+  <directionalLight position={[5, 5, 5]} intensity={1.5} castShadow />
+
+  {/* Optional point light for additional soft lighting */}
+  <pointLight position={[-5, 5, 5]} intensity={0.8} />
+
+  <DragonModel />
+  <OrbitControls enableZoom={false} enablePan={false} autoRotate autoRotateSpeed={1} />
+</Canvas>
               </div>
             </div>
           </div>
@@ -269,7 +266,7 @@ export default function Sponsors() {
               <div key={tier} className="mb-16 last:mb-0">
                 <h3 className="text-center text-xl font-mono tracking-widest mb-8 text-[#3DEFE9]">{tier}</h3>
                 <div
-                  className={`grid grid-cols-1 md:grid-cols-${Math.min(tierSponsors.length, 3)} gap-8 justify-items-center items-center`}
+                  className={`grid grid-cols-1 md:grid-cols-${Math.min(tierSponsors.length, 2)} gap-8 justify-items-center items-center`}
                 >
                   {tierSponsors.map((sponsor, index) => (
                     <div

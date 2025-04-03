@@ -135,9 +135,6 @@ html,body{
   font-style: normal;
 }
 
-
-
-
 .major-mono-display-regular {
   font-family: "Major Mono Display", monospace;
   font-weight: 400;
@@ -221,4 +218,38 @@ html.lenis {
 * {
   scrollbar-width: thin;
   scrollbar-color: #6a1b9a #0a0a0a;
+}
+
+.astro-chat-container ::-webkit-scrollbar {
+  width: 6px;
+}
+
+.astro-chat-container ::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.astro-chat-container ::-webkit-scrollbar-thumb {
+  background: rgba(149, 76, 233, 0.5);
+  border-radius: 10px;
+}
+
+.astro-chat-container ::-webkit-scrollbar-thumb:hover {
+  background: rgba(149, 76, 233, 0.7);
+}
+
+/* Glow effect for the chat container */
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 10px rgba(149, 76, 233, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(149, 76, 233, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(149, 76, 233, 0.4);
+  }
+}
+
+.astro-chat-container {
+  animation: glow 3s infinite;
 }
