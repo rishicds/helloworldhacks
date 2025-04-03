@@ -292,70 +292,12 @@ export default function Sponsors() {
             ))}
           </div>
 
-          <div className={`mt-16 text-center fade-in fade-in-delay-600 ${isInView ? "visible" : ""}`}>
-            <h3 className="text-2xl font-bold mb-4 text-white">BECOME A SPONSOR</h3>
-            <p className="text-white/70 max-w-2xl mx-auto mb-6">
-              Interested in sponsoring HelloWorld Hacks? Reach out to us to learn about our sponsorship packages and how
-              you can support the next generation of developers.
-            </p>
-            <div
-              className="inline-block relative"
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
-            >
-              {isHovered && (
-                <>
-                  <div className="absolute z-10 opacity-0 card-popup-1">
-                    <Card className="bg-pink-100 p-3 shadow-md max-w-xs">
-                      <p className="text-sm font-medium">🚀 Unlock VIP perks & premium visibility!</p>
-                    </Card>
-                  </div>
-
-                  <div className="absolute z-10 opacity-0 card-popup-2">
-                    <Card className="bg-purple-100 p-3 shadow-md">
-                      <p className="text-sm font-medium">💎 Limited spots available!</p>
-                    </Card>
-                  </div>
-
-                  <div className="absolute z-10 opacity-0 card-popup-3">
-                    <Card className="bg-yellow-100 p-3 shadow-md">
-                      <p className="text-sm font-medium">🎯 200% ROI for early birds!</p>
-                    </Card>
-                  </div>
-                </>
-              )}
-              <Button
-                className="bg-[#3DEFE9] text-black hover:bg-[#3DEFE9]/90 font-bold 
-                  text-sm sm:text-lg md:text-2xl 
-                  px-3 sm:px-8 md:px-16 lg:px-[8.5rem]
-                  py-6 sm:py-6 md:py-8 lg:py-[3.5rem] 
-                  rounded-lg
-                  shadow-[0_0_15px_rgba(61,239,233,0.3)] hover:shadow-[0_0_25px_rgba(61,239,233,0.5)]
-                  transition-all duration-300 
-                  w-full max-w-full sm:w-auto sm:min-w-[280px] md:min-w-[320px]
-                  hover:scale-105 active:scale-95"
-                onClick={downloadBrochure}
-              >
-                <div className="flex flex-col items-center justify-center">
-                  <span className="text-center whitespace-normal px-1 pulse-animation">Download Sponsorship Deck</span>
-
-                  <p
-                    className="text-[10px] sm:text-sm font-medium 
-                              mt-2
-                              text-center whitespace-normal 
-                              px-1 
-                              overflow-visible 
-                              mb-1
-                              fade-animation"
-                  >
-                    {slogan}
-                  </p>
-                </div>
-              </Button>
+          
+              
             </div>
           </div>
-        </div>
-      </div>
+        
+      
     </section>
   )
 }

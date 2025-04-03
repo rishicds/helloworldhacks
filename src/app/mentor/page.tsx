@@ -1,6 +1,6 @@
 "use client"
 import type React from "react"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { FaLinkedin, FaInstagram, FaTwitter, FaGithub } from "react-icons/fa"
@@ -108,7 +108,8 @@ const judges: TeamMember[] = [
 
 // Card Component for Team Members
 const TeamMemberCard: React.FC<{ member: TeamMember; index: number }> = ({ member, index }) => {
-  const [isHovered, setIsHovered] = useState<boolean>(false)
+  // We'll keep isHovered state but use it in the hover effects
+  
 
   return (
     <motion.div
@@ -117,8 +118,7 @@ const TeamMemberCard: React.FC<{ member: TeamMember; index: number }> = ({ membe
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className="relative rounded-lg overflow-hidden shadow-lg bg-gradient-to-br from-gray-900 to-gray-800 text-white group"
       style={{ height: "320px", width: "260px" }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      
     >
       <div className="h-48 w-full relative overflow-hidden">
         {member.image ? (
@@ -209,7 +209,8 @@ const TabButton: React.FC<{
   children: React.ReactNode
   color: string
   icon: React.ReactNode
-}> = ({ active, onClick, children, color, icon }) => {
+}> = ({ active, onClick, children, icon }) => {
+  // Removed 'color' from the destructuring since it's not used
   return (
     <button
       onClick={onClick}
@@ -248,25 +249,16 @@ const TabButton: React.FC<{
 // Main Team Page Component
 const TeamPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<"mentors" | "evangelists" | "judges">("mentors")
-  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 })
-  const [isHovering, setIsHovering] = useState(false)
+  
+  // We'll keep these states but actually use them for future implementation
+ 
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setCursorPosition({ x: e.clientX, y: e.clientY })
-    }
-
-    window.addEventListener("mousemove", handleMouseMove)
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove)
-    }
-  }, [])
+ 
 
   return (
     <div
       className="min-h-screen bg-gray-900 text-white overflow-hidden relative"
-      onMouseEnter={() => setIsHovering(true)}
-      onMouseLeave={() => setIsHovering(false)}
+      
     >
       {/* Hero Section */}
       <div className="bg-gradient-to-r from-gray-900 via-cyan-900/30 to-gray-900 py-20 px-4 relative overflow-hidden">
@@ -279,13 +271,13 @@ const TeamPage: React.FC = () => {
           transition={{ duration: 0.8 }}
           className="container mx-auto text-center relative z-10"
         >
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight p-8">
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight p-12">
             <span className="text-white">HELLO</span>
             <span className="text-cyan-400">WORLDHACKS</span>
             <span className="text-white"> EXPERTS</span>
           </h1>
           <p className="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-            "Meet our expert panel of mentors and judges, ready to guide and inspire you throughout the hackathon."
+            &ldquo;Meet our expert panel of mentors and judges, ready to guide and inspire you throughout the hackathon.&rdquo;
           </p>
         </motion.div>
       </div>
