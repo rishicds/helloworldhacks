@@ -24,46 +24,61 @@ const TransparentNavbar = () => {
       name: "Events",
       icon: (
         <svg
-  xmlns="http://www.w3.org/2000/svg"
-  className="h-6 w-6"
-  fill="none"
-  viewBox="0 0 24 24"
-  stroke="currentColor"
-  strokeWidth={2.2}
-  strokeLinecap="round"
-  strokeLinejoin="round"
->
-  
-  <rect x="4" y="5" width="16" height="14" rx="2" />
-  <path d="M8 3v4M16 3v4M4 10h16" />
-
-  <circle cx="8" cy="14" r="1.5" />
-  <circle cx="12" cy="14" r="1.5" />
-  <circle cx="16" cy="14" r="1.5" />
-</svg>
-
-      )
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          strokeWidth={2.2}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <rect x="4" y="5" width="16" height="14" rx="2" />
+          <path d="M8 3v4M16 3v4M4 10h16" />
+          <circle cx="8" cy="14" r="1.5" />
+          <circle cx="12" cy="14" r="1.5" />
+          <circle cx="16" cy="14" r="1.5" />
+        </svg>
+      ),
+    },
+    {
+      name: "Mentors",
+      icon: (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          strokeWidth={2.2}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M12 12c2.5 0 4.5-2 4.5-4.5S14.5 3 12 3 7.5 5 7.5 7.5 9.5 12 12 12Zm0 2c-3 0-6 1.5-6 3v1h12v-1c0-1.5-3-3-6-3Z" />
+        </svg>
+      ),
     },
     {
       name: "About",
       icon: (
         <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="h-6 w-6"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        strokeWidth={2.2}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <circle cx="12" cy="12" r="9" />
-        <path d="M12 8h.01M11 12h2v4h-2z" />
-      </svg>
-      
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          strokeWidth={2.2}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <circle cx="12" cy="12" r="9" />
+          <path d="M12 8h.01M11 12h2v4h-2z" />
+        </svg>
       ),
     },
+    
   ]
+  
 
   return (
     <>

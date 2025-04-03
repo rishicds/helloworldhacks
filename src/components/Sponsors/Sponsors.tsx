@@ -1,10 +1,10 @@
 "use client"
 
 import { useRef, useState, useEffect } from "react"
-import { Button } from "@/components/ui/button"
+
 import { Canvas } from "@react-three/fiber"
 import { OrbitControls, useGLTF } from "@react-three/drei"
-import { Card } from "@/components/ui/card"
+
 import Image from "next/image"
 import type { Group } from "three"
 
@@ -135,7 +135,7 @@ const DragonModel = () => {
 export default function Sponsors() {
   const sectionRef = useRef<HTMLElement>(null)
   const [isInView, setIsInView] = useState(false)
-  const [isHovered, setIsHovered] = useState(false)
+  
 
   // Intersection Observer to detect when section is in view
   useEffect(() => {
@@ -171,14 +171,7 @@ export default function Sponsors() {
     "High-five your marketing budget!",
   ]
 
-  const downloadBrochure = () => {
-    const link = document.createElement("a")
-    link.href = "/sponsorshipbrochure.pdf"
-    link.download = "sponsorshipbrochure.pdf"
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
-  }
+  
 
   const sponsors = [
     { name: "LLMWARE", tier: "TITLE SPONSORS", imageWidth: 120 },
@@ -206,7 +199,7 @@ export default function Sponsors() {
   }, {})
 
   // Random slogan
-  const [slogan, setSlogan] = useState(quirkySlogans[Math.floor(Math.random() * quirkySlogans.length)])
+  const [, setSlogan] = useState(quirkySlogans[Math.floor(Math.random() * quirkySlogans.length)])
 
   // Rotate slogans
   useEffect(() => {
