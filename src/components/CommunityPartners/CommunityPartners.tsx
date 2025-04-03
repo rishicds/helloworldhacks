@@ -112,6 +112,10 @@ export default function CommunityPartners() {
     {
       name: "Samarth",
       image: "https://i.postimg.cc/bwjTDQ9L/violetlogo-57f93a3bc68d1d4bddd8-Sujay-Dey.webp"
+    },
+    {
+      name: "Anonymous Legion",
+      image: "https://i.postimg.cc/9QBkBVnk/IMG-20250330-WA0032-Paul-Srijan.jpg"
     }
   ]
 
