@@ -221,6 +221,19 @@ const TeamPage = () => {
           }
         },
         { 
+          name: "Sayandeep Sen", 
+          role: "Graphics Team", 
+          image: "https://i.postimg.cc/VLS6FNRX/sayandeep-graphic.jpg",
+          social: {
+            github: "",
+            linkedin: "https://www.linkedin.com/in/sayandeepsen?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+            instagram: "https://www.instagram.com/sayandeep__sen?utm_source=qr&igsh=b2d1Mnl1MWh3bTV4"
+          }
+        },
+
+
+        
+        { 
           name: "Anirban Kar", 
           role: "Graphics Team", 
           image: "https://i.postimg.cc/yNKKCfrC/anirban-graphics.webp",
