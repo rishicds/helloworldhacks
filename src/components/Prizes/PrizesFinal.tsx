@@ -89,20 +89,19 @@ export default function PrizesFinal() {
   const ref = useRef(null);
 
   const mainPrizes = [
-    
-    {
-      place: "2nd PLACE",
-      prize: "Rs.4000",
-      icon: <Award className="w-12 h-12" />,
-      extras: [],
-      color: "#3DEFE9",
-    },
     {
       place: "1st PLACE",
       prize: "Rs.8000",
       icon: <Trophy className="w-12 h-12" />,
       extras: [],
       color: "#FFBE0B",
+    },
+    {
+      place: "2nd PLACE",
+      prize: "Rs.4000",
+      icon: <Award className="w-12 h-12" />,
+      extras: [],
+      color: "#3DEFE9",
     },
     {
       place: "3rd PLACE",
