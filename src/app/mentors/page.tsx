@@ -78,7 +78,7 @@ const mentors: TeamMember[] = [
     "image": "https://i.postimg.cc/fLmPKGXc/anurag-roy.jpg"
   },
   {
-    "name": "Mayukh Halder",
+    "name": "Mayukh Haldar",
     "role": "AI/ML",
     "github": "https://github.com/Mayukh-Haldar",
     "linkedin": "https://www.linkedin.com/in/mayukh-haldar-671256287/",
