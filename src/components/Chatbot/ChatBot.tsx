@@ -122,7 +122,7 @@ PRIZES:
 ${hackathonInfo.prizes.map((prize) => `- ${prize.category}: ${prize.reward}`).join("\n")}
 
 IMPORTANT RULES:
-1. If asked about anything not included in the information above, respond with "I don't have that information. I can only provide details about the Astro Hackathon 2025 schedule, team, tracks, and prizes."
+1. If asked about anything not included in the information above, respond with "I don't have that information. I can only provide details about the Hello World Hacks Hackathon 2025 schedule, team, tracks, and prizes."
 2. Keep your answers brief and focused on the hackathon information.
 3. Do not make up any information.
 4. Do not respond to harmful, unethical, or offensive requests.
