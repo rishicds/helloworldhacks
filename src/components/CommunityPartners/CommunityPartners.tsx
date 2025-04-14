@@ -116,7 +116,24 @@ export default function CommunityPartners() {
     {
       name: "Anonymous Legion",
       image: "https://i.postimg.cc/9QBkBVnk/IMG-20250330-WA0032-Paul-Srijan.jpg"
+    },
+    {
+      name: "DevDotCom",
+      image: "https://i.postimg.cc/bY9Fqrqm/DDC-Logo-Piyush-Mondal.png"
+    },
+    {
+      name: "Imperio Coders",
+      image: "https://i.postimg.cc/nh2Dz8Xb/logo-Imperio-Coders-Official.png"
+    },
+    {
+      name: "Zero Devs",
+      image: "https://i.postimg.cc/Y2Vc5jRT/IMG-20250408-002904-Shivam-Singh.jpg"
+    },
+    {
+      name: "InnovateX",
+      image: "https://i.postimg.cc/Fzc7j8GZ/black-logo-innovatex-Innovate-X.jpg"
     }
+    
   ]
 
   // Create two groups for top and bottom rows
