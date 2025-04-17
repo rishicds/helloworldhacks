@@ -150,6 +150,13 @@ const mentors: TeamMember[] = [
     image: "https://i.postimg.cc/NMk3YhMg/Whats-App-Image-2025-04-03-at-22-36-08-11494699.jpg",
     linkedin: "https://www.linkedin.com/in/aritrakrbasu/",
   },
+  {
+    name: "Subinoy Biswas",
+    role: "Web Dev",
+    github: "https://github.com/heysubinoy",
+    image: "https://i.postimg.cc/fbW9RhBs/pfp.jpg",
+    linkedin: "https://www.linkedin.com/in/heysubinoy/",
+  },
 ]
 
 const evangelists: TeamMember[] = [
@@ -252,7 +259,6 @@ function useInView<T extends HTMLElement = HTMLDivElement>({
 
   return [ref, isInView]
 }
-
 
 // Custom hook for animation on scroll
 const useAnimateOnScroll = <T extends HTMLElement = HTMLDivElement>(threshold = 0.1) => {
@@ -1094,7 +1100,7 @@ const TeamPage = () => {
           }`}
         >
           <TextReveal>
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight p-12">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 tracking-tight p-4 sm:p-8 md:p-12">
               <span className="text-white">HELLO</span>
               <span className="text-cyan-400">WORLDHACKS</span>
               <span className="text-white"> EXPERTS</span>
@@ -1251,4 +1257,3 @@ const TabButton: React.FC<TabButtonProps> = ({ active, onClick, children, icon }
 }
 
 export default TeamPage
-
