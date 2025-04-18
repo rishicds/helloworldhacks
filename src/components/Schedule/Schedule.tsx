@@ -137,7 +137,7 @@ export default function CheckpointTimeline() {
       description: "Selection committee reviews submitted proposals",
     },
     {
-      time: "April 20 11:59PM",
+      time: "April 19 11:59PM",
       event: "Proposal Submission Deadline",
       description: "Last chance to submit your project ideas",
     },
