@@ -157,6 +157,34 @@ const mentors: TeamMember[] = [
     image: "https://i.postimg.cc/fbW9RhBs/pfp.jpg",
     linkedin: "https://www.linkedin.com/in/heysubinoy/",
   },
+  {
+    name: "Srishti Majumder",
+    role: "Web Dev",
+    github: "https://github.com/Srishtihere",
+    image: "https://i.postimg.cc/2y1MZFNV/IMG-20250301-WA0181.jpg",
+    linkedin: "https://www.linkedin.com/in/srishti-majumder/",
+  },
+  {
+    name: "Om Ashish MIshra",
+    role: "AI/ML",
+    github: "https://github.com/OmAshish",
+    image: "https://i.postimg.cc/FH406ysc/Om-Ashish-Mishra-1.jpg",
+    linkedin: "https://www.linkedin.com/in/om-ashish-mishra/",
+  },
+  {
+    name: "Tanisha Bansal",
+    role: "AI/ML",
+    github: "https://github.com/BTANISHA11",
+    image: "https://i.postimg.cc/3Nt75MPV/1000249120.jpg",
+    linkedin: "https://www.linkedin.com/in/tanishabansal110902?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+  },
+  {
+    name: "Saptadeep Banerjee",
+    role: "DevOps & Cloud",
+    github: "https://github.com/imSanko",
+    image: "https://i.postimg.cc/x8Vrwfx6/1683396607033.jpg",
+    linkedin: "https://www.linkedin.com/in/saptadeep-banerjee-2b15bbb0/",
+  },
 ]
 
 const evangelists: TeamMember[] = [
